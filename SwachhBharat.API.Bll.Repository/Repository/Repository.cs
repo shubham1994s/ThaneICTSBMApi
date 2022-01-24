@@ -2588,6 +2588,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.OutbatteryStatus = x.batteryStatus;
                                     objdata.totalKm = x.totalKm;
                                     objdata.EmployeeType = null;
+                                    objdata.CType = x.CType;
                                     db.SaveChanges();
                                 }
                                 if (objdata != null)
@@ -2601,6 +2602,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.vehicleNumber = x.vehicleNumber;
                                     objdata.vtId = x.vtId;
                                     objdata.EmployeeType = null;
+                                    objdata.CType = x.CType;
                                     //objdata.daEndDate = x.daEndDate;
 
                                     if (x.daEndDate.Equals(DateTime.MinValue))
@@ -2663,6 +2665,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         loc.IsOffline = true;
                                         loc.CreatedDate = DateTime.Now;
                                         loc.EmployeeType = null;
+                                        loc.CType = x.CType;
                                         db.Locations.Add(loc);
                                         _IsOutSync = true;
                                         _IsInSync = false;
@@ -2684,6 +2687,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         OutTime.vehicleNumber = x.vehicleNumber;
                                         OutTime.vtId = x.vtId;
                                         OutTime.EmployeeType = null;
+                                        OutTime.CType = x.CType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
                                             OutTime.daEndDate = null;
@@ -2725,6 +2729,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         attendance.vehicleNumber = x.vehicleNumber;
                                         attendance.vtId = x.vtId;
                                         attendance.EmployeeType = null;
+                                        attendance.CType = x.CType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
                                             attendance.daEndDate = null;
@@ -2826,6 +2831,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         loc.IsOffline = true;
                                         loc.CreatedDate = DateTime.Now;
                                         loc.EmployeeType = null;
+                                        loc.CType = x.CType;
                                         db.Locations.Add(loc);
                                         _IsOutSync = true;
                                     }
@@ -2857,6 +2863,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         loc.IsOffline = true;
                                         loc.CreatedDate = DateTime.Now;
                                         loc.EmployeeType = null;
+                                        loc.CType = x.CType;
                                         db.Locations.Add(loc);
                                         _IsOutSync = false;
                                     }
@@ -2872,7 +2879,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     IsInSync = _IsInSync,
                                     IsOutSync = _IsOutSync,
                                     EmpType="N",
-                                   
+                                    CType=x.CType,
+
                                 });
                             }
                             else
@@ -2886,6 +2894,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     IsInSync = true,
                                     IsOutSync = true,
                                     EmpType = "N",
+                                    CType = x.CType,
+
                                 });
                             }
                         }
@@ -2902,6 +2912,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             IsInSync = false,
                             IsOutSync = false,
                             EmpType = "N",
+                            CType = x.CType,
+
                         });
                         return result;
                     }
@@ -2956,6 +2968,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.OutbatteryStatus = x.batteryStatus;
                                     objdata.totalKm = x.totalKm;
                                     objdata.EmployeeType = "L";
+                                    objdata.CType = x.EmpType;
                                     db.SaveChanges();
                                 }
                                 if (objdata != null)
@@ -2969,6 +2982,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.vehicleNumber = x.vehicleNumber;
                                     objdata.vtId = x.vtId;
                                     objdata.EmployeeType = "L";
+                                    objdata.CType = x.EmpType;
                                     //objdata.daEndDate = x.daEndDate;
 
                                     if (x.daEndDate.Equals(DateTime.MinValue))
@@ -3031,6 +3045,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         loc.IsOffline = true;
                                         loc.CreatedDate = DateTime.Now;
                                         loc.EmployeeType = "L";
+                                        loc.CType = x.EmpType;
                                         db.Locations.Add(loc);
                                         _IsOutSync = true;
                                         _IsInSync = false;
@@ -3052,6 +3067,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         OutTime.vehicleNumber = x.vehicleNumber;
                                         OutTime.vtId = x.vtId;
                                         OutTime.EmployeeType = "L";
+                                        OutTime.CType = x.EmpType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
                                             OutTime.daEndDate = null;
@@ -3093,6 +3109,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         attendance.vehicleNumber = x.vehicleNumber;
                                         attendance.vtId = x.vtId;
                                         attendance.EmployeeType = "L";
+                                        attendance.CType = x.EmpType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
                                             attendance.daEndDate = null;
@@ -3194,6 +3211,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         loc.IsOffline = true;
                                         loc.CreatedDate = DateTime.Now;
                                         loc.EmployeeType = "L";
+                                        loc.CType = x.EmpType;
                                         db.Locations.Add(loc);
                                         _IsOutSync = true;
                                     }
@@ -3225,6 +3243,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         loc.IsOffline = true;
                                         loc.CreatedDate = DateTime.Now;
                                         loc.EmployeeType = "L";
+                                        loc.CType = x.EmpType;
                                         db.Locations.Add(loc);
                                         _IsOutSync = false;
                                     }
@@ -3240,6 +3259,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     IsInSync = _IsInSync,
                                     IsOutSync = _IsOutSync,
                                     EmpType = "L",
+                                    CType=x.CType,
 
                                 });
                             }
@@ -3254,6 +3274,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     IsInSync = true,
                                     IsOutSync = true,
                                     EmpType = "L",
+                                    CType = x.CType,
                                 });
                             }
                         }
@@ -3270,6 +3291,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             IsInSync = false,
                             IsOutSync = false,
                             EmpType = "L",
+                            CType = x.CType,
                         });
                         return result;
                     }
@@ -3324,6 +3346,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.OutbatteryStatus = x.batteryStatus;
                                     objdata.totalKm = x.totalKm;
                                     objdata.EmployeeType = "S";
+                                    objdata.CType = x.CType;
                                     db.SaveChanges();
                                 }
                                 if (objdata != null)
@@ -3337,6 +3360,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.vehicleNumber = x.vehicleNumber;
                                     objdata.vtId = x.vtId;
                                     objdata.EmployeeType = "S";
+                                    objdata.CType = x.CType;
                                     //objdata.daEndDate = x.daEndDate;
 
                                     if (x.daEndDate.Equals(DateTime.MinValue))
@@ -3399,6 +3423,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         loc.IsOffline = true;
                                         loc.CreatedDate = DateTime.Now;
                                         loc.EmployeeType = "S";
+                                        loc.CType = x.CType;
                                         db.Locations.Add(loc);
                                         _IsOutSync = true;
                                         _IsInSync = false;
@@ -3420,6 +3445,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         OutTime.vehicleNumber = x.vehicleNumber;
                                         OutTime.vtId = x.vtId;
                                         OutTime.EmployeeType = "S";
+                                        OutTime.CType = x.CType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
                                             OutTime.daEndDate = null;
@@ -3461,6 +3487,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         attendance.vehicleNumber = x.vehicleNumber;
                                         attendance.vtId = x.vtId;
                                         attendance.EmployeeType = "S";
+                                        attendance.CType = x.CType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
                                             attendance.daEndDate = null;
@@ -3562,6 +3589,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         loc.IsOffline = true;
                                         loc.CreatedDate = DateTime.Now;
                                         loc.EmployeeType = "S";
+                                        loc.CType = x.CType;
                                         db.Locations.Add(loc);
                                         _IsOutSync = true;
                                     }
@@ -3593,6 +3621,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         loc.IsOffline = true;
                                         loc.CreatedDate = DateTime.Now;
                                         loc.EmployeeType = "S";
+                                        loc.CType = x.CType;
                                         db.Locations.Add(loc);
                                         _IsOutSync = false;
                                     }
@@ -3608,7 +3637,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     IsInSync = _IsInSync,
                                     IsOutSync = _IsOutSync,
                                     EmpType = "S",
-
+                                    CType=x.CType,
                                 });
                             }
                             else
@@ -3622,6 +3651,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     IsInSync = true,
                                     IsOutSync = true,
                                     EmpType = "S",
+                                    CType = x.CType,
                                 });
                             }
                         }
@@ -3638,6 +3668,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             IsInSync = false,
                             IsOutSync = false,
                             EmpType = "S",
+                            CType = x.CType,
                         });
                         return result;
                     }

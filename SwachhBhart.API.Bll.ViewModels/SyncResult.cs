@@ -26,6 +26,9 @@ namespace SwachhBhart.API.Bll.ViewModels
         public bool IsOutSync { get; set; }
 
         public string EmpType { get; set; }
+
+        public string CType { get; set; }
+
     }
 
 

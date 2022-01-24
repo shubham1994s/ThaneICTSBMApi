@@ -22,6 +22,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
         {
         }
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -40,7 +41,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<HouseMaster> HouseMasters { get; set; }
         public virtual DbSet<DeviceDetail> DeviceDetails { get; set; }
         public virtual DbSet<Qr_Location> Qr_Location { get; set; }
-        public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<GamePlayerDetail> GamePlayerDetails { get; set; }
         public virtual DbSet<WM_GarbageCategory> WM_GarbageCategory { get; set; }
         public virtual DbSet<WM_GarbageSubCategory> WM_GarbageSubCategory { get; set; }
@@ -48,7 +48,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<SauchalayAddress> SauchalayAddresses { get; set; }
         public virtual DbSet<WM_Garbage_Details> WM_Garbage_Details { get; set; }
         public virtual DbSet<Vw_GetHouseNumber> Vw_GetHouseNumber { get; set; }
-        public virtual DbSet<Daily_Attendance> Daily_Attendance { get; set; }
         public virtual DbSet<WM_Garbage_Sales> WM_Garbage_Sales { get; set; }
         public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<Vw_MsgNotification> Vw_MsgNotification { get; set; }
@@ -57,6 +56,8 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
         public virtual DbSet<Vw_GetLiquidNumber> Vw_GetLiquidNumber { get; set; }
         public virtual DbSet<Vw_GetStreetNumber> Vw_GetStreetNumber { get; set; }
+        public virtual DbSet<Daily_Attendance> Daily_Attendance { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
     
         public virtual ObjectResult<sp_area_Result> sp_area()
         {

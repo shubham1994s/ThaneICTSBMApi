@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="592eb588b8c74a8eaf636e7a081d4c03" Name="Diagram1" ZoomLevel="66" ShowGrid="false">
+      <Diagram DiagramId="592eb588b8c74a8eaf636e7a081d4c03" Name="Diagram1" ZoomLevel="63" ShowGrid="false">
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.GramCleaningComplient" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.TeritoryMaster" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.VehicleType" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
@@ -18,7 +18,6 @@
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.HouseMaster" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.DeviceDetail" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Qr_Location" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Location" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.GamePlayerDetail" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.WM_GarbageCategory" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.WM_GarbageSubCategory" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
@@ -26,7 +25,6 @@
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.SauchalayAddress" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.WM_Garbage_Details" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Vw_GetHouseNumber" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Daily_Attendance" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.WM_Garbage_Sales" Width="1.5" PointX="13.375" PointY="9.75" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.UserMaster" Width="1.5" PointX="11.375" PointY="13.75" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Vw_MsgNotification" Width="1.5" PointX="13.375" PointY="12.75" />
@@ -35,6 +33,8 @@
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.GarbageCollectionDetail" Width="1.5" PointX="5.375" PointY="14.75" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Vw_GetLiquidNumber" Width="1.5" PointX="15.375" PointY="5.75" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Vw_GetStreetNumber" Width="1.5" PointX="7.375" PointY="15.75" />
+        <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Daily_Attendance" Width="1.5" PointX="15.375" PointY="8.75" />
+        <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Location" Width="1.5" PointX="15.375" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

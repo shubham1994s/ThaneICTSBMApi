@@ -31,5 +31,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public string RFIDReaderId { get; set; }
         public Nullable<int> SourceId { get; set; }
         public string EmployeeType { get; set; }
+        public string CType { get; set; }
     }
 }

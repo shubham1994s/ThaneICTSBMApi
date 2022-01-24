@@ -28,6 +28,8 @@ namespace SwachhBhart.API.Bll.ViewModels
 
         public string EmpType { get; set; }
 
+        public string CType { get; set; }
+
         //public int type { get; set; }
     }
 }
