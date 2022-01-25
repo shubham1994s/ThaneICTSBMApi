@@ -18,10 +18,9 @@ namespace SwachhBharatAPI.Dal.DataContexts
     public partial class DevSwachhBharatNagpurEntities : DbContext
     {
         public DevSwachhBharatNagpurEntities(int AppId)
-                : base(SwachhBharatAppConnection.GetConnectionString(AppId))
+               : base(SwachhBharatAppConnection.GetConnectionString(AppId))
         {
         }
-
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -38,9 +37,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<Qr_Employee_Daily_Attendance> Qr_Employee_Daily_Attendance { get; set; }
         public virtual DbSet<QrEmployeeMaster> QrEmployeeMasters { get; set; }
         public virtual DbSet<BinLatLong> BinLatLongs { get; set; }
-        public virtual DbSet<HouseMaster> HouseMasters { get; set; }
         public virtual DbSet<DeviceDetail> DeviceDetails { get; set; }
-        public virtual DbSet<Qr_Location> Qr_Location { get; set; }
         public virtual DbSet<GamePlayerDetail> GamePlayerDetails { get; set; }
         public virtual DbSet<WM_GarbageCategory> WM_GarbageCategory { get; set; }
         public virtual DbSet<WM_GarbageSubCategory> WM_GarbageSubCategory { get; set; }
@@ -58,6 +55,8 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<Vw_GetStreetNumber> Vw_GetStreetNumber { get; set; }
         public virtual DbSet<Daily_Attendance> Daily_Attendance { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<HouseMaster> HouseMasters { get; set; }
+        public virtual DbSet<Qr_Location> Qr_Location { get; set; }
     
         public virtual ObjectResult<sp_area_Result> sp_area()
         {

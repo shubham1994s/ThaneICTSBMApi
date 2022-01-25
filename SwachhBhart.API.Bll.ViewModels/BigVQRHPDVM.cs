@@ -29,6 +29,8 @@ namespace SwachhBhart.API.Bll.ViewModels
         public string OfflineId { get; set; }
         public DateTime date { get; set; }
 
+        public string CType { get; set; }
+
     }
 
     public class BigVQRHPDVM2

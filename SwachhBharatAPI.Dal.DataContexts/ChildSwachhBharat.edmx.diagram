@@ -15,9 +15,7 @@
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Qr_Employee_Daily_Attendance" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.QrEmployeeMaster" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.BinLatLong" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.HouseMaster" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.DeviceDetail" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Qr_Location" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.GamePlayerDetail" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.WM_GarbageCategory" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.WM_GarbageSubCategory" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
@@ -35,6 +33,8 @@
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Vw_GetStreetNumber" Width="1.5" PointX="7.375" PointY="15.75" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Daily_Attendance" Width="1.5" PointX="15.375" PointY="8.75" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Location" Width="1.5" PointX="15.375" PointY="14.75" />
+        <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.HouseMaster" Width="1.5" PointX="17.375" PointY="5.75" />
+        <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Qr_Location" Width="1.5" PointX="7.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

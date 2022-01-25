@@ -10288,6 +10288,15 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     house.houseOwnerMobile = obj.mobileno;
                                 }
 
+                            if (obj.CType == null)
+                            {
+                                house.CType = null;
+                            }
+                           else if ((string.IsNullOrEmpty(obj.CType.ToString())) == false)
+                            {
+                                house.CType = obj.CType;
+                            }
+
                             //////////////////////////////////////////////////////////////////
                             obj.date = DateTime.Now;
                             db.Qr_Location.Add(FillLocationDetails(obj, AppId, false));
@@ -10365,6 +10374,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                 loc.ReferanceID = obj.ReferanceId;
                 loc.IsOffline = (IsOffline == true ? true : false) ; 
                 loc.CreatedDate = DateTime.Now;
+                loc.CType = obj.CType;
                 
 
             }
@@ -10720,7 +10730,10 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                 {
                                     house.houseOwnerMobile = item.mobileno;
                                 }
-
+                                if (!string.IsNullOrEmpty(item.CType.ToString()))
+                                {
+                                    house.CType = item.CType;
+                                }
                                 db.Qr_Location.Add(FillLocationDetails(item, AppId, true));
 
                                 db.SaveChanges();
