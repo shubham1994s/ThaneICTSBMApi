@@ -308,6 +308,20 @@ namespace SwachhBharatAPI.Controllers
                             gcDetail.totalDryWeight = item.totalDryWeight;
                             gcDetail.totalWetWeight = item.totalWetWeight;
                             break;
+                        case 6:
+                            gcDetail.houseId = item.ReferenceID;
+                            gcDetail.gcType = item.gcType;
+                            gcDetail.totalGcWeight = item.totalGcWeight;
+                            gcDetail.totalDryWeight = item.totalDryWeight;
+                            gcDetail.totalWetWeight = item.totalWetWeight;
+                            break;
+                        case 7:
+                            gcDetail.houseId = item.ReferenceID;
+                            gcDetail.gcType = item.gcType;
+                            gcDetail.totalGcWeight = item.totalGcWeight;
+                            gcDetail.totalDryWeight = item.totalDryWeight;
+                            gcDetail.totalWetWeight = item.totalWetWeight;
+                            break;
                         default:
                             gcDetail.houseId = "";
                             gcDetail.gpId = "";
