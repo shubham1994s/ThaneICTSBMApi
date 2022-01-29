@@ -18,5 +18,11 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public Nullable<int> HouseCollection { get; set; }
         public Nullable<int> PointCollection { get; set; }
         public Nullable<int> DumpYardCollection { get; set; }
+        public Nullable<int> ResidentialCollection { get; set; }
+        public Nullable<int> ResidentialBCollection { get; set; }
+        public Nullable<int> ResidentialSCollection { get; set; }
+        public Nullable<int> CommercialCollection { get; set; }
+        public Nullable<int> CADCollection { get; set; }
+        public Nullable<int> HorticultureCollection { get; set; }
     }
 }

@@ -7677,6 +7677,12 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         houseCollection = checkIntNull(x.HouseCollection.ToString()),
                         pointCollection = checkIntNull(x.PointCollection.ToString()),
                         DumpYardCollection = checkIntNull(x.DumpYardCollection.ToString()),
+                        ResidentialCollection = checkIntNull(x.ResidentialCollection.ToString()),
+                        ResidentialBCollection = checkIntNull(x.ResidentialBCollection.ToString()),
+                        ResidentialSCollection = checkIntNull(x.ResidentialSCollection.ToString()),
+                        CommertialCollection = checkIntNull(x.CommercialCollection.ToString()),
+                        CADCollection = checkIntNull(x.CADCollection.ToString()),
+                        HorticultureCollection = checkIntNull(x.HorticultureCollection.ToString()),
                     });
                 }
 
@@ -7871,6 +7877,62 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             //housnum = "";
                             //area = "";
                         }
+
+                    }
+
+                    if (x.gcType == 6)
+                    {
+                        try
+                        {
+                            var house = db.HouseMasters.Where(c => c.houseId == x.houseId).FirstOrDefault();
+                            housnum = checkNull(house.ReferanceId);
+
+                            if (languageId == 1)
+                            {
+                                Name = checkNull(house.houseOwner);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().Area;
+                            }
+                            else
+                            {
+                                Name = checkNull(house.houseOwnerMar);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().AreaMar;
+                            }
+
+                        }
+                        catch
+                        {
+                            //housnum = "";
+                            //area = "";
+                        }
+
+
+                    }
+
+                    if (x.gcType == 7)
+                    {
+                        try
+                        {
+                            var house = db.HouseMasters.Where(c => c.houseId == x.houseId).FirstOrDefault();
+                            housnum = checkNull(house.ReferanceId);
+
+                            if (languageId == 1)
+                            {
+                                Name = checkNull(house.houseOwner);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().Area;
+                            }
+                            else
+                            {
+                                Name = checkNull(house.houseOwnerMar);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().AreaMar;
+                            }
+
+                        }
+                        catch
+                        {
+                            //housnum = "";
+                            //area = "";
+                        }
+
 
                     }
 
@@ -8757,7 +8819,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
             using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(appId))
             {
-                var data = db.SP_GarbageCollection(appId, userId, fdate, tdate,null,null,null).Select(x => new AHouseGarbageCollectionVM
+                var data = db.SP_GarbageCollection(appId, userId, fdate, tdate,null,null,null,null).Select(x => new AHouseGarbageCollectionVM
                 {
                     Id = x.gcId,
                     userId = x.userId,
@@ -11391,9 +11453,9 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         DumpYardCollection = checkIntNull(x.DumpYardCollection.ToString()),
                         LiquidCollection=checkIntNull(x.LiquidCollection.ToString()),
                         StreetCollection = checkIntNull(x.StreetCollection.ToString()),
-                        ResidendialCollection = checkIntNull(x.ResidendialCollection.ToString()),
-                        ResidendialBCollection = checkIntNull(x.ResidendialBCollection.ToString()),
-                        ResidendialSCollection = checkIntNull(x.ResidendialSCollection.ToString()),
+                        ResidentialCollection = checkIntNull(x.ResidendialCollection.ToString()),
+                        ResidentialBCollection = checkIntNull(x.ResidendialBCollection.ToString()),
+                        ResidentialSCollection = checkIntNull(x.ResidendialSCollection.ToString()),
                         CommertialCollection = checkIntNull(x.CommertialCollection.ToString()),
 
 
