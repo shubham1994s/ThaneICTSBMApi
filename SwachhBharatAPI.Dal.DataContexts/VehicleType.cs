@@ -18,5 +18,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public string description { get; set; }
         public string descriptionMar { get; set; }
         public Nullable<bool> isActive { get; set; }
+        public string RegNo { get; set; }
+        public string VechileNo { get; set; }
     }
 }

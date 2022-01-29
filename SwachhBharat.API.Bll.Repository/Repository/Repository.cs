@@ -4319,7 +4319,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                                 gcd.locAddresss = addre;
                                 gcd.CreatedDate = DateTime.Now;
-
+                                gcd.LOS = obj.LevelOS;
                                 //var LocationContext = db.Locations.Where(c => c.datetime == Dateeee && c.userId == obj.userId).FirstOrDefault();
 
                                 //LocationContext.datetime = Dateeee;
@@ -4387,7 +4387,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                 loc.Distnace = obj.Distance; // Convert.ToDecimal(distCount);
                                 objdata.batteryStatus = obj.batteryStatus;
                                 objdata.userId = obj.userId;
-
+                                objdata.LOS = obj.LevelOS;
                                 //if (AppId == 1010)
                                 //{
                                 //    objdata.locAddresss = Address(objdata.Lat + "," + objdata.Long);
@@ -4432,6 +4432,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             result.status = "success";
                             result.message = "Uploaded successfully";
                             result.messageMar = "सबमिट यशस्वी";
+                            result.CType = house.CType;
                             if (appdetails.AppId == 1003 || appdetails.AppId == 1006)
                             {
                                 result.messageMar = "सबमिट यशस्वी";
@@ -4732,7 +4733,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         result.status = "success";
                         result.message = "Uploaded successfully";
                         result.messageMar = "सबमिट यशस्वी";
-                        return result;
+                        result.CType = house.CType;
+                    return result;
                     }
                 }
         }
@@ -6450,13 +6452,14 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     result.status = "success";
                                     result.message = "Uploaded successfully";
                                     result.messageMar = "सबमिट यशस्वी";
+                                    result.CType = gpdetails.CType;
                                     return result;
                                 }
                             }
                             catch
                             {
                                 result.ID = obj.OfflineID;
-                                result.message = "Invalid SSId"; result.messageMar = "अवैध जीपी आयडी";
+                                result.message = "Invalid House Id"; result.messageMar = "अवैध घर आयडी";
                                 result.status = "error";
                                 return result;
                             }
@@ -6486,6 +6489,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         objdata.locAddresss = addre;
                         objdata.CreatedDate = DateTime.Now;
                         objdata.EmployeeType = null;
+                        objdata.garbageType = 4;
                         db.GarbageCollectionDetails.Add(objdata);
 
                         Location loc = new Location();
@@ -6519,6 +6523,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         result.status = "success";
                         result.message = "Uploaded successfully";
                         result.messageMar = "सबमिट यशस्वी";
+                        result.messageMar = "सबमिट यशस्वी";
+                        result.CType = dydetails.CType;
                         //string mes = "नमस्कार! आपल्या घरून कचरा संकलित करण्यात आलेला आहे. कृपया ओला व सुका असा वर्गीकृत केलेला कचरा सफाई कर्मचाऱ्यास सुपूर्द करून सहकार्य करावे धन्यवाद. " + appdetails.yoccContact + " आपल्या सेवेशी " + appdetails.AppName_mar + "";
                         //if (housemob != "")
                         //{
@@ -6576,7 +6582,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         gcd.totalWetWeight = obj.totalWetWeight;
                         gcd.batteryStatus = obj.batteryStatus;
                         gcd.Distance = Convert.ToDouble(obj.Distance); //Convert.ToDouble(distCount);
-
+                        gcd.garbageType = 4;
 
                         //if (AppId == 1010)
                         //{
@@ -6620,6 +6626,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                         loc.CreatedDate = DateTime.Now;
                         loc.EmployeeType = null;
+                     
                         db.Locations.Add(loc);
 
                         /////////////////////////////////////////////////////////////
@@ -6630,6 +6637,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         result.status = "success";
                         result.message = "Uploaded successfully";
                         result.messageMar = "सबमिट यशस्वी";
+                        result.CType = dydetails.CType;
 
                         //string mes = "नमस्कार! आपल्या घरून कचरा संकलित करण्यात आलेला आहे. कृपया ओला व सुका असा वर्गीकृत केलेला कचरा सफाई कर्मचाऱ्यास सुपूर्द करून सहकार्य करावे धन्यवाद. " + appdetails.yoccContact + " आपल्या सेवेशी " + appdetails.AppName_mar + "";
                         //if (housemob != "")
@@ -6720,13 +6728,14 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     result.status = "success";
                                     result.message = "Uploaded successfully";
                                     result.messageMar = "सबमिट यशस्वी";
+                                    result.CType = gpdetails.CType;
                                     return result;
                                 }
                             }
                             catch
                             {
                                 result.ID = obj.OfflineID;
-                                result.message = "Invalid SSId"; result.messageMar = "अवैध जीपी आयडी";
+                                result.message = "Invalid House Id"; result.messageMar = "अवैध घर आयडी";
                                 result.status = "error";
                                 return result;
                             }
@@ -6756,6 +6765,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         objdata.locAddresss = addre;
                         objdata.CreatedDate = DateTime.Now;
                         objdata.EmployeeType = null;
+                        objdata.garbageType = 5;
                         db.GarbageCollectionDetails.Add(objdata);
 
                         Location loc = new Location();
@@ -6789,6 +6799,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         result.status = "success";
                         result.message = "Uploaded successfully";
                         result.messageMar = "सबमिट यशस्वी";
+                        result.messageMar = "सबमिट यशस्वी";
+                        result.CType = dydetails.CType;
                         //string mes = "नमस्कार! आपल्या घरून कचरा संकलित करण्यात आलेला आहे. कृपया ओला व सुका असा वर्गीकृत केलेला कचरा सफाई कर्मचाऱ्यास सुपूर्द करून सहकार्य करावे धन्यवाद. " + appdetails.yoccContact + " आपल्या सेवेशी " + appdetails.AppName_mar + "";
                         //if (housemob != "")
                         //{
@@ -6846,7 +6858,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         gcd.totalWetWeight = obj.totalWetWeight;
                         gcd.batteryStatus = obj.batteryStatus;
                         gcd.Distance = Convert.ToDouble(obj.Distance); //Convert.ToDouble(distCount);
-
+                        gcd.garbageType = 5;
 
                         //if (AppId == 1010)
                         //{
@@ -6900,6 +6912,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         result.status = "success";
                         result.message = "Uploaded successfully";
                         result.messageMar = "सबमिट यशस्वी";
+                        result.CType = dydetails.CType;
 
                         //string mes = "नमस्कार! आपल्या घरून कचरा संकलित करण्यात आलेला आहे. कृपया ओला व सुका असा वर्गीकृत केलेला कचरा सफाई कर्मचाऱ्यास सुपूर्द करून सहकार्य करावे धन्यवाद. " + appdetails.yoccContact + " आपल्या सेवेशी " + appdetails.AppName_mar + "";
                         //if (housemob != "")
@@ -11378,6 +11391,13 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         DumpYardCollection = checkIntNull(x.DumpYardCollection.ToString()),
                         LiquidCollection=checkIntNull(x.LiquidCollection.ToString()),
                         StreetCollection = checkIntNull(x.StreetCollection.ToString()),
+                        ResidendialCollection = checkIntNull(x.ResidendialCollection.ToString()),
+                        ResidendialBCollection = checkIntNull(x.ResidendialBCollection.ToString()),
+                        ResidendialSCollection = checkIntNull(x.ResidendialSCollection.ToString()),
+                        CommertialCollection = checkIntNull(x.CommertialCollection.ToString()),
+
+
+
                     });
                 }
 
@@ -11454,6 +11474,57 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         time = Convert.ToDateTime(z.lastModifiedDate).ToString("HH:mm"),
                         StreetNo = z.ReferanceId,
                         type = 5
+
+                    });
+                }
+
+                var data5 = db.HouseMasters.Where(c => EntityFunctions.TruncateTime(c.modified) == EntityFunctions.TruncateTime(date) && c.userId == userId && c.CType== null).ToList();
+                foreach (var z in data5)
+                {
+                    obj.Add(new BigVQrworkhistorydetails()
+                    {
+                        Date = Convert.ToDateTime(z.modified).ToString("MM/dd/yyyy"),
+                        time = Convert.ToDateTime(z.modified).ToString("HH:mm"),
+                        ResidentNO = z.ReferanceId,
+                        type = 6,
+
+                    });
+                }
+
+                var data6 = db.HouseMasters.Where(c => EntityFunctions.TruncateTime(c.modified) == EntityFunctions.TruncateTime(date) && c.userId == userId && c.CType == "RBW").ToList();
+                foreach (var z in data6)
+                {
+                    obj.Add(new BigVQrworkhistorydetails()
+                    {
+                        Date = Convert.ToDateTime(z.modified).ToString("MM/dd/yyyy"),
+                        time = Convert.ToDateTime(z.modified).ToString("HH:mm"),
+                        ResidentBNO = z.ReferanceId,
+                        type = 7,
+
+                    });
+                }
+
+                var data7 = db.HouseMasters.Where(c => EntityFunctions.TruncateTime(c.modified) == EntityFunctions.TruncateTime(date) && c.userId == userId && c.CType == "RSW").ToList();
+                foreach (var z in data7)
+                {
+                    obj.Add(new BigVQrworkhistorydetails()
+                    {
+                        Date = Convert.ToDateTime(z.modified).ToString("MM/dd/yyyy"),
+                        time = Convert.ToDateTime(z.modified).ToString("HH:mm"),
+                        ResidentSNO = z.ReferanceId,
+                        type = 8,
+
+                    });
+                }
+                var data8 = db.HouseMasters.Where(c => EntityFunctions.TruncateTime(c.modified) == EntityFunctions.TruncateTime(date) && c.userId == userId && c.CType == "CW").ToList();
+                foreach (var z in data8)
+                {
+                    obj.Add(new BigVQrworkhistorydetails()
+                    {
+                        Date = Convert.ToDateTime(z.modified).ToString("MM/dd/yyyy"),
+                        time = Convert.ToDateTime(z.modified).ToString("HH:mm"),
+                        CommercialNO = z.ReferanceId,
+                        type = 9,
 
                     });
                 }

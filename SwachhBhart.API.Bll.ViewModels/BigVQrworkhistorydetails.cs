@@ -17,5 +17,13 @@ namespace SwachhBhart.API.Bll.ViewModels
 
         public string LiquidNo { get; set; }
         public string StreetNo { get; set; }
+
+        public string ResidentNO { get; set; }
+
+        public string ResidentBNO { get; set; }
+
+        public string ResidentSNO { get; set; }
+
+        public string CommercialNO { get; set; }
     }
 }

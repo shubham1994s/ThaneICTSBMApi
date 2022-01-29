@@ -281,6 +281,7 @@ namespace SwachhBharatAPI.Controllers
                             }
                             //   gcDetail.houseId = item.ReferenceID;
                             gcDetail.gcType = item.gcType;
+                            gcDetail.LevelOS = item.LevelOS;
                             break;
                         case 2:
                             gcDetail.gpId = item.ReferenceID;
@@ -394,7 +395,8 @@ namespace SwachhBharatAPI.Controllers
                             ID = detail.ID,
                             status = "error",
                             message = "Record not inserted",
-                            messageMar = "रेकॉर्ड सबमिट केले नाही"
+                            messageMar = "रेकॉर्ड सबमिट केले नाही",
+
                            });
                     }
 
@@ -404,7 +406,8 @@ namespace SwachhBharatAPI.Controllers
                         status = detail.status,
                         messageMar = detail.messageMar,
                         message = detail.message,
-                        isAttendenceOff= detail.isAttendenceOff
+                        isAttendenceOff= detail.isAttendenceOff,
+                        CType=detail.CType
                     });
                 }
 
