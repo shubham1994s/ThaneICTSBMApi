@@ -1113,6 +1113,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         user.mobileNumber = obj.userMobileNumber;
                         user.address = obj.userAddress;
                         user.bloodGroup = checkNull(obj.bloodGroup);
+                        user.userDesignation= checkNull(obj.userDesignation);
                         user.profileImage = ImagePathCMS(objmain.UserProfile, obj.userProfileImage, objmain);
                     }
                 }
