@@ -7647,6 +7647,29 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
         }
 
+        public List<HouseDetailsVM> GetHouseCType(int AppId)
+        {
+            AppDetail objmain = dbMain.AppDetails.Where(x => x.AppId == AppId).FirstOrDefault();
+            List<HouseDetailsVM> obj = new List<HouseDetailsVM>();
+            using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
+            {
+                var data = db.HouseMasters.ToList();
+                foreach (var x in data)
+                {
+                    obj.Add(new HouseDetailsVM()
+                    {
+                        houseid = x.ReferanceId,
+                        houseNumber=x.houseNumber,
+                        Ctype=x.CType
+                      
+                    });
+                }
+
+            }
+            return obj;
+
+        }
+
         public List<SBUserAttendenceView> GetUserAttendence(DateTime fDate, int appId, int userId)
         {
             List<SBUserAttendenceView> obj = new List<SBUserAttendenceView>();

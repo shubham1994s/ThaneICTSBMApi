@@ -10,5 +10,7 @@ namespace SwachhBhart.API.Bll.ViewModels
     {
        public string houseid { get; set; }
         public string houseNumber { get; set; }
+
+        public string Ctype { get; set; }
     }
 }

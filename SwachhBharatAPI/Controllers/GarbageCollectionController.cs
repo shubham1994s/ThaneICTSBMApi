@@ -215,6 +215,23 @@ namespace SwachhBharatAPI.Controllers
             return objDetail;
         }
 
+
+        [HttpGet]
+        [Route("Get/GetHouseCType")]
+        //api/BookATable/GetBookAtableList
+        public List<HouseDetailsVM> GetHouseCType()
+        {
+            _RepositoryApi = new Repository();
+            IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
+         
+            var id = headerValue1.FirstOrDefault();
+            int AppId = int.Parse(id);
+          
+            List<HouseDetailsVM> objDetail = new List<HouseDetailsVM>();
+            objDetail = _RepositoryApi.GetHouseCType(AppId);
+            return objDetail;
+        }
+
         [HttpPost]
         [Route("Save/GarbageCollectionOfflineUpload")]
         public List<CollectionSyncResult> OfflineUpload(List<SBGarbageCollectionView> objRaw)
