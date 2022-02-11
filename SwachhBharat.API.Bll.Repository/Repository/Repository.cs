@@ -7654,17 +7654,18 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
             {
                 var data = db.HouseMasters.ToList();
+                int THcount = data.Count();
+             
                 foreach (var x in data)
                 {
                     obj.Add(new HouseDetailsVM()
                     {
                         houseid = x.ReferanceId,
                         houseNumber=x.houseNumber,
-                        Ctype=x.CType
-                      
+                        Ctype=x.CType,
+                        THcount = THcount
                     });
                 }
-
             }
             return obj;
 
