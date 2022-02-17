@@ -352,6 +352,18 @@ namespace SwachhBharatAPI.Controllers
                             gcDetail.gcType = item.gcType;
                             gcDetail.LevelOS = item.LevelOS;
                             break;
+                        case 9:
+                            string houseid3 = item.ReferenceID;
+                            string[] houseList3 = houseid3.Split(',');
+                            gcDetail.CommercialId = houseList3[0];
+                            if (houseList3.Length > 1)
+                            {
+                                gcDetail.wastetype = houseList3[1];
+                            }
+                            //   gcDetail.houseId = item.ReferenceID;
+                            gcDetail.gcType = item.gcType;
+                            gcDetail.LevelOS = item.LevelOS;
+                            break;
                         default:
                             gcDetail.houseId = "";
                             gcDetail.gpId = "";

@@ -18,6 +18,31 @@
           <Property Name="S2" Type="varchar" MaxLength="500" />
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="CommercialMaster">
+          <Key>
+            <PropertyRef Name="commercialId" />
+          </Key>
+          <Property Name="commercialId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="commercialNumber" Type="nvarchar" MaxLength="500" />
+          <Property Name="commercialOwner" Type="varchar" MaxLength="200" />
+          <Property Name="commercialOwnerMar" Type="nvarchar" MaxLength="200" />
+          <Property Name="commercialOwnerMobile" Type="nvarchar" MaxLength="200" />
+          <Property Name="commercialAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="commercialLat" Type="nvarchar" MaxLength="500" />
+          <Property Name="commercialLong" Type="nvarchar" MaxLength="500" />
+          <Property Name="commercialQRCode" Type="nvarchar(max)" />
+          <Property Name="ZoneId" Type="int" />
+          <Property Name="AreaId" Type="int" />
+          <Property Name="WardNo" Type="int" />
+          <Property Name="ReferanceId" Type="nvarchar" MaxLength="350" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="userId" Type="int" />
+          <Property Name="FCMID" Type="varchar" MaxLength="500" />
+          <Property Name="lastModifiedEntry" Type="datetime" />
+          <Property Name="RFIDTagId" Type="nvarchar" MaxLength="255" />
+          <Property Name="WasteType" Type="varchar" MaxLength="10" />
+          <Property Name="CType" Type="varchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="Daily_Attendance">
           <Key>
             <PropertyRef Name="daID" />
@@ -122,6 +147,7 @@
           <Property Name="LWId" Type="int" />
           <Property Name="SSId" Type="int" />
           <Property Name="LOS" Type="nvarchar" MaxLength="50" />
+          <Property Name="commercialId" Type="int" />
         </EntityType>
         <EntityType Name="GarbagePointDetails">
           <Key>
@@ -292,8 +318,6 @@
           <Property Name="target" Type="varchar" MaxLength="250" />
           <Property Name="lastModifyDate" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.SauchalayAddress' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SauchalayAddress">
           <Key>
             <PropertyRef Name="Id" />
@@ -308,6 +332,8 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.SauchalayAddre
           <Property Name="ImageUrl" Type="nvarchar" MaxLength="1000" />
           <Property Name="QrImageUrl" Type="nvarchar" MaxLength="1000" />
           <Property Name="Mobile" Type="nvarchar" MaxLength="200" />
+          <Property Name="Tot" Type="varchar" MaxLength="20" />
+          <Property Name="Tns" Type="int" />
         </EntityType>
         <EntityType Name="StreetSweepingDetails">
           <Key>
@@ -599,6 +625,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
         </Function>
         <EntityContainer Name="DevSwachhBharatNagpurModelStoreContainer">
           <EntitySet Name="BinLatLong" EntityType="Self.BinLatLong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommercialMaster" EntityType="Self.CommercialMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Daily_Attendance" EntityType="Self.Daily_Attendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeviceDetails" EntityType="Self.DeviceDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DumpYardDetails" EntityType="Self.DumpYardDetails" Schema="dbo" store:Type="Tables" />
@@ -612,6 +639,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySet Name="Qr_Employee_Daily_Attendance" EntityType="Self.Qr_Employee_Daily_Attendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Qr_Location" EntityType="Self.Qr_Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QrEmployeeMaster" EntityType="Self.QrEmployeeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SauchalayAddress" EntityType="Self.SauchalayAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StreetSweepingDetails" EntityType="Self.StreetSweepingDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeritoryMaster" EntityType="Self.TeritoryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
@@ -623,20 +651,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySet Name="WM_GarbageCategory" EntityType="Self.WM_GarbageCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WM_GarbageSubCategory" EntityType="Self.WM_GarbageSubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZoneMaster" EntityType="Self.ZoneMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SauchalayAddress" EntityType="Self.SauchalayAddress" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [SauchalayAddress].[Id] AS [Id], 
-    [SauchalayAddress].[SauchalayID] AS [SauchalayID], 
-    [SauchalayAddress].[Address] AS [Address], 
-    [SauchalayAddress].[CreatedDate] AS [CreatedDate], 
-    [SauchalayAddress].[Lat] AS [Lat], 
-    [SauchalayAddress].[Long] AS [Long], 
-    [SauchalayAddress].[Name] AS [Name], 
-    [SauchalayAddress].[ImageUrl] AS [ImageUrl], 
-    [SauchalayAddress].[QrImageUrl] AS [QrImageUrl], 
-    [SauchalayAddress].[Mobile] AS [Mobile]
-    FROM [dbo].[SauchalayAddress] AS [SauchalayAddress]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="Vw_GetHouseNumber" EntityType="Self.Vw_GetHouseNumber" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Vw_GetHouseNumber].[houseId] AS [houseId], 
@@ -818,7 +832,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySet Name="Locations" EntityType="DevSwachhBharatNagpurModel.Location" />
           <EntitySet Name="HouseMasters" EntityType="DevSwachhBharatNagpurModel.HouseMaster" />
           <EntitySet Name="Qr_Location" EntityType="DevSwachhBharatNagpurModel.Qr_Location" />
-          <EntitySet Name="GarbageCollectionDetails" EntityType="DevSwachhBharatNagpurModel.GarbageCollectionDetail" />
           <FunctionImport Name="GetQrWorkHistory" ReturnType="Collection(DevSwachhBharatNagpurModel.GetQrWorkHistory_Result)">
             <Parameter Name="userId" Mode="In" Type="Int32" />
             <Parameter Name="year" Mode="In" Type="Int32" />
@@ -829,6 +842,8 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
             <Parameter Name="year" Mode="In" Type="Int32" />
             <Parameter Name="month" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="CommercialMasters" EntityType="DevSwachhBharatNagpurModel.CommercialMaster" />
+          <EntitySet Name="GarbageCollectionDetails" EntityType="DevSwachhBharatNagpurModel.GarbageCollectionDetail" />
         </EntityContainer>
         <ComplexType Name="sp_area_Result">
           <Property Type="String" Name="area" Nullable="true" MaxLength="500" />
@@ -1261,6 +1276,8 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="ImageUrl" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="QrImageUrl" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Mobile" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Tot" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tns" Type="Int32" />
         </EntityType>
         <EntityType Name="WM_Garbage_Details">
           <Key>
@@ -1535,6 +1552,57 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="CType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
+        <ComplexType Name="GetQrWorkHistory_Result">
+          <Property Type="String" Name="Day" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+          <Property Type="Int32" Name="HouseCollection" Nullable="true" />
+          <Property Type="Int32" Name="PointCollection" Nullable="true" />
+          <Property Type="Int32" Name="DumpYardCollection" Nullable="true" />
+          <Property Type="Int32" Name="LiquidCollection" Nullable="true" />
+          <Property Type="Int32" Name="StreetCollection" Nullable="true" />
+          <Property Type="Int32" Name="ResidendialCollection" Nullable="true" />
+          <Property Type="Int32" Name="ResidendialBCollection" Nullable="true" />
+          <Property Type="Int32" Name="ResidendialSCollection" Nullable="true" />
+          <Property Type="Int32" Name="CommertialCollection" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetAttendenceDetailsTotal_Result">
+          <Property Type="DateTime" Name="day" Nullable="true" />
+          <Property Type="Int32" Name="userid" Nullable="true" />
+          <Property Type="Int32" Name="HouseCollection" Nullable="true" />
+          <Property Type="Int32" Name="PointCollection" Nullable="true" />
+          <Property Type="Int32" Name="DumpYardCollection" Nullable="true" />
+          <Property Type="Int32" Name="ResidentialCollection" Nullable="true" />
+          <Property Type="Int32" Name="ResidentialBCollection" Nullable="true" />
+          <Property Type="Int32" Name="ResidentialSCollection" Nullable="true" />
+          <Property Type="Int32" Name="CommercialCollection" Nullable="true" />
+          <Property Type="Int32" Name="CADCollection" Nullable="true" />
+          <Property Type="Int32" Name="HorticultureCollection" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="CommercialMaster">
+          <Key>
+            <PropertyRef Name="commercialId" />
+          </Key>
+          <Property Name="commercialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="commercialNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="commercialOwner" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="commercialOwnerMar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="commercialOwnerMobile" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="commercialAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="commercialLat" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="commercialLong" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="commercialQRCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ZoneId" Type="Int32" />
+          <Property Name="AreaId" Type="Int32" />
+          <Property Name="WardNo" Type="Int32" />
+          <Property Name="ReferanceId" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="FCMID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="lastModifiedEntry" Type="DateTime" Precision="3" />
+          <Property Name="RFIDTagId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="WasteType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="GarbageCollectionDetail">
           <Key>
             <PropertyRef Name="gcId" />
@@ -1572,33 +1640,8 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="LWId" Type="Int32" />
           <Property Name="SSId" Type="Int32" />
           <Property Name="LOS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="commercialId" Type="Int32" />
         </EntityType>
-        <ComplexType Name="GetQrWorkHistory_Result">
-          <Property Type="String" Name="Day" Nullable="true" MaxLength="30" />
-          <Property Type="Int32" Name="UserId" Nullable="true" />
-          <Property Type="Int32" Name="HouseCollection" Nullable="true" />
-          <Property Type="Int32" Name="PointCollection" Nullable="true" />
-          <Property Type="Int32" Name="DumpYardCollection" Nullable="true" />
-          <Property Type="Int32" Name="LiquidCollection" Nullable="true" />
-          <Property Type="Int32" Name="StreetCollection" Nullable="true" />
-          <Property Type="Int32" Name="ResidendialCollection" Nullable="true" />
-          <Property Type="Int32" Name="ResidendialBCollection" Nullable="true" />
-          <Property Type="Int32" Name="ResidendialSCollection" Nullable="true" />
-          <Property Type="Int32" Name="CommertialCollection" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="GetAttendenceDetailsTotal_Result">
-          <Property Type="DateTime" Name="day" Nullable="true" />
-          <Property Type="Int32" Name="userid" Nullable="true" />
-          <Property Type="Int32" Name="HouseCollection" Nullable="true" />
-          <Property Type="Int32" Name="PointCollection" Nullable="true" />
-          <Property Type="Int32" Name="DumpYardCollection" Nullable="true" />
-          <Property Type="Int32" Name="ResidentialCollection" Nullable="true" />
-          <Property Type="Int32" Name="ResidentialBCollection" Nullable="true" />
-          <Property Type="Int32" Name="ResidentialSCollection" Nullable="true" />
-          <Property Type="Int32" Name="CommercialCollection" Nullable="true" />
-          <Property Type="Int32" Name="CADCollection" Nullable="true" />
-          <Property Type="Int32" Name="HorticultureCollection" Nullable="true" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2124,6 +2167,8 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySetMapping Name="SauchalayAddresses">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.SauchalayAddress">
               <MappingFragment StoreEntitySet="SauchalayAddress">
+                <ScalarProperty Name="Tns" ColumnName="Tns" />
+                <ScalarProperty Name="Tot" ColumnName="Tot" />
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="QrImageUrl" ColumnName="QrImageUrl" />
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
@@ -2426,9 +2471,70 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetQrWorkHistory" FunctionName="DevSwachhBharatNagpurModel.Store.GetQrWorkHistory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.GetQrWorkHistory_Result">
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="HouseCollection" ColumnName="HouseCollection" />
+                <ScalarProperty Name="PointCollection" ColumnName="PointCollection" />
+                <ScalarProperty Name="DumpYardCollection" ColumnName="DumpYardCollection" />
+                <ScalarProperty Name="LiquidCollection" ColumnName="LiquidCollection" />
+                <ScalarProperty Name="StreetCollection" ColumnName="StreetCollection" />
+                <ScalarProperty Name="ResidendialCollection" ColumnName="ResidendialCollection" />
+                <ScalarProperty Name="ResidendialBCollection" ColumnName="ResidendialBCollection" />
+                <ScalarProperty Name="ResidendialSCollection" ColumnName="ResidendialSCollection" />
+                <ScalarProperty Name="CommertialCollection" ColumnName="CommertialCollection" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAttendenceDetailsTotal" FunctionName="DevSwachhBharatNagpurModel.Store.GetAttendenceDetailsTotal">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.GetAttendenceDetailsTotal_Result">
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="HouseCollection" ColumnName="HouseCollection" />
+                <ScalarProperty Name="PointCollection" ColumnName="PointCollection" />
+                <ScalarProperty Name="DumpYardCollection" ColumnName="DumpYardCollection" />
+                <ScalarProperty Name="ResidentialCollection" ColumnName="ResidentialCollection" />
+                <ScalarProperty Name="ResidentialBCollection" ColumnName="ResidentialBCollection" />
+                <ScalarProperty Name="ResidentialSCollection" ColumnName="ResidentialSCollection" />
+                <ScalarProperty Name="CommercialCollection" ColumnName="CommercialCollection" />
+                <ScalarProperty Name="CADCollection" ColumnName="CADCollection" />
+                <ScalarProperty Name="HorticultureCollection" ColumnName="HorticultureCollection" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CommercialMasters">
+            <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.CommercialMaster">
+              <MappingFragment StoreEntitySet="CommercialMaster">
+                <ScalarProperty Name="CType" ColumnName="CType" />
+                <ScalarProperty Name="WasteType" ColumnName="WasteType" />
+                <ScalarProperty Name="RFIDTagId" ColumnName="RFIDTagId" />
+                <ScalarProperty Name="lastModifiedEntry" ColumnName="lastModifiedEntry" />
+                <ScalarProperty Name="FCMID" ColumnName="FCMID" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="ReferanceId" ColumnName="ReferanceId" />
+                <ScalarProperty Name="WardNo" ColumnName="WardNo" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="commercialQRCode" ColumnName="commercialQRCode" />
+                <ScalarProperty Name="commercialLong" ColumnName="commercialLong" />
+                <ScalarProperty Name="commercialLat" ColumnName="commercialLat" />
+                <ScalarProperty Name="commercialAddress" ColumnName="commercialAddress" />
+                <ScalarProperty Name="commercialOwnerMobile" ColumnName="commercialOwnerMobile" />
+                <ScalarProperty Name="commercialOwnerMar" ColumnName="commercialOwnerMar" />
+                <ScalarProperty Name="commercialOwner" ColumnName="commercialOwner" />
+                <ScalarProperty Name="commercialNumber" ColumnName="commercialNumber" />
+                <ScalarProperty Name="commercialId" ColumnName="commercialId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="GarbageCollectionDetails">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.GarbageCollectionDetail">
               <MappingFragment StoreEntitySet="GarbageCollectionDetails">
+                <ScalarProperty Name="commercialId" ColumnName="commercialId" />
                 <ScalarProperty Name="LOS" ColumnName="LOS" />
                 <ScalarProperty Name="SSId" ColumnName="SSId" />
                 <ScalarProperty Name="LWId" ColumnName="LWId" />
@@ -2465,40 +2571,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetQrWorkHistory" FunctionName="DevSwachhBharatNagpurModel.Store.GetQrWorkHistory">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.GetQrWorkHistory_Result">
-                <ScalarProperty Name="Day" ColumnName="Day" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="HouseCollection" ColumnName="HouseCollection" />
-                <ScalarProperty Name="PointCollection" ColumnName="PointCollection" />
-                <ScalarProperty Name="DumpYardCollection" ColumnName="DumpYardCollection" />
-                <ScalarProperty Name="LiquidCollection" ColumnName="LiquidCollection" />
-                <ScalarProperty Name="StreetCollection" ColumnName="StreetCollection" />
-                <ScalarProperty Name="ResidendialCollection" ColumnName="ResidendialCollection" />
-                <ScalarProperty Name="ResidendialBCollection" ColumnName="ResidendialBCollection" />
-                <ScalarProperty Name="ResidendialSCollection" ColumnName="ResidendialSCollection" />
-                <ScalarProperty Name="CommertialCollection" ColumnName="CommertialCollection" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetAttendenceDetailsTotal" FunctionName="DevSwachhBharatNagpurModel.Store.GetAttendenceDetailsTotal">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.GetAttendenceDetailsTotal_Result">
-                <ScalarProperty Name="day" ColumnName="day" />
-                <ScalarProperty Name="userid" ColumnName="userid" />
-                <ScalarProperty Name="HouseCollection" ColumnName="HouseCollection" />
-                <ScalarProperty Name="PointCollection" ColumnName="PointCollection" />
-                <ScalarProperty Name="DumpYardCollection" ColumnName="DumpYardCollection" />
-                <ScalarProperty Name="ResidentialCollection" ColumnName="ResidentialCollection" />
-                <ScalarProperty Name="ResidentialBCollection" ColumnName="ResidentialBCollection" />
-                <ScalarProperty Name="ResidentialSCollection" ColumnName="ResidentialSCollection" />
-                <ScalarProperty Name="CommercialCollection" ColumnName="CommercialCollection" />
-                <ScalarProperty Name="CADCollection" ColumnName="CADCollection" />
-                <ScalarProperty Name="HorticultureCollection" ColumnName="HorticultureCollection" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

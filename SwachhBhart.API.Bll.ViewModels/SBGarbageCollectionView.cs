@@ -12,6 +12,8 @@ namespace SwachhBhart.API.Bll.ViewModels
         public int userId { get; set; }
         public int typeId { get; set; } /// UserTypeID i.e. 0 = Ghanta Gadi, 1 = Scanify , 2 = Waste Management
         public string houseId { get; set; }
+
+        public string CommercialId { get; set; }
         public string gpId { get; set; }
         public string gcDate { get; set; }
         public string Lat { get; set; }

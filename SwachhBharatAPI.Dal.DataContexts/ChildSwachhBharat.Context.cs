@@ -57,6 +57,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<HouseMaster> HouseMasters { get; set; }
         public virtual DbSet<Qr_Location> Qr_Location { get; set; }
+        public virtual DbSet<CommercialMaster> CommercialMasters { get; set; }
         public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
     
         public virtual ObjectResult<sp_area_Result> sp_area()

@@ -24,5 +24,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public string ImageUrl { get; set; }
         public string QrImageUrl { get; set; }
         public string Mobile { get; set; }
+        public string Tot { get; set; }
+        public Nullable<int> Tns { get; set; }
     }
 }

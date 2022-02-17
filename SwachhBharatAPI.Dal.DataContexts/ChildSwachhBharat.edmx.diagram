@@ -34,6 +34,7 @@
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Location" Width="1.5" PointX="15.375" PointY="14.75" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.HouseMaster" Width="1.5" PointX="17.375" PointY="5.75" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.Qr_Location" Width="1.5" PointX="7.375" PointY="9.75" />
+        <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.CommercialMaster" Width="1.5" PointX="17.375" PointY="11.75" />
         <EntityTypeShape EntityType="DevSwachhBharatNagpurModel.GarbageCollectionDetail" Width="1.5" PointX="3.375" PointY="15.75" />
       </Diagram>
     </edmx:Diagrams>
