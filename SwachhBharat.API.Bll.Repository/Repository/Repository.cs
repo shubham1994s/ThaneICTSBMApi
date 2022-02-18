@@ -11854,6 +11854,15 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         }
                         if (item.gcType == 1)
                         {
+
+                            string houseid1 = item.ReferanceId;
+                            string[] houseList = houseid1.Split(',');
+
+                            if (houseList.Length > 1)
+                            {
+                                item.ReferanceId = houseList[0];
+                                item.wastetype = houseList[1];
+                            }
                             var house = db.HouseMasters.Where(x => x.ReferanceId == item.ReferanceId).FirstOrDefault();
                             if (house != null)
                             {
@@ -11906,6 +11915,14 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     house.houseOwnerMobile = item.mobileno;
                                 }
 
+                                if (item.CType == null)
+                                {
+                                    house.CType = null;
+                                }
+                                else if ((string.IsNullOrEmpty(item.CType.ToString())) == false)
+                                {
+                                    house.CType = item.CType;
+                                }
 
                                 db.Qr_Location.Add(FillLocationDetails(item, AppId, true));
 

@@ -78,7 +78,7 @@ namespace SwachhBharatAPI.Controllers
             if (houseList.Length > 1)
             {
                 obj.ReferanceId = houseList[0];
-              //  obj.houseId = houseList[0];
+                obj.wastetype = houseList[1];
             }
 
             string[] referancList = refid.Split(',');
@@ -101,7 +101,7 @@ namespace SwachhBharatAPI.Controllers
             IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
             var id = headerValue1.FirstOrDefault();
             int AppId = int.Parse(id);
-            
+         
             List<CollectionSyncResult> objDetail = new List<CollectionSyncResult>();
             objDetail = objRep.SaveQrHPDCollectionsOffline(obj, AppId);
             return objDetail;

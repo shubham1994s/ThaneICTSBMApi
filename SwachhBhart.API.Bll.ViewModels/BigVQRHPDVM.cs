@@ -31,6 +31,8 @@ namespace SwachhBhart.API.Bll.ViewModels
 
         public string CType { get; set; }
 
+        public string wastetype { get; set; }
+
     }
 
     public class BigVQRHPDVM2
