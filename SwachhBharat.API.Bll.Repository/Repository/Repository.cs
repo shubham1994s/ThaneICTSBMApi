@@ -8311,6 +8311,34 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                     }
 
+                    if (x.gcType == 9)
+                    {
+                        try
+                        {
+                            var house = db.CommercialMasters.Where(c => c.commercialId == x.commercialId).FirstOrDefault();
+                            housnum = checkNull(house.ReferanceId);
+
+                            if (languageId == 1)
+                            {
+                                Name = checkNull(house.commercialOwner);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().Area;
+                            }
+                            else
+                            {
+                                Name = checkNull(house.commercialOwnerMar);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().AreaMar;
+                            }
+
+                        }
+                        catch
+                        {
+                            //housnum = "";
+                            //area = "";
+                        }
+
+
+                    }
+
                     obj.Add(new SBWorkDetailsHistory()
                     {
                         time = Convert.ToDateTime(x.gcDate).ToString("hh:mm tt"),
@@ -10982,6 +11010,73 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             {
                 try
                 {
+
+                    if (gcType == 9)
+                    {
+                        var dump = db.CommercialMasters.Where(x => x.ReferanceId == referanceid).FirstOrDefault();
+                        if (dump != null)
+                        {
+                            if ((string.IsNullOrEmpty(obj.name)) == false)
+                            {
+                                dump.commercialOwner = obj.name;
+                            }
+                            if ((string.IsNullOrEmpty(obj.namemar)) == false)
+                            {
+                                dump.commercialOwnerMar = obj.namemar;
+                            }
+                            if ((string.IsNullOrEmpty(obj.Address)) == false)
+                            {
+                                dump.commercialAddress = obj.Address;
+                            }
+                            if ((string.IsNullOrEmpty(obj.Lat)) == false)
+                            {
+                                dump.commercialLat = obj.Lat;
+                            }
+                            if ((string.IsNullOrEmpty(obj.Long)) == false)
+                            {
+                                dump.commercialLong = obj.Long;
+                            }
+
+                            dump.lastModifiedEntry = DateTime.Now;
+
+
+                            if (obj.areaId > 0 && (string.IsNullOrEmpty(obj.areaId.ToString())) == false)
+                            {
+                                dump.AreaId = obj.areaId;
+                            }
+                            if (obj.zoneId > 0 && (string.IsNullOrEmpty(obj.zoneId.ToString())) == false)
+                            {
+                                dump.ZoneId = obj.zoneId;
+                            }
+                            if (obj.wardId > 0 && (string.IsNullOrEmpty(obj.wardId.ToString())) == false)
+                            {
+                                dump.WardNo = obj.wardId;
+                            }
+                            if (obj.userId > 0 && (string.IsNullOrEmpty(obj.userId.ToString())) == false)
+                            {
+                                dump.userId = obj.userId;
+                            }
+
+                            //////////////////////////////////////////////////////////////////
+                            obj.date = DateTime.Now;
+                            obj.ReferanceId = referanceid;
+
+                            db.Qr_Location.Add(FillLocationDetails(obj, AppId, false));
+                            //////////////////////////////////////////////////////////////////
+
+                            db.SaveChanges();
+                            result.status = "success";
+                            result.message = "Uploaded successfully";
+                            result.messageMar = "सबमिट यशस्वी";
+                        }
+                        else
+                        {
+                            result.status = "error";
+                            result.message = "Invalid Dump Yard ID";
+                            result.messageMar = "अवैध डंप यार्ड आयडी ";
+                        }
+
+                    }
                     if (gcType == 5)
                     {
                         var dump = db.StreetSweepingDetails.Where(x => x.ReferanceId == referanceid).FirstOrDefault();
@@ -11402,6 +11497,77 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                 {
                     foreach (var item in obj)
                     {
+
+                        if (item.gcType == 9)
+                        {
+                            var dump = db.CommercialMasters.Where(x => x.ReferanceId == item.ReferanceId).FirstOrDefault();
+                            if (dump != null)
+                            {
+
+                                if (!string.IsNullOrEmpty(item.name))
+                                {
+                                    dump.commercialOwner = item.name;
+                                }
+                                if (!string.IsNullOrEmpty(item.namemar))
+                                {
+                                    dump.commercialOwnerMar = item.namemar;
+                                }
+                                if (!string.IsNullOrEmpty(item.Address))
+                                {
+                                    dump.commercialAddress = item.Address;
+                                }
+                                if (!string.IsNullOrEmpty(item.Lat))
+                                {
+                                    dump.commercialLat = item.Lat;
+                                }
+                                if (!string.IsNullOrEmpty(item.Long))
+                                {
+                                    dump.commercialLong = item.Long;
+                                }
+
+                                dump.lastModifiedEntry = item.date; //DateTime.Now;
+
+                                if (item.areaId > 0 && (string.IsNullOrEmpty(item.areaId.ToString())) == false)
+                                {
+                                    dump.AreaId = item.areaId;
+                                }
+                                if (item.zoneId > 0 && (string.IsNullOrEmpty(item.zoneId.ToString())) == false)
+                                {
+                                    dump.ZoneId = item.zoneId;
+                                }
+                                if (item.wardId > 0 && (string.IsNullOrEmpty(item.wardId.ToString())) == false)
+                                {
+                                    dump.ZoneId = item.wardId;
+                                }
+                                if (item.userId > 0 && (string.IsNullOrEmpty(item.userId.ToString())) == false)
+                                {
+                                    dump.userId = item.userId;
+                                }
+
+                                db.Qr_Location.Add(FillLocationDetails(item, AppId, true));
+
+                                db.SaveChanges();
+
+                                result.Add(new CollectionSyncResult()
+                                {
+                                    ID = Convert.ToInt32(item.OfflineId),
+                                    status = "success",
+                                    message = "Uploaded successfully",
+                                    messageMar = "सबमिट यशस्वी",
+                                });
+                            }
+                            else
+                            {
+                                result.Add(new CollectionSyncResult()
+                                {
+                                    ID = Convert.ToInt32(item.OfflineId),
+                                    status = "error",
+                                    message = "Invalid Dump Yard ID",
+                                    messageMar = "अवैध डंप यार्ड आयडी ",
+                                });
+                            }
+
+                        }
 
                         if (item.gcType == 5)
                         {
@@ -11959,7 +12125,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                     });
                 }
-                var data8 = db.HouseMasters.Where(c => EntityFunctions.TruncateTime(c.modified) == EntityFunctions.TruncateTime(date) && c.userId == userId && c.CType == "CW").ToList();
+                var data8 = db.CommercialMasters.Where(c => EntityFunctions.TruncateTime(c.modified) == EntityFunctions.TruncateTime(date) && c.userId == userId ).ToList();
                 foreach (var z in data8)
                 {
                     obj.Add(new BigVQrworkhistorydetails()
