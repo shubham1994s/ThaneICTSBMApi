@@ -148,6 +148,11 @@
           <Property Name="SSId" Type="int" />
           <Property Name="LOS" Type="nvarchar" MaxLength="50" />
           <Property Name="commercialId" Type="int" />
+          <Property Name="CTPTId" Type="int" />
+          <Property Name="SWMId" Type="int" />
+          <Property Name="TNS" Type="int" />
+          <Property Name="TOT" Type="varchar" MaxLength="10" />
+          <Property Name="CGarbageType" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="GarbagePointDetails">
           <Key>
@@ -334,6 +339,14 @@
           <Property Name="Mobile" Type="nvarchar" MaxLength="200" />
           <Property Name="Tot" Type="varchar" MaxLength="20" />
           <Property Name="Tns" Type="int" />
+          <Property Name="SauchalayQRCode" Type="nvarchar(max)" />
+          <Property Name="ReferanceId" Type="nvarchar" MaxLength="350" />
+          <Property Name="lastModifiedDate" Type="datetime" />
+          <Property Name="AreaId" Type="int" />
+          <Property Name="ZoneId" Type="int" />
+          <Property Name="WardNo" Type="int" />
+          <Property Name="userId" Type="int" />
+          <Property Name="lastModifiedDateEntry" Type="datetime" />
         </EntityType>
         <EntityType Name="StreetSweepingDetails">
           <Key>
@@ -352,6 +365,32 @@
           <Property Name="SSAddress" Type="nvarchar(max)" />
           <Property Name="lastModifiedDate" Type="datetime" />
           <Property Name="userId" Type="int" />
+        </EntityType>
+        <EntityType Name="SWMMaster">
+          <Key>
+            <PropertyRef Name="swmId" />
+          </Key>
+          <Property Name="swmId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="swmNumber" Type="nvarchar" MaxLength="500" />
+          <Property Name="swmName" Type="varchar" MaxLength="200" />
+          <Property Name="swmManager" Type="varchar" MaxLength="200" />
+          <Property Name="swmOwnerMar" Type="nvarchar" MaxLength="200" />
+          <Property Name="swmOwnerMobile" Type="nvarchar" MaxLength="200" />
+          <Property Name="swmAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="swmLat" Type="nvarchar" MaxLength="500" />
+          <Property Name="swmLong" Type="nvarchar" MaxLength="500" />
+          <Property Name="swmQRCode" Type="nvarchar(max)" />
+          <Property Name="ZoneId" Type="int" />
+          <Property Name="AreaId" Type="int" />
+          <Property Name="WardNo" Type="int" />
+          <Property Name="ReferanceId" Type="nvarchar" MaxLength="350" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="userId" Type="int" />
+          <Property Name="FCMID" Type="varchar" MaxLength="500" />
+          <Property Name="lastModifiedEntry" Type="datetime" />
+          <Property Name="RFIDTagId" Type="nvarchar" MaxLength="255" />
+          <Property Name="WasteType" Type="varchar" MaxLength="10" />
+          <Property Name="swmType" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="TeritoryMaster">
           <Key>
@@ -383,6 +422,7 @@
           <Property Name="gcTarget" Type="varchar" MaxLength="250" />
           <Property Name="EmployeeType" Type="varchar" MaxLength="10" />
           <Property Name="imoNo2" Type="nvarchar(max)" />
+          <Property Name="ComgcTarget" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="VehicleType">
           <Key>
@@ -641,6 +681,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySet Name="QrEmployeeMaster" EntityType="Self.QrEmployeeMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SauchalayAddress" EntityType="Self.SauchalayAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StreetSweepingDetails" EntityType="Self.StreetSweepingDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SWMMaster" EntityType="Self.SWMMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeritoryMaster" EntityType="Self.TeritoryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleType" EntityType="Self.VehicleType" Schema="dbo" store:Type="Tables" />
@@ -795,7 +836,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
             <Parameter Name="month" Mode="In" Type="Int32" />
             <Parameter Name="day" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="SauchalayAddresses" EntityType="DevSwachhBharatNagpurModel.SauchalayAddress" />
           <EntitySet Name="WM_Garbage_Details" EntityType="DevSwachhBharatNagpurModel.WM_Garbage_Details" />
           <EntitySet Name="Vw_GetHouseNumber" EntityType="DevSwachhBharatNagpurModel.Vw_GetHouseNumber" />
           <FunctionImport Name="sp_MsgNotification" ReturnType="Collection(DevSwachhBharatNagpurModel.sp_MsgNotification_Result)">
@@ -806,7 +846,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
             <Parameter Name="tdate" Mode="In" Type="DateTime" />
           </FunctionImport>
           <EntitySet Name="WM_Garbage_Sales" EntityType="DevSwachhBharatNagpurModel.WM_Garbage_Sales" />
-          <EntitySet Name="UserMasters" EntityType="DevSwachhBharatNagpurModel.UserMaster" />
           <EntitySet Name="Vw_MsgNotification" EntityType="DevSwachhBharatNagpurModel.Vw_MsgNotification" />
           <EntitySet Name="LiquidWasteDetails" EntityType="DevSwachhBharatNagpurModel.LiquidWasteDetail" />
           <EntitySet Name="StreetSweepingDetails" EntityType="DevSwachhBharatNagpurModel.StreetSweepingDetail" />
@@ -843,6 +882,9 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
             <Parameter Name="month" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="CommercialMasters" EntityType="DevSwachhBharatNagpurModel.CommercialMaster" />
+          <EntitySet Name="SWMMasters" EntityType="DevSwachhBharatNagpurModel.SWMMaster" />
+          <EntitySet Name="SauchalayAddresses" EntityType="DevSwachhBharatNagpurModel.SauchalayAddress" />
+          <EntitySet Name="UserMasters" EntityType="DevSwachhBharatNagpurModel.UserMaster" />
           <EntitySet Name="GarbageCollectionDetails" EntityType="DevSwachhBharatNagpurModel.GarbageCollectionDetail" />
         </EntityContainer>
         <ComplexType Name="sp_area_Result">
@@ -1262,23 +1304,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Type="Decimal" Name="Weight" Nullable="true" Precision="18" Scale="4" />
           <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
         </ComplexType>
-        <EntityType Name="SauchalayAddress">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SauchalayID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="Lat" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Long" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="ImageUrl" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="QrImageUrl" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Mobile" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Tot" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Tns" Type="Int32" />
-        </EntityType>
         <EntityType Name="WM_Garbage_Details">
           <Key>
             <PropertyRef Name="GarbageDetailsID" />
@@ -1340,28 +1365,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="SalesWeight" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="Amount" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="UserMaster">
-          <Key>
-            <PropertyRef Name="userId" />
-          </Key>
-          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="userNameMar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="userLoginId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="userPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="userMobileNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="userAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="userProfileImage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="userEmployeeNo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="userDesignation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="imoNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="bloodGroup" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="isActive" Type="Boolean" />
-          <Property Name="gcTarget" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="EmployeeType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="imoNo2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Vw_MsgNotification">
           <Key>
@@ -1603,6 +1606,80 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="WasteType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="CType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="SWMMaster">
+          <Key>
+            <PropertyRef Name="swmId" />
+          </Key>
+          <Property Name="swmId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="swmNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="swmName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="swmManager" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="swmOwnerMar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="swmOwnerMobile" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="swmAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="swmLat" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="swmLong" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="swmQRCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ZoneId" Type="Int32" />
+          <Property Name="AreaId" Type="Int32" />
+          <Property Name="WardNo" Type="Int32" />
+          <Property Name="ReferanceId" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="FCMID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="lastModifiedEntry" Type="DateTime" Precision="3" />
+          <Property Name="RFIDTagId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="WasteType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="swmType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SauchalayAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SauchalayID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Lat" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Long" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="QrImageUrl" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Tot" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tns" Type="Int32" />
+          <Property Name="SauchalayQRCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReferanceId" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="lastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="AreaId" Type="Int32" />
+          <Property Name="ZoneId" Type="Int32" />
+          <Property Name="WardNo" Type="Int32" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="lastModifiedDateEntry" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="userNameMar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="userLoginId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="userPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="userMobileNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="userAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="userProfileImage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userEmployeeNo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="userDesignation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="imoNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="bloodGroup" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="gcTarget" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="imoNo2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ComgcTarget" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="GarbageCollectionDetail">
           <Key>
             <PropertyRef Name="gcId" />
@@ -1641,6 +1718,11 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="SSId" Type="Int32" />
           <Property Name="LOS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="commercialId" Type="Int32" />
+          <Property Name="CTPTId" Type="Int32" />
+          <Property Name="SWMId" Type="Int32" />
+          <Property Name="TNS" Type="Int32" />
+          <Property Name="TOT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CGarbageType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2164,24 +2246,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="SauchalayAddresses">
-            <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.SauchalayAddress">
-              <MappingFragment StoreEntitySet="SauchalayAddress">
-                <ScalarProperty Name="Tns" ColumnName="Tns" />
-                <ScalarProperty Name="Tot" ColumnName="Tot" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="QrImageUrl" ColumnName="QrImageUrl" />
-                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Long" ColumnName="Long" />
-                <ScalarProperty Name="Lat" ColumnName="Lat" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="SauchalayID" ColumnName="SauchalayID" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WM_Garbage_Details">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.WM_Garbage_Details">
               <MappingFragment StoreEntitySet="WM_Garbage_Details">
@@ -2231,29 +2295,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
                 <ScalarProperty Name="PartyName" ColumnName="PartyName" />
                 <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserMasters">
-            <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.UserMaster">
-              <MappingFragment StoreEntitySet="UserMaster">
-                <ScalarProperty Name="imoNo2" ColumnName="imoNo2" />
-                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
-                <ScalarProperty Name="gcTarget" ColumnName="gcTarget" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="bloodGroup" ColumnName="bloodGroup" />
-                <ScalarProperty Name="imoNo" ColumnName="imoNo" />
-                <ScalarProperty Name="userDesignation" ColumnName="userDesignation" />
-                <ScalarProperty Name="userEmployeeNo" ColumnName="userEmployeeNo" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="userProfileImage" ColumnName="userProfileImage" />
-                <ScalarProperty Name="userAddress" ColumnName="userAddress" />
-                <ScalarProperty Name="userMobileNumber" ColumnName="userMobileNumber" />
-                <ScalarProperty Name="userPassword" ColumnName="userPassword" />
-                <ScalarProperty Name="userLoginId" ColumnName="userLoginId" />
-                <ScalarProperty Name="userNameMar" ColumnName="userNameMar" />
-                <ScalarProperty Name="userName" ColumnName="userName" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2531,9 +2572,91 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SWMMasters">
+            <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.SWMMaster">
+              <MappingFragment StoreEntitySet="SWMMaster">
+                <ScalarProperty Name="swmType" ColumnName="swmType" />
+                <ScalarProperty Name="WasteType" ColumnName="WasteType" />
+                <ScalarProperty Name="RFIDTagId" ColumnName="RFIDTagId" />
+                <ScalarProperty Name="lastModifiedEntry" ColumnName="lastModifiedEntry" />
+                <ScalarProperty Name="FCMID" ColumnName="FCMID" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="ReferanceId" ColumnName="ReferanceId" />
+                <ScalarProperty Name="WardNo" ColumnName="WardNo" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="swmQRCode" ColumnName="swmQRCode" />
+                <ScalarProperty Name="swmLong" ColumnName="swmLong" />
+                <ScalarProperty Name="swmLat" ColumnName="swmLat" />
+                <ScalarProperty Name="swmAddress" ColumnName="swmAddress" />
+                <ScalarProperty Name="swmOwnerMobile" ColumnName="swmOwnerMobile" />
+                <ScalarProperty Name="swmOwnerMar" ColumnName="swmOwnerMar" />
+                <ScalarProperty Name="swmManager" ColumnName="swmManager" />
+                <ScalarProperty Name="swmName" ColumnName="swmName" />
+                <ScalarProperty Name="swmNumber" ColumnName="swmNumber" />
+                <ScalarProperty Name="swmId" ColumnName="swmId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SauchalayAddresses">
+            <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.SauchalayAddress">
+              <MappingFragment StoreEntitySet="SauchalayAddress">
+                <ScalarProperty Name="lastModifiedDateEntry" ColumnName="lastModifiedDateEntry" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="WardNo" ColumnName="WardNo" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="lastModifiedDate" ColumnName="lastModifiedDate" />
+                <ScalarProperty Name="ReferanceId" ColumnName="ReferanceId" />
+                <ScalarProperty Name="SauchalayQRCode" ColumnName="SauchalayQRCode" />
+                <ScalarProperty Name="Tns" ColumnName="Tns" />
+                <ScalarProperty Name="Tot" ColumnName="Tot" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="QrImageUrl" ColumnName="QrImageUrl" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="SauchalayID" ColumnName="SauchalayID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="ComgcTarget" ColumnName="ComgcTarget" />
+                <ScalarProperty Name="imoNo2" ColumnName="imoNo2" />
+                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
+                <ScalarProperty Name="gcTarget" ColumnName="gcTarget" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="bloodGroup" ColumnName="bloodGroup" />
+                <ScalarProperty Name="imoNo" ColumnName="imoNo" />
+                <ScalarProperty Name="userDesignation" ColumnName="userDesignation" />
+                <ScalarProperty Name="userEmployeeNo" ColumnName="userEmployeeNo" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="userProfileImage" ColumnName="userProfileImage" />
+                <ScalarProperty Name="userAddress" ColumnName="userAddress" />
+                <ScalarProperty Name="userMobileNumber" ColumnName="userMobileNumber" />
+                <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+                <ScalarProperty Name="userLoginId" ColumnName="userLoginId" />
+                <ScalarProperty Name="userNameMar" ColumnName="userNameMar" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="GarbageCollectionDetails">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.GarbageCollectionDetail">
               <MappingFragment StoreEntitySet="GarbageCollectionDetails">
+                <ScalarProperty Name="CGarbageType" ColumnName="CGarbageType" />
+                <ScalarProperty Name="TOT" ColumnName="TOT" />
+                <ScalarProperty Name="TNS" ColumnName="TNS" />
+                <ScalarProperty Name="SWMId" ColumnName="SWMId" />
+                <ScalarProperty Name="CTPTId" ColumnName="CTPTId" />
                 <ScalarProperty Name="commercialId" ColumnName="commercialId" />
                 <ScalarProperty Name="LOS" ColumnName="LOS" />
                 <ScalarProperty Name="SSId" ColumnName="SSId" />

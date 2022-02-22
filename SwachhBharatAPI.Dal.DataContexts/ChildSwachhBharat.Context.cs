@@ -18,10 +18,9 @@ namespace SwachhBharatAPI.Dal.DataContexts
     public partial class DevSwachhBharatNagpurEntities : DbContext
     {
         public DevSwachhBharatNagpurEntities(int AppId)
-                : base(SwachhBharatAppConnection.GetConnectionString(AppId))
+              : base(SwachhBharatAppConnection.GetConnectionString(AppId))
         {
         }
-
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -43,11 +42,9 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<WM_GarbageCategory> WM_GarbageCategory { get; set; }
         public virtual DbSet<WM_GarbageSubCategory> WM_GarbageSubCategory { get; set; }
         public virtual DbSet<WM_Garbage_Summary> WM_Garbage_Summary { get; set; }
-        public virtual DbSet<SauchalayAddress> SauchalayAddresses { get; set; }
         public virtual DbSet<WM_Garbage_Details> WM_Garbage_Details { get; set; }
         public virtual DbSet<Vw_GetHouseNumber> Vw_GetHouseNumber { get; set; }
         public virtual DbSet<WM_Garbage_Sales> WM_Garbage_Sales { get; set; }
-        public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<Vw_MsgNotification> Vw_MsgNotification { get; set; }
         public virtual DbSet<LiquidWasteDetail> LiquidWasteDetails { get; set; }
         public virtual DbSet<StreetSweepingDetail> StreetSweepingDetails { get; set; }
@@ -58,6 +55,9 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<HouseMaster> HouseMasters { get; set; }
         public virtual DbSet<Qr_Location> Qr_Location { get; set; }
         public virtual DbSet<CommercialMaster> CommercialMasters { get; set; }
+        public virtual DbSet<SWMMaster> SWMMasters { get; set; }
+        public virtual DbSet<SauchalayAddress> SauchalayAddresses { get; set; }
+        public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
     
         public virtual ObjectResult<sp_area_Result> sp_area()

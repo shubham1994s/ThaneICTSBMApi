@@ -363,6 +363,15 @@ namespace SwachhBharatAPI.Controllers
                             //   gcDetail.houseId = item.ReferenceID;
                             gcDetail.gcType = item.gcType;
                             gcDetail.LevelOS = item.LevelOS;
+                          
+                            break;
+
+                        case 10:
+                            gcDetail.CTPTId = item.ReferenceID;
+                            gcDetail.gcType = item.gcType;
+                            gcDetail.TNS = item.TNS;
+                            gcDetail.TOT = item.TOT;
+                            gcDetail.EmpType = item.EmpType;
                             break;
                         default:
                             gcDetail.houseId = "";
@@ -374,8 +383,9 @@ namespace SwachhBharatAPI.Controllers
                     gcDetail.OfflineID = item.OfflineID;
                     gcDetail.Lat = item.Lat;  
                     gcDetail.Long = item.Long;  
-                    gcDetail.note = item.note;  
+                    gcDetail.note = item.note;
                     gcDetail.garbageType = item.garbageType; 
+                    gcDetail.garbageTypeC = item.garbageTypeC;
                     gcDetail.vehicleNumber = item.vehicleNumber;  
                     gcDetail.gcDate = item.gcDate;
                     gcDetail.batteryStatus = item.batteryStatus;
@@ -390,41 +400,7 @@ namespace SwachhBharatAPI.Controllers
                     gcDetail.gpBeforImage = imageStart;
                     gcDetail.gpAfterImage = imageEnd;
                     
-                    //string Image = "";
-                    //if (impath.Length == 0 || impath[0] == null)
-                    //{
-                    //    gcDetail.gpBeforImage = "";
-                    //    gcDetail.gpAfterImage = "";
-                    //}
-                    //else
-                    //{
-                    //    if (imageStart == "" || imageStart == string.Empty || imageStart == null)
-                    //    {
-                    //        gcDetail.gpBeforImage = "";
-                    //        if (imageEnd != "" || imageEnd != string.Empty || imageEnd != null)
-
-                    //        {
-                    //            gcDetail.gpAfterImage = impath[0];
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        gcDetail.gpBeforImage = impath[0];
-
-                    //        if (impath.Length == 0 || i <= 1)
-                    //        {
-                    //            gcDetail.gpAfterImage = "";
-                    //        }
-                    //        else
-                    //        {
-                    //            if (imageEnd != "" || imageEnd != string.Empty || imageEnd != null)
-
-                    //            {
-                    //                gcDetail.gpAfterImage = impath[1];
-                    //            }
-                    //        }
-                    //    }
-                    //}
+                
                 
 
                     CollectionSyncResult detail =  _RepositoryApi.SaveGarbageCollectionOffline(gcDetail, AppId, _typeId);

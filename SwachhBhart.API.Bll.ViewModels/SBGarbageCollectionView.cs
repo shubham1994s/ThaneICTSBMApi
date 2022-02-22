@@ -14,6 +14,14 @@ namespace SwachhBhart.API.Bll.ViewModels
         public string houseId { get; set; }
 
         public string CommercialId { get; set; }
+
+        public string CTPTId { get; set; }
+
+
+        public int TNS { get; set; }
+
+        public string TOT { get; set; }
+
         public string gpId { get; set; }
         public string gcDate { get; set; }
         public string Lat { get; set; }
@@ -24,6 +32,8 @@ namespace SwachhBhart.API.Bll.ViewModels
         public string note { get; set; }
         public string vehicleNumber { get; set; }
         public int garbageType { get; set; }
+
+        public string garbageTypeC { get; set; }
         public string dyId { get; set; }
 
         public string LWId { get; set; }
