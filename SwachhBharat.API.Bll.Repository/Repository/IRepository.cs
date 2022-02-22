@@ -52,6 +52,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
         // Added Byu Saurabh (26 Apr 2019)
         List<DumpYardPointDetailsVM> GetDumpYardArea(int appId, int type);
+
+        List<DumpYardPointDetailsVM> GetCommercialArea(int appId, int type);
         Result SendSMSToHOuse(int area, int AppId);
 
         Result CheckAttendence(int userId, int AppId, int typeId);

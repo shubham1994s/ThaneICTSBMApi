@@ -466,6 +466,24 @@ namespace SwachhBharatAPI.Controllers
         }
 
         [HttpGet]
+        [Route("Get/CommercialPoint")]
+        public List<DumpYardPointDetailsVM> GetCommercialAreaWise()
+        {
+
+            List<DumpYardPointDetailsVM> objDetail = new List<DumpYardPointDetailsVM>();
+            objRep = new Repository();
+            IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
+            IEnumerable<string> headerValue2 = Request.Headers.GetValues("areaId");
+            var id = headerValue1.FirstOrDefault();
+            int AppId = int.Parse(id);
+            var v = headerValue2.FirstOrDefault();
+            int areaId = int.Parse(v);
+            objDetail = objRep.GetCommercialArea(AppId, areaId);
+            return objDetail;
+
+        }
+
+        [HttpGet]
         [Route("Get/SendSms")]
         public Result SendNotificationt()
         {

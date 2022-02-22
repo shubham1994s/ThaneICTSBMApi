@@ -373,6 +373,15 @@ namespace SwachhBharatAPI.Controllers
                             gcDetail.TOT = item.TOT;
                             gcDetail.EmpType = item.EmpType;
                             break;
+
+                        case 11:
+                            gcDetail.SWMId = item.ReferenceID;
+                            gcDetail.gcType = item.gcType;
+                            gcDetail.TOR = item.TOR;
+                            gcDetail.TQIW = item.TQIW;
+                            gcDetail.TQOW = item.TQOW;
+                            gcDetail.EmpType = item.EmpType;
+                            break;
                         default:
                             gcDetail.houseId = "";
                             gcDetail.gpId = "";

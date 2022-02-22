@@ -17,11 +17,22 @@ namespace SwachhBhart.API.Bll.ViewModels
 
         public string CTPTId { get; set; }
 
+        public string SWMId { get; set; }
+
 
         public int TNS { get; set; }
 
+        public Nullable<decimal> TQIW { get; set; }
+
+
+
+        public Nullable<decimal> TQOW { get; set; }
+        public string TOR { get; set; }
+
         public string TOT { get; set; }
 
+
+      
         public string gpId { get; set; }
         public string gcDate { get; set; }
         public string Lat { get; set; }

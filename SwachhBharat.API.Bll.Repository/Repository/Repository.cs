@@ -5266,6 +5266,233 @@ namespace SwachhBharat.API.Bll.Repository.Repository
         }
 
 
+        private CollectionSyncResult SaveSWMCollectionSync(SBGarbageCollectionView obj, int AppId, int type)
+        {
+            int locType = 0;
+            string mes = string.Empty;
+            CollectionSyncResult result = new CollectionSyncResult();
+            HouseMaster dbHouse = new HouseMaster();
+            var appdetails = dbMain.AppDetails.Where(c => c.AppId == AppId).FirstOrDefault();
+            using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
+            {
+                string name = "", housemob = "", nameMar = "", addre = "";
+
+                var house = db.SWMMasters.Where(c => c.ReferanceId == obj.SWMId).FirstOrDefault();
+                bool IsExist = false;
+                DateTime Dateeee = Convert.ToDateTime(obj.gcDate);
+                DateTime startDateTime = new DateTime(Dateeee.Year, Dateeee.Month, Dateeee.Day, 00, 00, 00, 000);
+                DateTime endDateTime = new DateTime(Dateeee.Year, Dateeee.Month, Dateeee.Day, 23, 59, 59, 999);
+                var IsSameHouseRecord = db.GarbageCollectionDetails.Where(c => c.userId == obj.userId && c.SWMId == house.swmId && c.gcDate == Dateeee).FirstOrDefault();
+                if (IsSameHouseRecord == null)
+                {
+
+                    try
+                    {
+                        GarbageCollectionDetail objdata = new GarbageCollectionDetail();
+                        objdata.userId = obj.userId;
+                        objdata.gcDate = Dateeee;
+                        objdata.Lat = obj.Lat;
+                        objdata.Long = obj.Long;
+                        //    objdata.garbageType = obj.garbageType;
+                        var atten = db.Daily_Attendance.Where(c => c.userId == obj.userId & c.daDate == EntityFunctions.TruncateTime(Dateeee)).FirstOrDefault();
+
+                        Location loc = new Location();
+
+                        if (atten == null)
+                        {
+                            result.isAttendenceOff = true;
+                            result.ID = obj.OfflineID;
+                            result.message = "Your duty is currently off, please start again.. ";
+                            result.messageMar = "आपली ड्यूटी सध्या बंद आहे, कृपया पुन्हा सुरू करा..";
+                            result.status = "success";
+                            return result;
+                        }
+                        else { result.isAttendenceOff = false; }
+                        if (obj.CommercialId != null && obj.CommercialId != "")
+                        {
+                            try
+                            {
+                                locType = 1;
+                                objdata.SWMId = house.swmId;
+                                name = house.swmName;
+                                nameMar = checkNull(house.swmName);
+                                addre = checkNull(house.swmAddress);
+                                housemob = house.swmOwnerMobile;
+
+
+                                IsExist = (from p in db.GarbageCollectionDetails where p.SWMId == objdata.SWMId && p.gcDate >= startDateTime && p.gcDate <= endDateTime select p).Count() > 0;
+
+
+                            }
+                            catch (Exception ex)
+                            {
+                                result.ID = obj.OfflineID;
+                                result.message = "Invalid SLWM Id"; result.messageMar = "अवैध SLWM आयडी";
+                                result.status = "error";
+                                return result;
+                            }
+
+                        }
+
+
+                        if (IsExist == true)
+                        {
+
+                            var gcd = db.GarbageCollectionDetails.Where(c => c.SWMId == house.swmId && c.userId == obj.userId && EntityFunctions.TruncateTime(c.gcDate) == EntityFunctions.TruncateTime(Dateeee)).FirstOrDefault();
+                            if (gcd == null)
+                            {
+                                result.ID = obj.OfflineID;
+                                result.message = "This SLWM Id already scanned."; result.messageMar = "हे SLWM आयडी आधीच स्कॅन केले आहे.";
+                                result.status = "error";
+                                return result;
+                            }
+                            if (gcd != null)
+                            {
+                                if (Dateeee > gcd.gcDate)
+                                {
+                                    gcd.gcType = obj.gcType;
+                                    gcd.gpBeforImage = obj.gpBeforImage;
+                                    gcd.gpAfterImage = obj.gpAfterImage;
+                                    gcd.note = checkNull(obj.note);
+                                    gcd.garbageType = checkIntNull(obj.garbageType.ToString());
+                                    objdata.garbageType = checkIntNull(obj.garbageType.ToString());
+
+                                    gcd.vehicleNumber = checkNull(obj.vehicleNumber);
+
+                                    gcd.batteryStatus = obj.batteryStatus;
+                                    gcd.userId = obj.userId;
+                                    gcd.gcDate = Dateeee;
+                                    gcd.Lat = obj.Lat;
+                                    gcd.Long = obj.Long;
+                                    gcd.TNS = obj.TNS;
+                                    gcd.TOT = obj.TOT;
+                                    gcd.SWMId = house.swmId;
+                                    gcd.totalDryWeight = obj.TQIW;
+                                    gcd.totalWetWeight = obj.TQOW;
+                                    gcd.WasteType = obj.TOR;
+
+                                }
+                                gcd.locAddresss = addre;
+                                gcd.CreatedDate = DateTime.Now;
+                                gcd.LOS = obj.LevelOS;
+
+                                loc.datetime = Dateeee;
+                                loc.lat = objdata.Lat;
+                                loc.@long = objdata.Long;
+                                loc.address = objdata.locAddresss; //Address(objdata.Lat + "," + objdata.Long);
+                                loc.batteryStatus = obj.batteryStatus;
+                                if (objdata.locAddresss != "")
+                                { loc.area = area(loc.address); }
+                                else
+                                {
+                                    loc.area = "";
+                                }
+                                loc.userId = objdata.userId;
+                                loc.type = 1;
+                                loc.Distnace = obj.Distance;
+                                loc.IsOffline = obj.IsOffline;
+
+                                if (!string.IsNullOrEmpty(obj.CTPTId))
+                                {
+                                    loc.ReferanceID = obj.CTPTId;
+                                }
+                                loc.CreatedDate = DateTime.Now;
+
+                                db.Locations.Add(loc);
+                                db.SaveChanges();
+
+                            }
+                        }
+                        else
+                        {
+                            if (house != null)
+                            {
+                                if (house.swmLat == null && house.swmLong == null)
+                                {
+                                    house.swmLat = obj.Lat;
+                                    house.swmLong = obj.Long;
+                                }
+                            }
+
+                            objdata.gcType = obj.gcType;
+                            objdata.gpBeforImage = obj.gpBeforImage;
+                            objdata.gpAfterImage = obj.gpAfterImage;
+                            objdata.note = checkNull(obj.note);
+                            objdata.garbageType = checkIntNull(obj.garbageType.ToString());
+                            objdata.vehicleNumber = checkNull(obj.vehicleNumber);
+                            loc.Distnace = obj.Distance; // Convert.ToDecimal(distCount);
+                            objdata.batteryStatus = obj.batteryStatus;
+                            objdata.userId = obj.userId;
+                            objdata.LOS = obj.LevelOS;
+                            objdata.TNS = obj.TNS;
+                            objdata.TOT = obj.TOT;
+                            objdata.SWMId = house.swmId;
+
+                            objdata.locAddresss = addre;
+                            objdata.CreatedDate = DateTime.Now;
+                            objdata.totalDryWeight = obj.TQIW;
+                            objdata.totalWetWeight = obj.TQOW;
+                            objdata.WasteType = obj.TOR;
+                            db.GarbageCollectionDetails.Add(objdata);
+
+                            loc.datetime = Dateeee;
+                            loc.lat = objdata.Lat;
+                            loc.@long = objdata.Long;
+                            loc.address = objdata.locAddresss;
+                            loc.batteryStatus = obj.batteryStatus;
+                            if (objdata.locAddresss != "")
+                            { loc.area = area(loc.address); }
+                            else
+                            {
+                                loc.area = "";
+                            }
+                            loc.userId = objdata.userId;
+                            loc.type = 1;
+                            loc.Distnace = obj.Distance;
+                            loc.IsOffline = obj.IsOffline;
+                            if (!string.IsNullOrEmpty(obj.CTPTId))
+                            {
+                                loc.ReferanceID = obj.CTPTId;
+                            }
+                            loc.CreatedDate = DateTime.Now;
+
+                            db.Locations.Add(loc);
+                            db.SaveChanges();
+
+                        }
+
+                        result.ID = obj.OfflineID;
+                        result.status = "success";
+                        result.message = "Uploaded successfully";
+                        result.messageMar = "सबमिट यशस्वी";
+
+                        return result;
+                    }
+
+                    catch (Exception ex)
+                    {
+                        result.ID = obj.OfflineID;
+                        result.message = "Something is wrong,Try Again.. ";
+                        result.messageMar = "काहीतरी चुकीचे आहे, पुन्हा प्रयत्न करा..";
+                        result.status = "error";
+                        return result;
+                    }
+
+                }
+
+                else
+                {
+                    result.ID = obj.OfflineID;
+                    result.status = "success";
+                    result.message = "Uploaded successfully";
+                    result.messageMar = "सबमिट यशस्वी";
+
+                    return result;
+                }
+            }
+        }
+
+
 
         private CollectionSyncResult SavePointCollectionSync(SBGarbageCollectionView obj, int AppId, int type)
         {
@@ -7711,7 +7938,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         break;
 
                     case 11:
-                        result = SaveCTPTCollectionSync(obj, AppId, type);
+                        result = SaveSWMCollectionSync(obj, AppId, type);
                         break;
                 }
             }
@@ -7765,7 +7992,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         break;
 
                     case 11:
-                        result = SaveCTPTCollectionSync(obj, AppId, type);
+                        result = SaveSWMCollectionSync(obj, AppId, type);
                         break;
                 }
             }
@@ -9189,6 +9416,36 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             return obj;
 
         }
+
+        public List<DumpYardPointDetailsVM> GetCommercialArea(int AppId, int areaId)
+        {
+
+            List<DumpYardPointDetailsVM> obj = new List<DumpYardPointDetailsVM>();
+            using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
+            {
+                var data = db.CommercialMasters.Where(c => c.AreaId == areaId).ToList();
+
+                foreach (var x in data)
+                {
+                    string HouseN = "";
+                    if (x.commercialOwner == null || x.commercialOwner == "")
+                    {
+                        HouseN = x.ReferanceId;
+                    }
+                    else { HouseN = x.commercialOwner; }
+                    obj.Add(new DumpYardPointDetailsVM()
+                    {
+                        dyId = x.ReferanceId,
+                        dyName = HouseN,
+
+                    });
+                }
+
+            }
+            return obj;
+
+        }
+
         public Result SendSMSToHOuse(int area, int AppId)
         {
 
