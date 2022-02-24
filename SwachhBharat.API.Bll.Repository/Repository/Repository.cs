@@ -5329,6 +5329,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                 result.ID = obj.OfflineID;
                                 result.message = "Invalid SLWM Id"; result.messageMar = "अवैध SLWM आयडी";
                                 result.status = "error";
+                                result.CType = house.swmType;
                                 return result;
                             }
 
@@ -5344,6 +5345,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                 result.ID = obj.OfflineID;
                                 result.message = "This SLWM Id already scanned."; result.messageMar = "हे SLWM आयडी आधीच स्कॅन केले आहे.";
                                 result.status = "error";
+                                result.CType = house.swmType;
                                 return result;
                             }
                             if (gcd != null)
@@ -5465,6 +5467,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         result.status = "success";
                         result.message = "Uploaded successfully";
                         result.messageMar = "सबमिट यशस्वी";
+                        result.CType = house.swmType;
 
                         return result;
                     }
@@ -5475,6 +5478,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         result.message = "Something is wrong,Try Again.. ";
                         result.messageMar = "काहीतरी चुकीचे आहे, पुन्हा प्रयत्न करा..";
                         result.status = "error";
+                        result.CType = house.swmType;
                         return result;
                     }
 
@@ -5486,6 +5490,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                     result.status = "success";
                     result.message = "Uploaded successfully";
                     result.messageMar = "सबमिट यशस्वी";
+                    result.CType = house.swmType;
 
                     return result;
                 }
@@ -8418,6 +8423,30 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
         }
 
+        public List<HouseDetailsVM> GetSWMFType(int AppId)
+        {
+            AppDetail objmain = dbMain.AppDetails.Where(x => x.AppId == AppId).FirstOrDefault();
+            List<HouseDetailsVM> obj = new List<HouseDetailsVM>();
+            using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
+            {
+                var data = db.SWMMasters.ToList();
+                int THcount = data.Count();
+
+                foreach (var x in data)
+                {
+                    obj.Add(new HouseDetailsVM()
+                    {
+                        houseid = x.ReferanceId,
+                        houseNumber = x.swmNumber,
+                        Ctype = x.swmType,
+                        THcount = THcount
+                    });
+                }
+            }
+            return obj;
+
+        }
+
         public List<SBUserAttendenceView> GetUserAttendence(DateTime fDate, int appId, int userId)
         {
             List<SBUserAttendenceView> obj = new List<SBUserAttendenceView>();
@@ -8526,6 +8555,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         CommertialCollection = checkIntNull(x.CommercialCollection.ToString()),
                         CADCollection = checkIntNull(x.CADCollection.ToString()),
                         HorticultureCollection = checkIntNull(x.HorticultureCollection.ToString()),
+                        CTPTCollection = checkIntNull(x.CTPTCollection.ToString()),
+                        SLWMCollection = checkIntNull(x.SWMCollection.ToString()),
                     });
                 }
 
@@ -8806,6 +8837,66 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
 
                     }
+
+
+                    if (x.gcType == 10)
+                    {
+                        try
+                        {
+                            var house = db.SauchalayAddresses.Where(c => c.Id == x.CTPTId).FirstOrDefault();
+                            housnum = checkNull(house.ReferanceId);
+
+                            if (languageId == 1)
+                            {
+                                Name = checkNull(house.Name);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().Area;
+                            }
+                            else
+                            {
+                                Name = checkNull(house.Name);
+                                Name = checkNull(house.Name);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().AreaMar;
+                            }
+
+                        }
+                        catch
+                        {
+                            //housnum = "";
+                            //area = "";
+                        }
+
+
+                    }
+
+                    if (x.gcType == 11)
+                    {
+                        try
+                        {
+                            var house = db.SWMMasters.Where(c => c.swmId == x.SWMId).FirstOrDefault();
+                            housnum = checkNull(house.ReferanceId);
+
+                            if (languageId == 1)
+                            {
+                                Name = checkNull(house.swmName);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().Area;
+                            }
+                            else
+                            {
+                                Name = checkNull(house.swmOwnerMar);
+                                Name = checkNull(house.swmOwnerMar);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().AreaMar;
+                            }
+
+                        }
+                        catch
+                        {
+                            //housnum = "";
+                            //area = "";
+                        }
+
+
+                    }
+
 
                     obj.Add(new SBWorkDetailsHistory()
                     {
@@ -12810,8 +12901,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         ResidentialBCollection = checkIntNull(x.ResidendialBCollection.ToString()),
                         ResidentialSCollection = checkIntNull(x.ResidendialSCollection.ToString()),
                         CommertialCollection = checkIntNull(x.CommertialCollection.ToString()),
-
-
+                        SLWMCollection = checkIntNull(x.SWMCollection.ToString()),
+                        CTPTCollection = checkIntNull(x.CTPTCollection.ToString()),
 
                     });
                 }
@@ -12943,6 +13034,33 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                     });
                 }
+
+                var data9 = db.SWMMasters.Where(c => EntityFunctions.TruncateTime(c.modified) == EntityFunctions.TruncateTime(date) && c.userId == userId).ToList();
+                foreach (var z in data9)
+                {
+                    obj.Add(new BigVQrworkhistorydetails()
+                    {
+                        Date = Convert.ToDateTime(z.modified).ToString("MM/dd/yyyy"),
+                        time = Convert.ToDateTime(z.modified).ToString("HH:mm"),
+                        SWMNO = z.ReferanceId,
+                        type = 10,
+
+                    });
+                }
+
+                var data10 = db.SauchalayAddresses.Where(c => EntityFunctions.TruncateTime(c.lastModifiedDate) == EntityFunctions.TruncateTime(date) && c.userId == userId).ToList();
+                foreach (var z in data10)
+                {
+                    obj.Add(new BigVQrworkhistorydetails()
+                    {
+                        Date = Convert.ToDateTime(z.lastModifiedDate).ToString("MM/dd/yyyy"),
+                        time = Convert.ToDateTime(z.lastModifiedDate).ToString("HH:mm"),
+                        CTPTNO = z.ReferanceId,
+                        type = 11,
+
+                    });
+                }
+
                 return obj.OrderBy(c => c.Date).OrderBy(c => c.time).ToList();
 
             }

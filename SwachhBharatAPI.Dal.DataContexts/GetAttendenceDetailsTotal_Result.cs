@@ -24,5 +24,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public Nullable<int> CommercialCollection { get; set; }
         public Nullable<int> CADCollection { get; set; }
         public Nullable<int> HorticultureCollection { get; set; }
+        public Nullable<int> CTPTCollection { get; set; }
+        public Nullable<int> SWMCollection { get; set; }
     }
 }

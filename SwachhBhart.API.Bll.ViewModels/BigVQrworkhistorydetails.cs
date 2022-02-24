@@ -25,5 +25,9 @@ namespace SwachhBhart.API.Bll.ViewModels
         public string ResidentSNO { get; set; }
 
         public string CommercialNO { get; set; }
+
+        public string SWMNO { get; set; }
+        public string CTPTNO { get; set; }
+
     }
 }

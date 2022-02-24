@@ -36,6 +36,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
         List<SBGarbageCollectionView> GetGarbageCollection(DateTime fdate,int appId);
 
         List<HouseDetailsVM> GetHouseCType(int appId);
+
+        List<HouseDetailsVM> GetSWMFType(int appId);
         Result GetVersionUpdate(string version, int AppId);
         Result GetAdminVersionUpdate(string version, int AppId);
         Result GetGameVersionUpdate(string version);

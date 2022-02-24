@@ -232,6 +232,21 @@ namespace SwachhBharatAPI.Controllers
             return objDetail;
         }
 
+        [HttpGet]
+        [Route("Get/GetSWMFType")]
+        public List<HouseDetailsVM> GetSWMFType()
+        {
+            _RepositoryApi = new Repository();
+            IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
+
+            var id = headerValue1.FirstOrDefault();
+            int AppId = int.Parse(id);
+
+            List<HouseDetailsVM> objDetail1 = new List<HouseDetailsVM>();
+            objDetail1 = _RepositoryApi.GetSWMFType(AppId);
+            return objDetail1;
+        }
+
         [HttpPost]
         [Route("Save/GarbageCollectionOfflineUpload")]
         public List<CollectionSyncResult> OfflineUpload(List<SBGarbageCollectionView> objRaw)
