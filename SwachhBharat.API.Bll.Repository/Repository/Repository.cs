@@ -13043,7 +13043,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         Date = Convert.ToDateTime(z.modified).ToString("MM/dd/yyyy"),
                         time = Convert.ToDateTime(z.modified).ToString("HH:mm"),
                         SWMNO = z.ReferanceId,
-                        type = 10,
+                        type = 11,
 
                     });
                 }
@@ -13056,7 +13056,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         Date = Convert.ToDateTime(z.lastModifiedDate).ToString("MM/dd/yyyy"),
                         time = Convert.ToDateTime(z.lastModifiedDate).ToString("HH:mm"),
                         CTPTNO = z.ReferanceId,
-                        type = 11,
+                        type = 10,
 
                     });
                 }
