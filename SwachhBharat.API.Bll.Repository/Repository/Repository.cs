@@ -5117,6 +5117,9 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         {
 
                             var gcd = db.GarbageCollectionDetails.Where(c => c.CTPTId == house.Id && c.userId == obj.userId && EntityFunctions.TruncateTime(c.gcDate) == EntityFunctions.TruncateTime(Dateeee)).FirstOrDefault();
+                         
+
+
                             if (gcd == null)
                             {
                                 result.ID = obj.OfflineID;
@@ -5143,7 +5146,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     gcd.Lat = obj.Lat;
                                     gcd.Long = obj.Long;
                                     gcd.TNS = obj.TNS;
-                                    gcd.TOT = obj.TOT;
+                                    gcd.TOT = house.Tot;
                                     gcd.CTPTId = house.Id;
 
                                 }
@@ -5200,7 +5203,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             objdata.userId = obj.userId;
                             objdata.LOS = obj.LevelOS;
                             objdata.TNS = obj.TNS;
-                            objdata.TOT = obj.TOT;
+                            objdata.TOT = house.Tot;
                             objdata.CTPTId = house.Id;
 
                             objdata.locAddresss = addre;
@@ -5308,7 +5311,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             return result;
                         }
                         else { result.isAttendenceOff = false; }
-                        if (obj.CommercialId != null && obj.CommercialId != "")
+                        if (obj.SWMId != null && obj.SWMId != "")
                         {
                             try
                             {
@@ -11721,6 +11724,15 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                 dump.userId = obj.userId;
                             }
 
+                            if (obj.CType == null)
+                            {
+                                dump.Tot = null;
+                            }
+                            else if ((string.IsNullOrEmpty(obj.CType.ToString())) == false)
+                            {
+                                dump.Tot = obj.CType;
+                            }
+
                             //////////////////////////////////////////////////////////////////
                             obj.date = DateTime.Now;
                             obj.ReferanceId = referanceid;
@@ -12351,6 +12363,15 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                 if (item.userId > 0 && (string.IsNullOrEmpty(item.userId.ToString())) == false)
                                 {
                                     dump.userId = item.userId;
+                                }
+
+                                if (item.CType == null)
+                                {
+                                    dump.Tot = null;
+                                }
+                                else if ((string.IsNullOrEmpty(item.CType.ToString())) == false)
+                                {
+                                    dump.Tot = item.CType;
                                 }
 
                                 db.Qr_Location.Add(FillLocationDetails(item, AppId, true));
