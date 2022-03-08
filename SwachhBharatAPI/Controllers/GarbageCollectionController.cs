@@ -314,6 +314,10 @@ namespace SwachhBharatAPI.Controllers
                             //   gcDetail.houseId = item.ReferenceID;
                             gcDetail.gcType = item.gcType;
                             gcDetail.LevelOS = item.LevelOS;
+                            gcDetail.Dry = item.Dry;
+                            gcDetail.Wet = item.Wet;
+                            gcDetail.Sanitary = item.Sanitary;
+                            gcDetail.Domestic = item.Domestic;
                             break;
                         case 2:
                             gcDetail.gpId = item.ReferenceID;

@@ -4321,7 +4321,10 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     gcd.gpAfterImage = obj.gpAfterImage;
                                     gcd.note = checkNull(obj.note);
                                     gcd.garbageType = checkIntNull(obj.garbageType.ToString());
-                                    objdata.garbageType = checkIntNull(obj.garbageType.ToString());
+                                    gcd.Dry = checkIntNull(obj.Dry.ToString());
+                                    gcd.Wet = checkIntNull(obj.Wet.ToString());
+                                    gcd.Sanitary = checkIntNull(obj.Sanitary.ToString());
+                                    gcd.Domestic = checkIntNull(obj.Domestic.ToString());
                                     gcd.vehicleNumber = checkNull(obj.vehicleNumber);
 
                                     gcd.batteryStatus = obj.batteryStatus;
@@ -4410,6 +4413,10 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             objdata.gpAfterImage = obj.gpAfterImage;
                             objdata.note = checkNull(obj.note);
                             objdata.garbageType = checkIntNull(obj.garbageType.ToString());
+                            objdata.Dry = checkIntNull(obj.Dry.ToString());
+                            objdata.Wet = checkIntNull(obj.Wet.ToString());
+                            objdata.Sanitary = checkIntNull(obj.Sanitary.ToString());
+                            objdata.Domestic = checkIntNull(obj.Domestic.ToString());
                             objdata.vehicleNumber = checkNull(obj.vehicleNumber);
                             loc.Distnace = obj.Distance; // Convert.ToDecimal(distCount);
                             objdata.batteryStatus = obj.batteryStatus;
