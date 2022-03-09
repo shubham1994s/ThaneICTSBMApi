@@ -4875,7 +4875,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     gcd.gpAfterImage = obj.gpAfterImage;
                                     gcd.note = checkNull(obj.note);
                                     gcd.garbageType = checkIntNull(obj.garbageType.ToString());
-                                    objdata.garbageType = checkIntNull(obj.garbageType.ToString());
+                                    gcd.Wet = checkIntNull(obj.Wet.ToString());
+                                    gcd.Dry = checkIntNull(obj.Dry.ToString());
                                     objdata.CGarbageType =obj.garbageTypeC;
                                     gcd.vehicleNumber = checkNull(obj.vehicleNumber);
 
@@ -4965,6 +4966,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             objdata.gpAfterImage = obj.gpAfterImage;
                             objdata.note = checkNull(obj.note);
                             objdata.garbageType = checkIntNull(obj.garbageType.ToString());
+                            objdata.Wet = checkIntNull(obj.Wet.ToString());
+                            objdata.Dry = checkIntNull(obj.Dry.ToString());
                             objdata.vehicleNumber = checkNull(obj.vehicleNumber);
                             loc.Distnace = obj.Distance; // Convert.ToDecimal(distCount);
                             objdata.batteryStatus = obj.batteryStatus;
@@ -5106,7 +5109,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
 
                                 IsExist = (from p in db.GarbageCollectionDetails where p.CTPTId == objdata.CTPTId && p.gcDate >= startDateTime && p.gcDate <= endDateTime select p).Count() > 0;
-                                                        
+
 
                             }
                             catch (Exception ex)
@@ -5120,129 +5123,129 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         }
 
 
-                        if (IsExist == true)
+                        //if (IsExist == true)
+                        //{
+
+                        //    var gcd = db.GarbageCollectionDetails.Where(c => c.CTPTId == house.Id && c.userId == obj.userId && EntityFunctions.TruncateTime(c.gcDate) == EntityFunctions.TruncateTime(Dateeee)).FirstOrDefault();
+
+
+
+                        //    if (gcd == null)
+                        //    {
+                        //        result.ID = obj.OfflineID;
+                        //        result.message = "This CTPT Id already scanned."; result.messageMar = "हे CTPT आयडी आधीच स्कॅन केले आहे.";
+                        //        result.status = "error";
+                        //        return result;
+                        //    }
+                        //    if (gcd != null)
+                        //    {
+                        //        if (Dateeee > gcd.gcDate)
+                        //        {
+                        //            gcd.gcType = obj.gcType;
+                        //            gcd.gpBeforImage = obj.gpBeforImage;
+                        //            gcd.gpAfterImage = obj.gpAfterImage;
+                        //            gcd.note = checkNull(obj.note);
+                        //            gcd.garbageType = checkIntNull(obj.garbageType.ToString());
+                        //            objdata.garbageType = checkIntNull(obj.garbageType.ToString());
+
+                        //            gcd.vehicleNumber = checkNull(obj.vehicleNumber);
+
+                        //            gcd.batteryStatus = obj.batteryStatus;
+                        //            gcd.userId = obj.userId;
+                        //            gcd.gcDate = Dateeee;
+                        //            gcd.Lat = obj.Lat;
+                        //            gcd.Long = obj.Long;
+                        //            gcd.TNS = obj.TNS;
+                        //            gcd.TOT = house.Tot;
+                        //            gcd.CTPTId = house.Id;
+
+                        //        }
+                        //        gcd.locAddresss = addre;
+                        //        gcd.CreatedDate = DateTime.Now;
+                        //        gcd.LOS = obj.LevelOS;
+
+                        //        loc.datetime = Dateeee;
+                        //        loc.lat = objdata.Lat;
+                        //        loc.@long = objdata.Long;
+                        //        loc.address = objdata.locAddresss; //Address(objdata.Lat + "," + objdata.Long);
+                        //        loc.batteryStatus = obj.batteryStatus;
+                        //        if (objdata.locAddresss != "")
+                        //        { loc.area = area(loc.address); }
+                        //        else
+                        //        {
+                        //            loc.area = "";
+                        //        }
+                        //        loc.userId = objdata.userId;
+                        //        loc.type = 1;
+                        //        loc.Distnace = obj.Distance;
+                        //        loc.IsOffline = obj.IsOffline;
+
+                        //        if (!string.IsNullOrEmpty(obj.CTPTId))
+                        //        {
+                        //            loc.ReferanceID = obj.CTPTId;
+                        //        }
+                        //        loc.CreatedDate = DateTime.Now;
+
+                        //        db.Locations.Add(loc);
+                        //        db.SaveChanges();
+
+                        //    }
+                        //}
+                        //else
+                        //{
+                        if (house != null)
                         {
-
-                            var gcd = db.GarbageCollectionDetails.Where(c => c.CTPTId == house.Id && c.userId == obj.userId && EntityFunctions.TruncateTime(c.gcDate) == EntityFunctions.TruncateTime(Dateeee)).FirstOrDefault();
-                         
-
-
-                            if (gcd == null)
+                            if (house.Lat == null && house.Long == null)
                             {
-                                result.ID = obj.OfflineID;
-                                result.message = "This CTPT Id already scanned."; result.messageMar = "हे CTPT आयडी आधीच स्कॅन केले आहे.";
-                                result.status = "error";
-                                return result;
-                            }
-                            if (gcd != null)
-                            {
-                                if (Dateeee > gcd.gcDate)
-                                {
-                                    gcd.gcType = obj.gcType;
-                                    gcd.gpBeforImage = obj.gpBeforImage;
-                                    gcd.gpAfterImage = obj.gpAfterImage;
-                                    gcd.note = checkNull(obj.note);
-                                    gcd.garbageType = checkIntNull(obj.garbageType.ToString());
-                                    objdata.garbageType = checkIntNull(obj.garbageType.ToString());
-                                  
-                                    gcd.vehicleNumber = checkNull(obj.vehicleNumber);
-
-                                    gcd.batteryStatus = obj.batteryStatus;
-                                    gcd.userId = obj.userId;
-                                    gcd.gcDate = Dateeee;
-                                    gcd.Lat = obj.Lat;
-                                    gcd.Long = obj.Long;
-                                    gcd.TNS = obj.TNS;
-                                    gcd.TOT = house.Tot;
-                                    gcd.CTPTId = house.Id;
-
-                                }
-                                gcd.locAddresss = addre;
-                                gcd.CreatedDate = DateTime.Now;
-                                gcd.LOS = obj.LevelOS;
-                               
-                                loc.datetime = Dateeee;
-                                loc.lat = objdata.Lat;
-                                loc.@long = objdata.Long;
-                                loc.address = objdata.locAddresss; //Address(objdata.Lat + "," + objdata.Long);
-                                loc.batteryStatus = obj.batteryStatus;
-                                if (objdata.locAddresss != "")
-                                { loc.area = area(loc.address); }
-                                else
-                                {
-                                    loc.area = "";
-                                }
-                                loc.userId = objdata.userId;
-                                loc.type = 1;
-                                loc.Distnace = obj.Distance;
-                                loc.IsOffline = obj.IsOffline;
-
-                                if (!string.IsNullOrEmpty(obj.CTPTId))
-                                {
-                                    loc.ReferanceID = obj.CTPTId;
-                                }
-                                loc.CreatedDate = DateTime.Now;
-
-                                db.Locations.Add(loc);
-                                db.SaveChanges();
-
+                                house.Lat = obj.Lat;
+                                house.Long = obj.Long;
                             }
                         }
+
+                        objdata.gcType = obj.gcType;
+                        objdata.gpBeforImage = obj.gpBeforImage;
+                        objdata.gpAfterImage = obj.gpAfterImage;
+                        objdata.note = checkNull(obj.note);
+                        objdata.garbageType = checkIntNull(obj.garbageType.ToString());
+                        objdata.vehicleNumber = checkNull(obj.vehicleNumber);
+                        loc.Distnace = obj.Distance; // Convert.ToDecimal(distCount);
+                        objdata.batteryStatus = obj.batteryStatus;
+                        objdata.userId = obj.userId;
+                        objdata.LOS = obj.LevelOS;
+                        objdata.TNS = obj.TNS;
+                        objdata.TOT = house.Tot;
+                        objdata.CTPTId = house.Id;
+
+                        objdata.locAddresss = addre;
+                        objdata.CreatedDate = DateTime.Now;
+                        objdata.WasteType = obj.wastetype;
+                        db.GarbageCollectionDetails.Add(objdata);
+
+                        loc.datetime = Dateeee;
+                        loc.lat = objdata.Lat;
+                        loc.@long = objdata.Long;
+                        loc.address = objdata.locAddresss;
+                        loc.batteryStatus = obj.batteryStatus;
+                        if (objdata.locAddresss != "")
+                        { loc.area = area(loc.address); }
                         else
                         {
-                            if (house != null)
-                            {
-                                if (house.Lat == null && house.Long == null)
-                                {
-                                    house.Lat = obj.Lat;
-                                    house.Long = obj.Long;
-                                }
-                            }
-
-                            objdata.gcType = obj.gcType;
-                            objdata.gpBeforImage = obj.gpBeforImage;
-                            objdata.gpAfterImage = obj.gpAfterImage;
-                            objdata.note = checkNull(obj.note);
-                            objdata.garbageType = checkIntNull(obj.garbageType.ToString());
-                            objdata.vehicleNumber = checkNull(obj.vehicleNumber);
-                            loc.Distnace = obj.Distance; // Convert.ToDecimal(distCount);
-                            objdata.batteryStatus = obj.batteryStatus;
-                            objdata.userId = obj.userId;
-                            objdata.LOS = obj.LevelOS;
-                            objdata.TNS = obj.TNS;
-                            objdata.TOT = house.Tot;
-                            objdata.CTPTId = house.Id;
-
-                            objdata.locAddresss = addre;
-                            objdata.CreatedDate = DateTime.Now;
-                            objdata.WasteType = obj.wastetype;
-                            db.GarbageCollectionDetails.Add(objdata);
-
-                            loc.datetime = Dateeee;
-                            loc.lat = objdata.Lat;
-                            loc.@long = objdata.Long;
-                            loc.address = objdata.locAddresss;
-                            loc.batteryStatus = obj.batteryStatus;
-                            if (objdata.locAddresss != "")
-                            { loc.area = area(loc.address); }
-                            else
-                            {
-                                loc.area = "";
-                            }
-                            loc.userId = objdata.userId;
-                            loc.type = 1;
-                            loc.Distnace = obj.Distance;
-                            loc.IsOffline = obj.IsOffline;
-                            if (!string.IsNullOrEmpty(obj.CTPTId))
-                            {
-                                loc.ReferanceID = obj.CTPTId;
-                            }
-                            loc.CreatedDate = DateTime.Now;
-
-                            db.Locations.Add(loc);
-                            db.SaveChanges();
-
+                            loc.area = "";
                         }
+                        loc.userId = objdata.userId;
+                        loc.type = 1;
+                        loc.Distnace = obj.Distance;
+                        loc.IsOffline = obj.IsOffline;
+                        if (!string.IsNullOrEmpty(obj.CTPTId))
+                        {
+                            loc.ReferanceID = obj.CTPTId;
+                        }
+                        loc.CreatedDate = DateTime.Now;
+
+                        db.Locations.Add(loc);
+                        db.SaveChanges();
+
+                   // }
 
                         result.ID = obj.OfflineID;
                         result.status = "success";
@@ -7949,7 +7952,6 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         break;
 
                     case 10:
-                        result = SaveCTPTCollectionSync(obj, AppId, type);
                         break;
 
                     case 11:

@@ -382,7 +382,9 @@ namespace SwachhBharatAPI.Controllers
                             //   gcDetail.houseId = item.ReferenceID;
                             gcDetail.gcType = item.gcType;
                             gcDetail.LevelOS = item.LevelOS;
-                          
+                            gcDetail.Dry = item.Dry;
+                            gcDetail.Wet = item.Wet;
+
                             break;
 
                         case 10:
