@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttendanceGridVM.cs" />
+    <Compile Include="BeatVM.cs" />
     <Compile Include="BigVQREmployeeAttendenceVM.cs" />
     <Compile Include="BigVQrEmployeeVM.cs" />
     <Compile Include="BigVQRHPDVM.cs" />

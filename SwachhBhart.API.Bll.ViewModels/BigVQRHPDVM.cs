@@ -33,6 +33,8 @@ namespace SwachhBhart.API.Bll.ViewModels
 
         public string wastetype { get; set; }
 
+        public string QRCodeImage { get; set; }
+
     }
 
     public class BigVQRHPDVM2

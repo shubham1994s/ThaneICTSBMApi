@@ -267,6 +267,9 @@
     <Compile Include="state_districts.cs">
       <DependentUpon>MainSwachhBharat.tt</DependentUpon>
     </Compile>
+    <Compile Include="StreetSweepingBeat.cs">
+      <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
+    </Compile>
     <Compile Include="StreetSweepingDetail.cs">
       <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
     </Compile>
@@ -287,6 +290,9 @@
       <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
     </Compile>
     <Compile Include="VehicleType.cs">
+      <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_BitCount.cs">
       <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
     </Compile>
     <Compile Include="Vw_GetHouseNumber.cs">
