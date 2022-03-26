@@ -403,6 +403,20 @@ namespace SwachhBharatAPI.Controllers
                             gcDetail.TQOW = item.TQOW;
                             gcDetail.EmpType = item.EmpType;
                             break;
+                        case 12:
+                            gcDetail.CommercialId = item.ReferenceID;
+                            gcDetail.gcType = item.gcType;
+                            gcDetail.LevelOS = item.LevelOS;
+                            gcDetail.Dry = item.Dry;
+                            gcDetail.Wet = item.Wet;
+                            break;
+                        case 13:
+                            gcDetail.CommercialId = item.ReferenceID;
+                            gcDetail.gcType = item.gcType;
+                            gcDetail.LevelOS = item.LevelOS;
+                            gcDetail.Dry = item.Dry;
+                            gcDetail.Wet = item.Wet;
+                            break;
                         default:
                             gcDetail.houseId = "";
                             gcDetail.gpId = "";
