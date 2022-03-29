@@ -9702,6 +9702,63 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                     }
 
 
+                    if (x.gcType == 12)
+                    {
+                        try
+                        {
+                            var house = db.CommercialMasters.Where(c => c.commercialId == x.commercialId).FirstOrDefault();
+                            housnum = checkNull(house.ReferanceId);
+
+                            if (languageId == 1)
+                            {
+                                Name = checkNull(house.commercialOwner);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().Area;
+                            }
+                            else
+                            {
+                                Name = checkNull(house.commercialOwnerMar);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().AreaMar;
+                            }
+
+                        }
+                        catch
+                        {
+                            //housnum = "";
+                            //area = "";
+                        }
+
+
+                    }
+
+                    if (x.gcType == 13)
+                    {
+                        try
+                        {
+                            var house = db.CommercialMasters.Where(c => c.commercialId == x.commercialId).FirstOrDefault();
+                            housnum = checkNull(house.ReferanceId);
+
+                            if (languageId == 1)
+                            {
+                                Name = checkNull(house.commercialOwner);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().Area;
+                            }
+                            else
+                            {
+                                Name = checkNull(house.commercialOwnerMar);
+                                area = db.TeritoryMasters.Where(c => c.Id == house.AreaId).FirstOrDefault().AreaMar;
+                            }
+
+                        }
+                        catch
+                        {
+                            //housnum = "";
+                            //area = "";
+                        }
+
+
+                    }
+
+
                     obj.Add(new SBWorkDetailsHistory()
                     {
                         time = Convert.ToDateTime(x.gcDate).ToString("hh:mm tt"),
