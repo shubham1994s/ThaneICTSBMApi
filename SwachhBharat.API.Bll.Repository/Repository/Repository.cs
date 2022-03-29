@@ -7550,7 +7550,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         gcd.gcType = obj.gcType;
                         gcd.gpBeforImage = obj.gpBeforImage;
                         gcd.gpAfterImage = obj.gpAfterImage;
-                        gcd.note = checkNull(gcd.note);
+                        gcd.note = checkNull(obj.note);
                         //objdata.garbageType = checkIntNull(obj.garbageType.ToString());
                         gcd.vehicleNumber = checkNull(gcd.vehicleNumber);
                         gcd.totalGcWeight = obj.totalGcWeight;
