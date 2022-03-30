@@ -1670,7 +1670,9 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             DateTime newTime = Dateeee;
                             DateTime oldTime;
                             TimeSpan span = TimeSpan.Zero;
-                            var IsSameRecordQr_Location = db.Qr_Location.Where(c => c.empId == x.userId && c.datetime == x.datetime).FirstOrDefault();
+
+                            var IsSameRecordQr_Location = db.Qr_Location.Where(c => c.empId == x.userId && c.type == null && EntityFunctions.TruncateTime(c.datetime) == EntityFunctions.TruncateTime(Dateeee)).OrderByDescending(c => c.locId).FirstOrDefault();
+                       //     var IsSameRecordQr_Location = db.Qr_Location.Where(c => c.empId == x.userId && c.datetime == x.datetime).FirstOrDefault();
                             if (IsSameRecordQr_Location != null)
                             {                              
                                 oldTime = IsSameRecordQr_Location.datetime.Value;                              
@@ -8610,7 +8612,9 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         DateTime newTime = Dateeee;
                         DateTime oldTime;
                         TimeSpan span = TimeSpan.Zero;
-                        var IsSameRecordQr_Location = db.Locations.Where(c => c.userId == obj.userId && c.datetime == Dateeee).FirstOrDefault();
+
+                        var IsSameRecordQr_Location = db.Qr_Location.Where(c => c.empId == obj.userId && c.type == null && EntityFunctions.TruncateTime(c.datetime) == EntityFunctions.TruncateTime(Dateeee)).OrderByDescending(c => c.locId).FirstOrDefault();
+                     //   var IsSameRecordQr_Location = db.Locations.Where(c => c.userId == obj.userId && c.datetime == Dateeee).FirstOrDefault();
                         if (IsSameRecordQr_Location != null)
                         {
                             oldTime = IsSameRecordQr_Location.datetime.Value;
