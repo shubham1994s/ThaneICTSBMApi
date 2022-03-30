@@ -1666,12 +1666,21 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                     {
                         foreach (var x in obj)
                         {
-                            var IsSameRecordQr_Location = db.Qr_Location.Where(c => c.empId == x.userId && c.datetime == x.datetime).FirstOrDefault();
+                            DateTime Dateeee = Convert.ToDateTime(x.datetime);
+                            DateTime newTime = Dateeee;
+                            DateTime oldTime;
+                            TimeSpan span = TimeSpan.Zero;
 
-                            if (IsSameRecordQr_Location == null)
+                            var IsSameRecordQr_Location = db.Qr_Location.Where(c => c.empId == x.userId && c.type == null && EntityFunctions.TruncateTime(c.datetime) == EntityFunctions.TruncateTime(Dateeee)).OrderByDescending(c => c.locId).FirstOrDefault();
+                       //     var IsSameRecordQr_Location = db.Qr_Location.Where(c => c.empId == x.userId && c.datetime == x.datetime).FirstOrDefault();
+                            if (IsSameRecordQr_Location != null)
+                            {                              
+                                oldTime = IsSameRecordQr_Location.datetime.Value;                              
+                                span = newTime.Subtract(oldTime);
+                            }
+                            if (IsSameRecordQr_Location == null || span.Minutes >= 9)                      
                             {
                                 var u = db.QrEmployeeMasters.Where(c => c.qrEmpId == x.userId);
-
                                 DateTime Offlinedate = Convert.ToDateTime(x.datetime);
                                 var atten = db.Qr_Employee_Daily_Attendance.Where(c => c.qrEmpId == x.userId & c.endTime == "" & c.startDate == EntityFunctions.TruncateTime(x.OfflineId == 0 ? DateTime.Now : Offlinedate)).FirstOrDefault();
                                 if (atten == null)
@@ -8599,9 +8608,19 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                     }
                     else if (typeId == 1)
                     {
-                        var IsSameRecordQr_Location = db.Locations.Where(c => c.userId == obj.userId && c.datetime == Dateeee).FirstOrDefault();
+                       
+                        DateTime newTime = Dateeee;
+                        DateTime oldTime;
+                        TimeSpan span = TimeSpan.Zero;
 
-                        if (IsSameRecordQr_Location == null)
+                        var IsSameRecordQr_Location = db.Qr_Location.Where(c => c.empId == obj.userId && c.type == null && EntityFunctions.TruncateTime(c.datetime) == EntityFunctions.TruncateTime(Dateeee)).OrderByDescending(c => c.locId).FirstOrDefault();
+                     //   var IsSameRecordQr_Location = db.Locations.Where(c => c.userId == obj.userId && c.datetime == Dateeee).FirstOrDefault();
+                        if (IsSameRecordQr_Location != null)
+                        {
+                            oldTime = IsSameRecordQr_Location.datetime.Value;
+                            span = newTime.Subtract(oldTime);
+                        }
+                        if (IsSameRecordQr_Location == null || span.Minutes >= 9)
                         {
                             var u = db.QrEmployeeMasters.Where(c => c.qrEmpId == obj.userId);
 
@@ -9703,6 +9722,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
 
                     if (x.gcType == 12)
+
                     {
                         try
                         {
