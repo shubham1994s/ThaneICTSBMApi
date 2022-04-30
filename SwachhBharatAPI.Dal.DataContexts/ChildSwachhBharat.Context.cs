@@ -55,12 +55,12 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<HouseMaster> HouseMasters { get; set; }
         public virtual DbSet<Qr_Location> Qr_Location { get; set; }
         public virtual DbSet<UserMaster> UserMasters { get; set; }
-        public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
         public virtual DbSet<StreetSweepingBeat> StreetSweepingBeats { get; set; }
         public virtual DbSet<Vw_BitCount> Vw_BitCount { get; set; }
         public virtual DbSet<SauchalayAddress> SauchalayAddresses { get; set; }
         public virtual DbSet<SWMMaster> SWMMasters { get; set; }
         public virtual DbSet<CommercialMaster> CommercialMasters { get; set; }
+        public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
     
         public virtual ObjectResult<sp_area_Result> sp_area()
         {

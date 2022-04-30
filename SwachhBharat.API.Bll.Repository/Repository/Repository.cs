@@ -5964,6 +5964,10 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         objdata.gcType = obj.gcType;
                         objdata.gpBeforImage = obj.gpBeforImage;
                         objdata.gpAfterImage = obj.gpAfterImage;
+
+                        objdata.gpBeforImageTime = obj.gpBeforImageTime;
+                        objdata.gpAfterImageTime = obj.gpAfterImageTime;
+
                         objdata.note = checkNull(obj.note);
                         objdata.garbageType = checkIntNull(obj.garbageType.ToString());
                         objdata.vehicleNumber = checkNull(obj.vehicleNumber);

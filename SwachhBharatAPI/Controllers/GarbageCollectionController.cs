@@ -443,9 +443,12 @@ namespace SwachhBharatAPI.Controllers
                     imageEnd = item.gpAfterImage;
                     gcDetail.gpBeforImage = imageStart;
                     gcDetail.gpAfterImage = imageEnd;
-                    
-                
-                
+
+                    gcDetail.gpBeforImageTime = item.gpBeforImageTime;
+                    gcDetail.gpAfterImageTime = item.gpAfterImageTime;
+
+
+
 
                     CollectionSyncResult detail =  _RepositoryApi.SaveGarbageCollectionOffline(gcDetail, AppId, _typeId);
 

@@ -39,6 +39,10 @@ namespace SwachhBhart.API.Bll.ViewModels
         public string Long { get; set; }              
         public string gpBeforImage { get; set; }
         public string gpAfterImage { get; set; }
+
+        public string gpBeforImageTime { get; set; }
+        public string gpAfterImageTime { get; set; }
+
         public int gcType { get; set; }
         public string note { get; set; }
         public string vehicleNumber { get; set; }
