@@ -160,8 +160,8 @@
           <Property Name="Dry" Type="int" />
           <Property Name="Sanitary" Type="int" />
           <Property Name="Domestic" Type="int" />
-          <Property Name="gpBeforImageTime" Type="nvarchar" MaxLength="100" />
-          <Property Name="gpAfterImageTime" Type="nvarchar" MaxLength="100" />
+          <Property Name="gpBeforImageTime" Type="datetime" />
+          <Property Name="gpAfterImageTime" Type="datetime" />
         </EntityType>
         <EntityType Name="GarbagePointDetails">
           <Key>
@@ -1812,8 +1812,8 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="Dry" Type="Int32" />
           <Property Name="Sanitary" Type="Int32" />
           <Property Name="Domestic" Type="Int32" />
-          <Property Name="gpBeforImageTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="gpAfterImageTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="gpBeforImageTime" Type="DateTime" Precision="3" />
+          <Property Name="gpAfterImageTime" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

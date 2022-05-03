@@ -5827,6 +5827,9 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                 var house = db.SauchalayAddresses.Where(c => c.ReferanceId == obj.CTPTId).FirstOrDefault();
                 bool IsExist = false;
                 DateTime Dateeee = Convert.ToDateTime(obj.gcDate);
+                DateTime BeforeDateeee = Convert.ToDateTime(obj.gpBeforImageTime);
+                DateTime AfterDateeee = Convert.ToDateTime(obj.gpAfterImageTime);
+
                 DateTime startDateTime = new DateTime(Dateeee.Year, Dateeee.Month, Dateeee.Day, 00, 00, 00, 000);
                 DateTime endDateTime = new DateTime(Dateeee.Year, Dateeee.Month, Dateeee.Day, 23, 59, 59, 999);
                 var IsSameHouseRecord = db.GarbageCollectionDetails.Where(c => c.userId == obj.userId && c.CTPTId == house.Id && c.gcDate == Dateeee).FirstOrDefault();
@@ -5965,8 +5968,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         objdata.gpBeforImage = obj.gpBeforImage;
                         objdata.gpAfterImage = obj.gpAfterImage;
 
-                        objdata.gpBeforImageTime = obj.gpBeforImageTime;
-                        objdata.gpAfterImageTime = obj.gpAfterImageTime;
+                        objdata.gpBeforImageTime = BeforeDateeee;
+                       // objdata.gpAfterImageTime = AfterDateeee;
 
                         objdata.note = checkNull(obj.note);
                         objdata.garbageType = checkIntNull(obj.garbageType.ToString());
@@ -6056,6 +6059,9 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                 var house = db.SWMMasters.Where(c => c.ReferanceId == obj.SWMId).FirstOrDefault();
                 bool IsExist = false;
                 DateTime Dateeee = Convert.ToDateTime(obj.gcDate);
+
+
+
                 DateTime startDateTime = new DateTime(Dateeee.Year, Dateeee.Month, Dateeee.Day, 00, 00, 00, 000);
                 DateTime endDateTime = new DateTime(Dateeee.Year, Dateeee.Month, Dateeee.Day, 23, 59, 59, 999);
                 var IsSameHouseRecord = db.GarbageCollectionDetails.Where(c => c.userId == obj.userId && c.SWMId == house.swmId && c.gcDate == Dateeee).FirstOrDefault();

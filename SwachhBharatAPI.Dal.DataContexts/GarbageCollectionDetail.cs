@@ -58,7 +58,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public Nullable<int> Dry { get; set; }
         public Nullable<int> Sanitary { get; set; }
         public Nullable<int> Domestic { get; set; }
-        public string gpBeforImageTime { get; set; }
-        public string gpAfterImageTime { get; set; }
+        public Nullable<System.DateTime> gpBeforImageTime { get; set; }
+        public Nullable<System.DateTime> gpAfterImageTime { get; set; }
     }
 }
