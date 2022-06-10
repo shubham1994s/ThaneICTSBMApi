@@ -12544,9 +12544,14 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             {
                                 dump.swmType = obj.CType;
                             }
+                            //if ((string.IsNullOrEmpty(obj.QRCodeImage)) == false)
+                            //{
+                            //    dump.QRCodeImage = obj.QRCodeImage;
+                            //}
                             if ((string.IsNullOrEmpty(obj.QRCodeImage)) == false)
                             {
-                                dump.QRCodeImage = obj.QRCodeImage;
+                                obj.QRCodeImage = obj.QRCodeImage.Replace("data:image/jpeg;base64,", "");
+                                dump.BinaryQrCodeImage = Convert.FromBase64String(obj.QRCodeImage);
                             }
                             //////////////////////////////////////////////////////////////////
                             obj.date = DateTime.Now;
@@ -12623,9 +12628,14 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             {
                                 dump.Tot = obj.CType;
                             }
+                            //if ((string.IsNullOrEmpty(obj.QRCodeImage)) == false)
+                            //{
+                            //    dump.QRCodeImage = obj.QRCodeImage;
+                            //}
                             if ((string.IsNullOrEmpty(obj.QRCodeImage)) == false)
                             {
-                                dump.QRCodeImage = obj.QRCodeImage;
+                                obj.QRCodeImage = obj.QRCodeImage.Replace("data:image/jpeg;base64,", "");
+                                dump.BinaryQrCodeImage = Convert.FromBase64String(obj.QRCodeImage);
                             }
                             //////////////////////////////////////////////////////////////////
                             obj.date = DateTime.Now;
@@ -12693,10 +12703,17 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             {
                                 dump.userId = obj.userId;
                             }
+                            //if ((string.IsNullOrEmpty(obj.QRCodeImage)) == false)
+                            //{
+                            //    dump.QRCodeImage = obj.QRCodeImage;
+                            //}
+
                             if ((string.IsNullOrEmpty(obj.QRCodeImage)) == false)
                             {
-                                dump.QRCodeImage = obj.QRCodeImage;
+                                obj.QRCodeImage = obj.QRCodeImage.Replace("data:image/jpeg;base64,", "");
+                                dump.BinaryQrCodeImage = Convert.FromBase64String(obj.QRCodeImage);
                             }
+
                             //////////////////////////////////////////////////////////////////
                             obj.date = DateTime.Now;
                             obj.ReferanceId = referanceid;
@@ -12762,10 +12779,17 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             {
                                 dump.userId = obj.userId;
                             }
+                            //if ((string.IsNullOrEmpty(obj.QRCodeImage)) == false)
+                            //{
+                            //    dump.QRCodeImage = obj.QRCodeImage;
+                            //}
+
                             if ((string.IsNullOrEmpty(obj.QRCodeImage)) == false)
                             {
-                                dump.QRCodeImage = obj.QRCodeImage;
+                                obj.QRCodeImage = obj.QRCodeImage.Replace("data:image/jpeg;base64,", "");
+                                dump.BinaryQrCodeImage = Convert.FromBase64String(obj.QRCodeImage);
                             }
+
                             //////////////////////////////////////////////////////////////////
                             obj.date = DateTime.Now;
                             obj.ReferanceId = referanceid;
@@ -12831,9 +12855,14 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             {
                                 dump.userId = obj.userId;
                             }
+                            //if ((string.IsNullOrEmpty(obj.QRCodeImage)) == false)
+                            //{
+                            //    dump.QRCodeImage = obj.QRCodeImage;
+                            //}
                             if ((string.IsNullOrEmpty(obj.QRCodeImage)) == false)
                             {
-                                dump.QRCodeImage = obj.QRCodeImage;
+                                obj.QRCodeImage = obj.QRCodeImage.Replace("data:image/jpeg;base64,", "");
+                                dump.BinaryQrCodeImage = Convert.FromBase64String(obj.QRCodeImage);
                             }
                             //////////////////////////////////////////////////////////////////
                             obj.date = DateTime.Now;
@@ -13049,9 +13078,16 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             {
                                 house.CType = obj.CType;
                             }
+
+                            //if ((string.IsNullOrEmpty(obj.QRCodeImage)) == false)
+                            //{
+                            //    house.QRCodeImage = obj.QRCodeImage;
+                            //}
+
                             if ((string.IsNullOrEmpty(obj.QRCodeImage)) == false)
                             {
-                                house.QRCodeImage = obj.QRCodeImage;
+                                obj.QRCodeImage = obj.QRCodeImage.Replace("data:image/jpeg;base64,", "");
+                                house.BinaryQrCodeImage = Convert.FromBase64String(obj.QRCodeImage);
                             }
                             //////////////////////////////////////////////////////////////////
                             obj.date = DateTime.Now;

@@ -47,21 +47,21 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<Vw_GetHouseNumber> Vw_GetHouseNumber { get; set; }
         public virtual DbSet<WM_Garbage_Sales> WM_Garbage_Sales { get; set; }
         public virtual DbSet<Vw_MsgNotification> Vw_MsgNotification { get; set; }
-        public virtual DbSet<LiquidWasteDetail> LiquidWasteDetails { get; set; }
-        public virtual DbSet<StreetSweepingDetail> StreetSweepingDetails { get; set; }
         public virtual DbSet<Vw_GetLiquidNumber> Vw_GetLiquidNumber { get; set; }
         public virtual DbSet<Vw_GetStreetNumber> Vw_GetStreetNumber { get; set; }
         public virtual DbSet<Daily_Attendance> Daily_Attendance { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<HouseMaster> HouseMasters { get; set; }
         public virtual DbSet<Qr_Location> Qr_Location { get; set; }
         public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<StreetSweepingBeat> StreetSweepingBeats { get; set; }
         public virtual DbSet<Vw_BitCount> Vw_BitCount { get; set; }
-        public virtual DbSet<SauchalayAddress> SauchalayAddresses { get; set; }
-        public virtual DbSet<SWMMaster> SWMMasters { get; set; }
-        public virtual DbSet<CommercialMaster> CommercialMasters { get; set; }
         public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
+        public virtual DbSet<CommercialMaster> CommercialMasters { get; set; }
+        public virtual DbSet<HouseMaster> HouseMasters { get; set; }
+        public virtual DbSet<LiquidWasteDetail> LiquidWasteDetails { get; set; }
+        public virtual DbSet<StreetSweepingDetail> StreetSweepingDetails { get; set; }
+        public virtual DbSet<SWMMaster> SWMMasters { get; set; }
+        public virtual DbSet<SauchalayAddress> SauchalayAddresses { get; set; }
     
         public virtual ObjectResult<sp_area_Result> sp_area()
         {
