@@ -12490,6 +12490,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             {
                 try
                 {
+
                     if (gcType == 11)
                     {
                         var dump = db.SWMMasters.Where(x => x.ReferanceId == referanceid).FirstOrDefault();
