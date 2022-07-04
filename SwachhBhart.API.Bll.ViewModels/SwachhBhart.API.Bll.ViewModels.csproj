@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arealist.cs" />
     <Compile Include="AttendanceGridVM.cs" />
     <Compile Include="BeatVM.cs" />
     <Compile Include="BigVQREmployeeAttendenceVM.cs" />
@@ -107,6 +108,8 @@
     <Compile Include="SBWorkDetails.cs" />
     <Compile Include="SBWorkDetailsHistory.cs" />
     <Compile Include="SyncResult.cs" />
+    <Compile Include="VehicleList.cs" />
+    <Compile Include="VehicleModel.cs" />
     <Compile Include="WasteManagement\GarbageCategoryVM.cs" />
   </ItemGroup>
   <ItemGroup>

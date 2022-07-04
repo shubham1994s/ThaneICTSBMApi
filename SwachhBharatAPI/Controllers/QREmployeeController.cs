@@ -178,5 +178,43 @@ namespace SwachhBharatAPI.Controllers
 
         }
 
+
+        //Get Area's List
+        [HttpGet]
+        [Route("Get/Areas")]
+        public List<Arealist> AreaList()
+        {
+            objRep = new Repository();
+            IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
+            var id = headerValue1.FirstOrDefault();
+            int AppId = int.Parse(id);
+            List<Arealist> objDetail = new List<Arealist>();
+            objDetail = objRep.GetAreaList(AppId).ToList();
+            return objDetail;
+        }
+
+
+        //Bind Vehicle List As per Area
+        [HttpGet]
+        [Route("Get/Vehicles")]
+        public List<VehicleList> VehicleList()
+        {
+            objRep = new Repository();
+            IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
+            IEnumerable<string> headerValue2 = Request.Headers.GetValues("areaId");
+
+            var id = headerValue1.FirstOrDefault();
+            int AppId = int.Parse(id);
+
+            var aid = headerValue2.FirstOrDefault();
+            int AreaId = int.Parse(aid);
+
+            List<VehicleList> objDetail = new List<VehicleList>();
+            objDetail = objRep.GetVehicleList(AppId,AreaId).ToList();
+            return objDetail;
+        }
+
+
+
     }
 }

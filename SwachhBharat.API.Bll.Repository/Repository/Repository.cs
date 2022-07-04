@@ -14593,6 +14593,83 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             return screenService.GetHouseAttenRoute(daId);
         }
 
+
+        public List<Arealist> GetAreaList(int appId)
+        {
+            List<Arealist> obj = new List<Arealist>();
+            try
+            {
+                using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(appId))
+                {
+                    {
+                        var data = db.TeritoryMasters.ToList();
+                        foreach (var x in data)
+                        {
+                            obj.Add(new Arealist()
+                            {
+                                Name = (x.Area.ToString()),
+                                ID = (x.Id),
+                            });
+                        }
+                    }
+
+                    return obj.OrderBy(c => c.Name).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                return obj;
+            }
+
+        }
+
+        public List<VehicleList> GetVehicleList(int appId, int areaId)
+        {
+            List<VehicleList> obj = new List<VehicleList>();
+            try
+            {
+                using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(appId))
+                {
+                    {
+                        var data = db.VehicleRegistrations
+                            .Join(db.VehicleTypes, v => v.vehicleType, vt => vt.vtId, (v, vt) => new { v, vt })
+                            .Join(db.TeritoryMasters, vv => vv.v.areaId, tm => tm.Id, (vv, tm) => new { vv, tm })
+                            .Where(c=>c.vv.v.areaId== areaId && c.vv.vt.isActive==true && c.vv.v.isActive==true)
+                            .Select(m => new
+                            {
+                                VehicleNo = m.vv.v.vehicleNo,
+                                Type=m.vv.vt.description,
+                                Area=m.tm.Area,
+                                VehicleId=m.vv.v.vehicleId,
+                                TypeId = m.vv.vt.vtId,
+                                Areaid = m.tm.Id
+                                                                                  
+                            });
+
+                        foreach (var x in data)
+                        {
+                            obj.Add(new VehicleList()
+                            {
+                                VehicleNo = (x.VehicleNo.ToString()),
+                                Type = (x.Type.ToString()),
+                                Area = (x.Area.ToString()),
+                                VehicleId = (x.VehicleId),
+                                TypeId = (x.TypeId),
+                                AreaId = (x.Areaid),
+                            });
+                        }
+                    }
+
+                    return obj.OrderBy(c => c.VehicleId).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                return obj;
+            }
+
+        }
+
         #region RFID 
         public Result SaveRfidDetails(string ReaderId, string TagId, string Lat, string Long, string Type, string DT)
         {
