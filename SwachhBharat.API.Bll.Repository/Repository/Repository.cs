@@ -14602,12 +14602,12 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                 using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(appId))
                 {
                     {
-                        var data = db.TeritoryMasters.ToList();
+                        var data = db.WardNumbers.ToList();
                         foreach (var x in data)
                         {
                             obj.Add(new Arealist()
                             {
-                                Name = (x.Area.ToString()),
+                                Name = (x.WardNo.ToString()),
                                 ID = (x.Id),
                             });
                         }
@@ -14633,16 +14633,16 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                     {
                         var data = db.VehicleRegistrations
                             .Join(db.VehicleTypes, v => v.vehicleType, vt => vt.vtId, (v, vt) => new { v, vt })
-                            .Join(db.TeritoryMasters, vv => vv.v.areaId, tm => tm.Id, (vv, tm) => new { vv, tm })
+                            .Join(db.WardNumbers, vv => vv.v.areaId, tm => tm.Id, (vv, tm) => new { vv, tm })
                             .Where(c=>c.vv.v.areaId== areaId && c.vv.vt.isActive==true && c.vv.v.isActive==true)
                             .Select(m => new
                             {
                                 VehicleNo = m.vv.v.vehicleNo,
                                 Type=m.vv.vt.description,
-                                Area=m.tm.Area,
+                                Ward = m.tm.WardNo,
                                 VehicleId=m.vv.v.vehicleId,
                                 TypeId = m.vv.vt.vtId,
-                                Areaid = m.tm.Id
+                                WardId = m.tm.Id
                                                                                   
                             });
 
@@ -14652,10 +14652,10 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             {
                                 VehicleNo = (x.VehicleNo.ToString()),
                                 Type = (x.Type.ToString()),
-                                Area = (x.Area.ToString()),
+                                Ward = (x.Ward.ToString()),
                                 VehicleId = (x.VehicleId),
                                 TypeId = (x.TypeId),
-                                AreaId = (x.Areaid),
+                                WardId = (x.WardId),
                             });
                         }
                     }

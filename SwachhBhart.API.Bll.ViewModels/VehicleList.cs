@@ -10,9 +10,9 @@ namespace SwachhBhart.API.Bll.ViewModels
     {
         public string VehicleNo { get; set; }
         public string Type { get; set; }
-        public string Area { get; set; }
+        public string Ward { get; set; }
         public int VehicleId { get; set; }
         public int TypeId { get; set; }
-        public int AreaId { get; set; }
+        public int WardId { get; set; }
     }
 }

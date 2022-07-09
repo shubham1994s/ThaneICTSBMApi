@@ -181,7 +181,7 @@ namespace SwachhBharatAPI.Controllers
 
         //Get Area's List
         [HttpGet]
-        [Route("Get/Areas")]
+        [Route("Get/Wards")]
         public List<Arealist> AreaList()
         {
             objRep = new Repository();
@@ -201,7 +201,7 @@ namespace SwachhBharatAPI.Controllers
         {
             objRep = new Repository();
             IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
-            IEnumerable<string> headerValue2 = Request.Headers.GetValues("areaId");
+            IEnumerable<string> headerValue2 = Request.Headers.GetValues("wardId");
 
             var id = headerValue1.FirstOrDefault();
             int AppId = int.Parse(id);
