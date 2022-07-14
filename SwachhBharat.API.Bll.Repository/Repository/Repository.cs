@@ -14593,6 +14593,35 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             return screenService.GetHouseAttenRoute(daId);
         }
 
+        public List<SBVehicleType> VehicleTypeList(int appId)
+        {
+            List<SBVehicleType> obj = new List<SBVehicleType>();
+            try
+            {
+                using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(appId))
+                {
+                    {
+                        var data = db.VehicleTypes.Where(c => c.isActive==true).ToList();
+                        foreach (var x in data)
+                        {
+                            obj.Add(new SBVehicleType()
+                            {
+                                description = (x.description.ToString()),
+                                vtId = (x.vtId),
+                                isActive=x.isActive,
+                            });
+                        }
+                    }
+
+                    return obj.OrderBy(c => c.vtId).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                return obj;
+            }
+
+        }
 
         public List<Arealist> GetAreaList(int appId)
         {
@@ -14623,7 +14652,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
         }
 
-        public List<VehicleList> GetVehicleList(int appId, int areaId)
+        public List<VehicleList> GetVehicleList(int appId, int wardId,int VehicleTypeId)
         {
             List<VehicleList> obj = new List<VehicleList>();
             try
@@ -14634,7 +14663,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         var data = db.VehicleRegistrations
                             .Join(db.VehicleTypes, v => v.vehicleType, vt => vt.vtId, (v, vt) => new { v, vt })
                             .Join(db.WardNumbers, vv => vv.v.areaId, tm => tm.Id, (vv, tm) => new { vv, tm })
-                            .Where(c=>c.vv.v.areaId== areaId && c.vv.vt.isActive==true && c.vv.v.isActive==true)
+                            .Where(c=>c.vv.v.areaId== wardId && c.vv.vt.vtId== VehicleTypeId && c.vv.vt.isActive==true && c.vv.v.isActive==true)
                             .Select(m => new
                             {
                                 VehicleNo = m.vv.v.vehicleNo,

@@ -179,6 +179,23 @@ namespace SwachhBharatAPI.Controllers
         }
 
 
+
+        //Get Vehicle Type
+        [HttpGet]
+        [Route("Get/VehicleTypes")]
+        public List<SBVehicleType> VehicleTypeList()
+        {
+            objRep = new Repository();
+            IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
+            var id = headerValue1.FirstOrDefault();
+            int AppId = int.Parse(id);
+            List<SBVehicleType> objDetail = new List<SBVehicleType>();
+            objDetail = objRep.VehicleTypeList(AppId).ToList();
+            return objDetail;
+        }
+
+
+
         //Get Area's List
         [HttpGet]
         [Route("Get/Wards")]
@@ -201,16 +218,20 @@ namespace SwachhBharatAPI.Controllers
         {
             objRep = new Repository();
             IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
-            IEnumerable<string> headerValue2 = Request.Headers.GetValues("wardId");
+            IEnumerable<string> headerValue2 = Request.Headers.GetValues("vehicleTypeId");
+            IEnumerable<string> headerValue3 = Request.Headers.GetValues("wardId");
 
             var id = headerValue1.FirstOrDefault();
             int AppId = int.Parse(id);
 
-            var aid = headerValue2.FirstOrDefault();
-            int AreaId = int.Parse(aid);
+            var Vtid = headerValue2.FirstOrDefault();
+            int VehicleTypeId = int.Parse(Vtid);
+
+            var wid = headerValue3.FirstOrDefault();
+            int WardId = int.Parse(wid);
 
             List<VehicleList> objDetail = new List<VehicleList>();
-            objDetail = objRep.GetVehicleList(AppId,AreaId).ToList();
+            objDetail = objRep.GetVehicleList(AppId, WardId, VehicleTypeId).ToList();
             return objDetail;
         }
 

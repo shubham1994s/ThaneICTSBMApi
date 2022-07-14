@@ -190,9 +190,11 @@ namespace SwachhBharat.API.Bll.Repository.Repository
         List<CMSBUserLocationMapVM> GetHouseAttenRoute(int _AppId, int daId);
         List<CitizenCTPTAddress> GetCTPTAddress(int AppId);
 
+        List<SBVehicleType> VehicleTypeList(int appId);
+
         List<Arealist> GetAreaList(int appId);
 
-        List<VehicleList> GetVehicleList(int appId,int areaId);
+        List<VehicleList> GetVehicleList(int appId,int wardId,int VehicleTypeId);
 
         #region RFID
         Result SaveRfidDetails(string ReaderId, string TagId, string Lat, string Long, string Type, string DT);
