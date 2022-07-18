@@ -31,5 +31,7 @@ namespace SwachhBhart.API.Bll.ViewModels
         public string CType { get; set; }
 
         //public int type { get; set; }
+
+        public string wardId { get; set; }
     }
 }

@@ -2643,6 +2643,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.daDate = x.daDate;
                                     objdata.vehicleNumber = x.vehicleNumber;
                                     objdata.vtId = x.vtId;
+                                    objdata.WardId = x.wardId;
                                     objdata.EmployeeType = null;
                                     objdata.CType = x.CType;
                                     //objdata.daEndDate = x.daEndDate;
@@ -2728,6 +2729,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         OutTime.daDate = x.daDate;
                                         OutTime.vehicleNumber = x.vehicleNumber;
                                         OutTime.vtId = x.vtId;
+                                        OutTime.WardId = x.wardId;
                                         OutTime.EmployeeType = null;
                                         OutTime.CType = x.CType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
@@ -2770,6 +2772,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         attendance.daDate = x.daDate;
                                         attendance.vehicleNumber = x.vehicleNumber;
                                         attendance.vtId = x.vtId;
+                                        attendance.WardId = x.wardId;
                                         attendance.EmployeeType = null;
                                         attendance.CType = x.CType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
@@ -3023,6 +3026,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.daDate = x.daDate;
                                     objdata.vehicleNumber = x.vehicleNumber;
                                     objdata.vtId = x.vtId;
+                                    objdata.WardId = x.wardId;
                                     objdata.EmployeeType = "L";
                                     objdata.CType = x.EmpType;
                                     //objdata.daEndDate = x.daEndDate;
@@ -3108,6 +3112,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         OutTime.daDate = x.daDate;
                                         OutTime.vehicleNumber = x.vehicleNumber;
                                         OutTime.vtId = x.vtId;
+                                        OutTime.WardId = x.wardId;
                                         OutTime.EmployeeType = "L";
                                         OutTime.CType = x.EmpType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
@@ -3150,6 +3155,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         attendance.daDate = x.daDate;
                                         attendance.vehicleNumber = x.vehicleNumber;
                                         attendance.vtId = x.vtId;
+                                        attendance.WardId = x.wardId;
                                         attendance.EmployeeType = "L";
                                         attendance.CType = x.EmpType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
@@ -3401,6 +3407,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.daDate = x.daDate;
                                     objdata.vehicleNumber = x.vehicleNumber;
                                     objdata.vtId = x.vtId;
+                                    objdata.WardId = x.wardId;
                                     objdata.EmployeeType = "S";
                                     objdata.CType = x.CType;
                                     //objdata.daEndDate = x.daEndDate;
@@ -3486,6 +3493,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         OutTime.daDate = x.daDate;
                                         OutTime.vehicleNumber = x.vehicleNumber;
                                         OutTime.vtId = x.vtId;
+                                        OutTime.WardId = x.wardId;
                                         OutTime.EmployeeType = "S";
                                         OutTime.CType = x.CType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
@@ -3528,6 +3536,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         attendance.daDate = x.daDate;
                                         attendance.vehicleNumber = x.vehicleNumber;
                                         attendance.vtId = x.vtId;
+                                        attendance.WardId = x.wardId;
                                         attendance.EmployeeType = "S";
                                         attendance.CType = x.CType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
@@ -3779,6 +3788,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.daDate = x.daDate;
                                     objdata.vehicleNumber = x.vehicleNumber;
                                     objdata.vtId = x.vtId;
+                                    objdata.WardId = x.wardId;
                                     objdata.EmployeeType = "CT";
                                     objdata.CType = x.CType;
                                     //objdata.daEndDate = x.daEndDate;
@@ -3864,6 +3874,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         OutTime.daDate = x.daDate;
                                         OutTime.vehicleNumber = x.vehicleNumber;
                                         OutTime.vtId = x.vtId;
+                                        OutTime.WardId = x.wardId;
                                         OutTime.EmployeeType = "CT";
                                         OutTime.CType = x.CType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
@@ -3906,6 +3917,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         attendance.daDate = x.daDate;
                                         attendance.vehicleNumber = x.vehicleNumber;
                                         attendance.vtId = x.vtId;
+                                        attendance.WardId = x.wardId;
                                         attendance.EmployeeType = "CT";
                                         attendance.CType = x.CType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))

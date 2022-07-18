@@ -33,5 +33,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public string OutbatteryStatus { get; set; }
         public string EmployeeType { get; set; }
         public string CType { get; set; }
+        public string WardId { get; set; }
     }
 }
