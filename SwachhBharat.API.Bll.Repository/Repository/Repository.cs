@@ -5870,7 +5870,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             return result;
                         }
                         else { result.isAttendenceOff = false; }
-                        if (obj.CommercialId != null && obj.CommercialId != "")
+                        if (obj.CTPTId != null && obj.CTPTId != "")
                         {
                             try
                             {
