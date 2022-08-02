@@ -2822,39 +2822,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                             db.Daily_Attendance.Add(attendance);
                                         }
                                         _IsInSync = true;
-                                        //  db.SaveChanges();
-                                        //if ((!string.IsNullOrEmpty(x.endLat))  && (!string.IsNullOrEmpty(x.endLong)))
-                                        //{
-                                        //    string Time2 = x.endTime;
-                                        //    DateTime date2 = DateTime.Parse(Time2, System.Globalization.CultureInfo.CurrentCulture);
-                                        //    string t2 = date2.ToString("hh:mm:ss tt");
-                                        //    string dt2 = Convert.ToDateTime(x.daEndDate).ToString("MM/dd/yyyy");
-                                        //    DateTime? edate = Convert.ToDateTime(dt2 + " " + t2);
-
-                                        //    Location loc = new Location();
-                                        //    loc.userId = x.userId;
-                                        //    loc.datetime = edate;
-                                        //    loc.lat = x.endLat;
-                                        //    loc.@long = x.endLong;
-                                        //    loc.batteryStatus = x.batteryStatus;
-                                        //    loc.address = Address(x.endLat + "," + x.endLong);
-                                        //    if (loc.address != "")
-                                        //    {
-                                        //        loc.area = area(loc.address);
-                                        //    }
-                                        //    else
-                                        //    {
-                                        //        loc.area = "";
-                                        //    }
-
-                                        //    loc.IsOffline = true;
-                                        //    loc.CreatedDate = DateTime.Now;
-
-                                        //    db.Locations.Add(loc);
-                                        //    _IsOutSync = true;
-                                        //}
-
-                                        //db.SaveChanges();
+                                       
 
                                     }
                                     if ((!string.IsNullOrEmpty(x.endLat)) && (!string.IsNullOrEmpty(x.endLong)) && IsSameRecordLocation == null)
@@ -3022,6 +2990,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.totalKm = x.totalKm;
                                     objdata.EmployeeType = "L";
                                     objdata.CType = x.EmpType;
+                                    var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                    objdata.PrabhagId = Pn.PrabhagId;
                                     db.SaveChanges();
                                 }
                                 if (objdata != null)
@@ -3036,6 +3006,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.vtId = x.vtId;
                                     objdata.WardId = x.wardId;
                                     objdata.EmployeeType = "L";
+                                    var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                    objdata.PrabhagId = Pn.PrabhagId;
                                     objdata.CType = x.EmpType;
                                     //objdata.daEndDate = x.daEndDate;
 
@@ -3123,6 +3095,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         OutTime.WardId = x.wardId;
                                         OutTime.EmployeeType = "L";
                                         OutTime.CType = x.EmpType;
+                                        var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                        OutTime.PrabhagId = Pn.PrabhagId;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
                                             OutTime.daEndDate = null;
@@ -3166,6 +3140,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         attendance.WardId = x.wardId;
                                         attendance.EmployeeType = "L";
                                         attendance.CType = x.EmpType;
+                                        var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                        attendance.PrabhagId = Pn.PrabhagId;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
                                             attendance.daEndDate = null;
@@ -3205,39 +3181,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                             db.Daily_Attendance.Add(attendance);
                                         }
                                         _IsInSync = true;
-                                        //  db.SaveChanges();
-                                        //if ((!string.IsNullOrEmpty(x.endLat))  && (!string.IsNullOrEmpty(x.endLong)))
-                                        //{
-                                        //    string Time2 = x.endTime;
-                                        //    DateTime date2 = DateTime.Parse(Time2, System.Globalization.CultureInfo.CurrentCulture);
-                                        //    string t2 = date2.ToString("hh:mm:ss tt");
-                                        //    string dt2 = Convert.ToDateTime(x.daEndDate).ToString("MM/dd/yyyy");
-                                        //    DateTime? edate = Convert.ToDateTime(dt2 + " " + t2);
-
-                                        //    Location loc = new Location();
-                                        //    loc.userId = x.userId;
-                                        //    loc.datetime = edate;
-                                        //    loc.lat = x.endLat;
-                                        //    loc.@long = x.endLong;
-                                        //    loc.batteryStatus = x.batteryStatus;
-                                        //    loc.address = Address(x.endLat + "," + x.endLong);
-                                        //    if (loc.address != "")
-                                        //    {
-                                        //        loc.area = area(loc.address);
-                                        //    }
-                                        //    else
-                                        //    {
-                                        //        loc.area = "";
-                                        //    }
-
-                                        //    loc.IsOffline = true;
-                                        //    loc.CreatedDate = DateTime.Now;
-
-                                        //    db.Locations.Add(loc);
-                                        //    _IsOutSync = true;
-                                        //}
-
-                                        //db.SaveChanges();
+                                     
 
                                     }
                                     if ((!string.IsNullOrEmpty(x.endLat)) && (!string.IsNullOrEmpty(x.endLong)) && IsSameRecordLocation == null)
@@ -3403,6 +3347,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.totalKm = x.totalKm;
                                     objdata.EmployeeType = "S";
                                     objdata.CType = x.CType;
+                                    var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                    objdata.PrabhagId = Pn.PrabhagId;
                                     db.SaveChanges();
                                 }
                                 if (objdata != null)
@@ -3418,6 +3364,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.WardId = x.wardId;
                                     objdata.EmployeeType = "S";
                                     objdata.CType = x.CType;
+                                    var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                    objdata.PrabhagId = Pn.PrabhagId;
                                     //objdata.daEndDate = x.daEndDate;
 
                                     if (x.daEndDate.Equals(DateTime.MinValue))
@@ -3503,6 +3451,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         OutTime.vtId = x.vtId;
                                         OutTime.WardId = x.wardId;
                                         OutTime.EmployeeType = "S";
+                                        var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                        OutTime.PrabhagId = Pn.PrabhagId;
                                         OutTime.CType = x.CType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
@@ -3546,6 +3496,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         attendance.vtId = x.vtId;
                                         attendance.WardId = x.wardId;
                                         attendance.EmployeeType = "S";
+                                        var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                        attendance.PrabhagId = Pn.PrabhagId;
                                         attendance.CType = x.CType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
@@ -3586,39 +3538,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                             db.Daily_Attendance.Add(attendance);
                                         }
                                         _IsInSync = true;
-                                        //  db.SaveChanges();
-                                        //if ((!string.IsNullOrEmpty(x.endLat))  && (!string.IsNullOrEmpty(x.endLong)))
-                                        //{
-                                        //    string Time2 = x.endTime;
-                                        //    DateTime date2 = DateTime.Parse(Time2, System.Globalization.CultureInfo.CurrentCulture);
-                                        //    string t2 = date2.ToString("hh:mm:ss tt");
-                                        //    string dt2 = Convert.ToDateTime(x.daEndDate).ToString("MM/dd/yyyy");
-                                        //    DateTime? edate = Convert.ToDateTime(dt2 + " " + t2);
-
-                                        //    Location loc = new Location();
-                                        //    loc.userId = x.userId;
-                                        //    loc.datetime = edate;
-                                        //    loc.lat = x.endLat;
-                                        //    loc.@long = x.endLong;
-                                        //    loc.batteryStatus = x.batteryStatus;
-                                        //    loc.address = Address(x.endLat + "," + x.endLong);
-                                        //    if (loc.address != "")
-                                        //    {
-                                        //        loc.area = area(loc.address);
-                                        //    }
-                                        //    else
-                                        //    {
-                                        //        loc.area = "";
-                                        //    }
-
-                                        //    loc.IsOffline = true;
-                                        //    loc.CreatedDate = DateTime.Now;
-
-                                        //    db.Locations.Add(loc);
-                                        //    _IsOutSync = true;
-                                        //}
-
-                                        //db.SaveChanges();
+                                    
 
                                     }
                                     if ((!string.IsNullOrEmpty(x.endLat)) && (!string.IsNullOrEmpty(x.endLong)) && IsSameRecordLocation == null)
@@ -3784,6 +3704,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.totalKm = x.totalKm;
                                     objdata.EmployeeType = "CT";
                                     objdata.CType = x.CType;
+                                    var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                    objdata.PrabhagId = Pn.PrabhagId;
                                     db.SaveChanges();
                                 }
                                 if (objdata != null)
@@ -3798,6 +3720,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.vtId = x.vtId;
                                     objdata.WardId = x.wardId;
                                     objdata.EmployeeType = "CT";
+                                    var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                    objdata.PrabhagId = Pn.PrabhagId;
                                     objdata.CType = x.CType;
                                     //objdata.daEndDate = x.daEndDate;
 
@@ -3885,6 +3809,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         OutTime.WardId = x.wardId;
                                         OutTime.EmployeeType = "CT";
                                         OutTime.CType = x.CType;
+                                        var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                        OutTime.PrabhagId = Pn.PrabhagId;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
                                             OutTime.daEndDate = null;
@@ -3927,6 +3853,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         attendance.vtId = x.vtId;
                                         attendance.WardId = x.wardId;
                                         attendance.EmployeeType = "CT";
+                                        var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                        attendance.PrabhagId = Pn.PrabhagId;
                                         attendance.CType = x.CType;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
@@ -3967,40 +3895,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                             db.Daily_Attendance.Add(attendance);
                                         }
                                         _IsInSync = true;
-                                        //  db.SaveChanges();
-                                        //if ((!string.IsNullOrEmpty(x.endLat))  && (!string.IsNullOrEmpty(x.endLong)))
-                                        //{
-                                        //    string Time2 = x.endTime;
-                                        //    DateTime date2 = DateTime.Parse(Time2, System.Globalization.CultureInfo.CurrentCulture);
-                                        //    string t2 = date2.ToString("hh:mm:ss tt");
-                                        //    string dt2 = Convert.ToDateTime(x.daEndDate).ToString("MM/dd/yyyy");
-                                        //    DateTime? edate = Convert.ToDateTime(dt2 + " " + t2);
-
-                                        //    Location loc = new Location();
-                                        //    loc.userId = x.userId;
-                                        //    loc.datetime = edate;
-                                        //    loc.lat = x.endLat;
-                                        //    loc.@long = x.endLong;
-                                        //    loc.batteryStatus = x.batteryStatus;
-                                        //    loc.address = Address(x.endLat + "," + x.endLong);
-                                        //    if (loc.address != "")
-                                        //    {
-                                        //        loc.area = area(loc.address);
-                                        //    }
-                                        //    else
-                                        //    {
-                                        //        loc.area = "";
-                                        //    }
-
-                                        //    loc.IsOffline = true;
-                                        //    loc.CreatedDate = DateTime.Now;
-
-                                        //    db.Locations.Add(loc);
-                                        //    _IsOutSync = true;
-                                        //}
-
-                                        //db.SaveChanges();
-
+                                     
                                     }
                                     if ((!string.IsNullOrEmpty(x.endLat)) && (!string.IsNullOrEmpty(x.endLong)) && IsSameRecordLocation == null)
                                     {
