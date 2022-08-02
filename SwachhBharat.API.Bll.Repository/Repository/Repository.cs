@@ -2631,6 +2631,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.totalKm = x.totalKm;
                                     objdata.EmployeeType = null;
                                     objdata.CType = x.CType;
+                                    var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                    objdata.PrabhagId = Pn.PrabhagId;
                                     db.SaveChanges();
                                 }
                                 if (objdata != null)
@@ -2674,6 +2676,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     objdata.daStartNote = x.daStartNote;
                                     objdata.daEndNote = x.daEndNote;
                                     objdata.OutbatteryStatus = x.batteryStatus;
+                                    var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                    objdata.PrabhagId = Pn.PrabhagId;
                                     //  objdata.batteryStatus = x.batteryStatus;
                                     if (objdata != null && x.endTime == null)
                                     {
@@ -2732,6 +2736,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         OutTime.WardId = x.wardId;
                                         OutTime.EmployeeType = null;
                                         OutTime.CType = x.CType;
+                                        var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                        OutTime.PrabhagId = Pn.PrabhagId;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
                                             OutTime.daEndDate = null;
@@ -2775,6 +2781,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                         attendance.WardId = x.wardId;
                                         attendance.EmployeeType = null;
                                         attendance.CType = x.CType;
+                                        var Pn = db.UserMasters.Where(c => c.userId == x.userId).FirstOrDefault();
+                                        attendance.PrabhagId = Pn.PrabhagId;
                                         if (x.daEndDate.Equals(DateTime.MinValue))
                                         {
                                             attendance.daEndDate = null;
@@ -5299,6 +5307,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     gcd.gcDate = Dateeee;
                                     gcd.Lat = obj.Lat;
                                     gcd.Long = obj.Long;
+                                    var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                                    gcd.PrabhagId = Pn.PrabhagId;
 
                                     //gcd.Lat = house.houseLat;
                                     //gcd.Long = house.houseLong;
@@ -5400,6 +5410,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             objdata.CreatedDate = DateTime.Now;
                             objdata.WasteType = obj.wastetype;
                             objdata.CGarbageType = obj.garbageTypeC;
+                            var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                            objdata.PrabhagId = Pn.PrabhagId;
                             db.GarbageCollectionDetails.Add(objdata);
 
                             loc.datetime = Dateeee;
@@ -5581,6 +5593,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         objdata.CreatedDate = DateTime.Now;
                         objdata.WasteType = obj.wastetype;
                         objdata.CGarbageType = obj.garbageTypeC;
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        objdata.PrabhagId = Pn.PrabhagId;
                         db.GarbageCollectionDetails.Add(objdata);
 
                         loc.datetime = Dateeee;
@@ -5762,6 +5776,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             objdata.CreatedDate = DateTime.Now;
                             objdata.WasteType = obj.wastetype;
                             objdata.CGarbageType = obj.garbageTypeC;
+                            var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                            objdata.PrabhagId = Pn.PrabhagId;
                             db.GarbageCollectionDetails.Add(objdata);
 
                             loc.datetime = Dateeee;
@@ -5902,76 +5918,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         }
 
 
-                        //if (IsExist == true)
-                        //{
-
-                        //    var gcd = db.GarbageCollectionDetails.Where(c => c.CTPTId == house.Id && c.userId == obj.userId && EntityFunctions.TruncateTime(c.gcDate) == EntityFunctions.TruncateTime(Dateeee)).FirstOrDefault();
-
-
-
-                        //    if (gcd == null)
-                        //    {
-                        //        result.ID = obj.OfflineID;
-                        //        result.message = "This CTPT Id already scanned."; result.messageMar = "हे CTPT आयडी आधीच स्कॅन केले आहे.";
-                        //        result.status = "error";
-                        //        return result;
-                        //    }
-                        //    if (gcd != null)
-                        //    {
-                        //        if (Dateeee > gcd.gcDate)
-                        //        {
-                        //            gcd.gcType = obj.gcType;
-                        //            gcd.gpBeforImage = obj.gpBeforImage;
-                        //            gcd.gpAfterImage = obj.gpAfterImage;
-                        //            gcd.note = checkNull(obj.note);
-                        //            gcd.garbageType = checkIntNull(obj.garbageType.ToString());
-                        //            objdata.garbageType = checkIntNull(obj.garbageType.ToString());
-
-                        //            gcd.vehicleNumber = checkNull(obj.vehicleNumber);
-
-                        //            gcd.batteryStatus = obj.batteryStatus;
-                        //            gcd.userId = obj.userId;
-                        //            gcd.gcDate = Dateeee;
-                        //            gcd.Lat = obj.Lat;
-                        //            gcd.Long = obj.Long;
-                        //            gcd.TNS = obj.TNS;
-                        //            gcd.TOT = house.Tot;
-                        //            gcd.CTPTId = house.Id;
-
-                        //        }
-                        //        gcd.locAddresss = addre;
-                        //        gcd.CreatedDate = DateTime.Now;
-                        //        gcd.LOS = obj.LevelOS;
-
-                        //        loc.datetime = Dateeee;
-                        //        loc.lat = objdata.Lat;
-                        //        loc.@long = objdata.Long;
-                        //        loc.address = objdata.locAddresss; //Address(objdata.Lat + "," + objdata.Long);
-                        //        loc.batteryStatus = obj.batteryStatus;
-                        //        if (objdata.locAddresss != "")
-                        //        { loc.area = area(loc.address); }
-                        //        else
-                        //        {
-                        //            loc.area = "";
-                        //        }
-                        //        loc.userId = objdata.userId;
-                        //        loc.type = 1;
-                        //        loc.Distnace = obj.Distance;
-                        //        loc.IsOffline = obj.IsOffline;
-
-                        //        if (!string.IsNullOrEmpty(obj.CTPTId))
-                        //        {
-                        //            loc.ReferanceID = obj.CTPTId;
-                        //        }
-                        //        loc.CreatedDate = DateTime.Now;
-
-                        //        db.Locations.Add(loc);
-                        //        db.SaveChanges();
-
-                        //    }
-                        //}
-                        //else
-                        //{
+                      
                         if (house != null)
                         {
                             if (house.Lat == null && house.Long == null)
@@ -6002,6 +5949,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         objdata.locAddresss = addre;
                         objdata.CreatedDate = DateTime.Now;
                         objdata.WasteType = obj.wastetype;
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        objdata.PrabhagId = Pn.PrabhagId;
                         db.GarbageCollectionDetails.Add(objdata);
 
                         loc.datetime = Dateeee;
@@ -6171,6 +6120,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                     gcd.totalDryWeight = obj.TQIW;
                                     gcd.totalWetWeight = obj.TQOW;
                                     gcd.WasteType = obj.TOR;
+                                    var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                                    gcd.PrabhagId = Pn.PrabhagId;
 
                                 }
                                 gcd.locAddresss = addre;
@@ -6234,6 +6185,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             objdata.totalDryWeight = obj.TQIW;
                             objdata.totalWetWeight = obj.TQOW;
                             objdata.WasteType = obj.TOR;
+                            var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                            objdata.PrabhagId = Pn.PrabhagId;
                             db.GarbageCollectionDetails.Add(objdata);
 
                             loc.datetime = Dateeee;
@@ -6653,6 +6606,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                         objdata.locAddresss = addre;
                         objdata.CreatedDate = DateTime.Now;
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        objdata.PrabhagId = Pn.PrabhagId;
                         db.GarbageCollectionDetails.Add(objdata);
 
                         Location loc = new Location();
@@ -6763,6 +6718,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                         gcd.locAddresss = addre;
                         gcd.CreatedDate = DateTime.Now;
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        gcd.PrabhagId = Pn.PrabhagId;
 
                         /////////////////////////////////////////////////////////////
                         //GarbageCollectionDetail objdata = new GarbageCollectionDetail();
@@ -6938,6 +6895,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         objdata.locAddresss = addre;
                         objdata.CreatedDate = DateTime.Now;
                         objdata.EmployeeType = "L";
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        objdata.PrabhagId = Pn.PrabhagId;
                         db.GarbageCollectionDetails.Add(objdata);
 
                         Location loc = new Location();
@@ -7037,6 +6996,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         gcd.batteryStatus = obj.batteryStatus;
                         gcd.Distance = Convert.ToDouble(obj.Distance); //Convert.ToDouble(distCount);
                         gcd.EmployeeType = "L";
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        gcd.PrabhagId = Pn.PrabhagId;
 
                         //if (AppId == 1010)
                         //{
@@ -7224,6 +7185,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         objdata.locAddresss = addre;
                         objdata.CreatedDate = DateTime.Now;
                         objdata.EmployeeType = "S";
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        objdata.PrabhagId = Pn.PrabhagId;
                         db.GarbageCollectionDetails.Add(objdata);
 
                         Location loc = new Location();
@@ -7323,6 +7286,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         gcd.batteryStatus = obj.batteryStatus;
                         gcd.Distance = Convert.ToDouble(obj.Distance); //Convert.ToDouble(distCount);
                         gcd.EmployeeType = "S";
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        gcd.PrabhagId = Pn.PrabhagId;
 
                         //if (AppId == 1010)
                         //{
@@ -7504,6 +7469,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         objdata.locAddresss = addre;
                         objdata.CreatedDate = DateTime.Now;
                         objdata.EmployeeType = "L";
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        objdata.PrabhagId = Pn.PrabhagId;
                         db.GarbageCollectionDetails.Add(objdata);
 
                         Location loc = new Location();
@@ -7593,6 +7560,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         gcd.totalDryWeight = obj.totalDryWeight;
                         gcd.totalWetWeight = obj.totalWetWeight;
                         gcd.batteryStatus = obj.batteryStatus;
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        gcd.PrabhagId = Pn.PrabhagId;
                         gcd.Distance = Convert.ToDouble(obj.Distance); //Convert.ToDouble(distCount);
 
 
@@ -7774,6 +7743,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         objdata.locAddresss = addre;
                         objdata.CreatedDate = DateTime.Now;
                         objdata.EmployeeType = "S";
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        objdata.PrabhagId = Pn.PrabhagId;
                         db.GarbageCollectionDetails.Add(objdata);
 
                         Location loc = new Location();
@@ -7877,7 +7848,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                         gcd.locAddresss = addre;
                         gcd.CreatedDate = DateTime.Now;
-
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        gcd.PrabhagId = Pn.PrabhagId;
                         /////////////////////////////////////////////////////////////
                         //GarbageCollectionDetail objdata = new GarbageCollectionDetail();
                         Location loc = new Location();
@@ -8072,6 +8044,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         objdata.CreatedDate = DateTime.Now;
                         objdata.EmployeeType = null;
                         objdata.garbageType = 4;
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        objdata.PrabhagId = Pn.PrabhagId;
                         db.GarbageCollectionDetails.Add(objdata);
 
                         Location loc = new Location();
@@ -8163,6 +8137,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         gcd.totalDryWeight = obj.totalDryWeight;
                         gcd.totalWetWeight = obj.totalWetWeight;
                         gcd.batteryStatus = obj.batteryStatus;
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        gcd.PrabhagId = Pn.PrabhagId;
                         gcd.Distance = Convert.ToDouble(obj.Distance); //Convert.ToDouble(distCount);
                         gcd.garbageType = 4;
 
@@ -8348,6 +8324,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         objdata.CreatedDate = DateTime.Now;
                         objdata.EmployeeType = null;
                         objdata.garbageType = 5;
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        objdata.PrabhagId = Pn.PrabhagId;
                         db.GarbageCollectionDetails.Add(objdata);
 
                         Location loc = new Location();
@@ -8441,7 +8419,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         gcd.batteryStatus = obj.batteryStatus;
                         gcd.Distance = Convert.ToDouble(obj.Distance); //Convert.ToDouble(distCount);
                         gcd.garbageType = 5;
-
+                        var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                        gcd.PrabhagId = Pn.PrabhagId;
                         //if (AppId == 1010)
                         //{
                         //    gcd.locAddresss = Address(obj.Lat + "," + obj.Long);

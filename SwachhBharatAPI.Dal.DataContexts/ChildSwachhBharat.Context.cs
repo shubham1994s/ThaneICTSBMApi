@@ -18,7 +18,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
     public partial class DevSwachhBharatNagpurEntities : DbContext
     {
         public DevSwachhBharatNagpurEntities(int AppId)
-                : base(SwachhBharatAppConnection.GetConnectionString(AppId))
+                 : base(SwachhBharatAppConnection.GetConnectionString(AppId))
         {
         }
 
@@ -31,11 +31,8 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<GramCleaningComplient> GramCleaningComplients { get; set; }
         public virtual DbSet<TeritoryMaster> TeritoryMasters { get; set; }
         public virtual DbSet<VehicleType> VehicleTypes { get; set; }
-        public virtual DbSet<WardNumber> WardNumbers { get; set; }
         public virtual DbSet<ZoneMaster> ZoneMasters { get; set; }
         public virtual DbSet<GarbagePointDetail> GarbagePointDetails { get; set; }
-        public virtual DbSet<DumpYardDetail> DumpYardDetails { get; set; }
-        public virtual DbSet<Qr_Employee_Daily_Attendance> Qr_Employee_Daily_Attendance { get; set; }
         public virtual DbSet<QrEmployeeMaster> QrEmployeeMasters { get; set; }
         public virtual DbSet<BinLatLong> BinLatLongs { get; set; }
         public virtual DbSet<DeviceDetail> DeviceDetails { get; set; }
@@ -49,21 +46,24 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<Vw_MsgNotification> Vw_MsgNotification { get; set; }
         public virtual DbSet<Vw_GetLiquidNumber> Vw_GetLiquidNumber { get; set; }
         public virtual DbSet<Vw_GetStreetNumber> Vw_GetStreetNumber { get; set; }
-        public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<Qr_Location> Qr_Location { get; set; }
         public virtual DbSet<StreetSweepingBeat> StreetSweepingBeats { get; set; }
         public virtual DbSet<Vw_BitCount> Vw_BitCount { get; set; }
-        public virtual DbSet<CommercialMaster> CommercialMasters { get; set; }
-        public virtual DbSet<HouseMaster> HouseMasters { get; set; }
-        public virtual DbSet<LiquidWasteDetail> LiquidWasteDetails { get; set; }
-        public virtual DbSet<StreetSweepingDetail> StreetSweepingDetails { get; set; }
-        public virtual DbSet<SWMMaster> SWMMasters { get; set; }
-        public virtual DbSet<SauchalayAddress> SauchalayAddresses { get; set; }
         public virtual DbSet<VehicleRegistration> VehicleRegistrations { get; set; }
         public virtual DbSet<CommitteeMaster> CommitteeMasters { get; set; }
-        public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
-        public virtual DbSet<UserMaster> UserMasters { get; set; }
+        public virtual DbSet<CommercialMaster> CommercialMasters { get; set; }
         public virtual DbSet<Daily_Attendance> Daily_Attendance { get; set; }
+        public virtual DbSet<DumpYardDetail> DumpYardDetails { get; set; }
+        public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
+        public virtual DbSet<HouseMaster> HouseMasters { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Qr_Employee_Daily_Attendance> Qr_Employee_Daily_Attendance { get; set; }
+        public virtual DbSet<Qr_Location> Qr_Location { get; set; }
+        public virtual DbSet<SauchalayAddress> SauchalayAddresses { get; set; }
+        public virtual DbSet<SWMMaster> SWMMasters { get; set; }
+        public virtual DbSet<UserMaster> UserMasters { get; set; }
+        public virtual DbSet<WardNumber> WardNumbers { get; set; }
+        public virtual DbSet<LiquidWasteDetail> LiquidWasteDetails { get; set; }
+        public virtual DbSet<StreetSweepingDetail> StreetSweepingDetails { get; set; }
     
         public virtual ObjectResult<sp_area_Result> sp_area()
         {
