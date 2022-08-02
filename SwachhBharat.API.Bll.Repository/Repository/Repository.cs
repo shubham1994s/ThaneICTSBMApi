@@ -4802,6 +4802,9 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                 loc.CreatedDate = DateTime.Now;
 
                                 db.Locations.Add(loc);
+
+                                var Pn = db.UserMasters.Where(x => x.userId == objdata.userId).FirstOrDefault();
+                                gcd.PrabhagId = Pn.PrabhagId;
                                 db.SaveChanges();
 
                             }
@@ -4843,6 +4846,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             objdata.locAddresss = addre;
                             objdata.CreatedDate = DateTime.Now;
                             objdata.WasteType = obj.wastetype;
+                            var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
+                            objdata.PrabhagId = Pn.PrabhagId;
                             db.GarbageCollectionDetails.Add(objdata);
 
                             loc.datetime = Dateeee;
@@ -10596,7 +10601,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                     //    obj = JsonConvert.DeserializeObject<List<ComplaintVM>>(json).Where(c => Convert.ToDateTime(c.createdDate2).ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy")).ToList();
                     //}
 
-                    var data = db.SP_Dashboard_Details().First();
+                    var data = db.SP_Dashboard_Details(1).First();
                     if (data != null)
                     {
 

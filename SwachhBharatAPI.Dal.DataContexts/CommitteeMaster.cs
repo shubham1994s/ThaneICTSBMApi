@@ -12,11 +12,10 @@ namespace SwachhBharatAPI.Dal.DataContexts
     using System;
     using System.Collections.Generic;
     
-    public partial class WardNumber
+    public partial class CommitteeMaster
     {
         public int Id { get; set; }
-        public string WardNo { get; set; }
+        public string CommitteeName { get; set; }
         public Nullable<int> zoneId { get; set; }
-        public Nullable<int> PrabhagId { get; set; }
     }
 }

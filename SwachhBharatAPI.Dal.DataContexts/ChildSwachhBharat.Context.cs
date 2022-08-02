@@ -22,6 +22,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
         {
         }
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -50,10 +51,8 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<Vw_GetStreetNumber> Vw_GetStreetNumber { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Qr_Location> Qr_Location { get; set; }
-        public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<StreetSweepingBeat> StreetSweepingBeats { get; set; }
         public virtual DbSet<Vw_BitCount> Vw_BitCount { get; set; }
-        public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
         public virtual DbSet<CommercialMaster> CommercialMasters { get; set; }
         public virtual DbSet<HouseMaster> HouseMasters { get; set; }
         public virtual DbSet<LiquidWasteDetail> LiquidWasteDetails { get; set; }
@@ -61,6 +60,9 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<SWMMaster> SWMMasters { get; set; }
         public virtual DbSet<SauchalayAddress> SauchalayAddresses { get; set; }
         public virtual DbSet<VehicleRegistration> VehicleRegistrations { get; set; }
+        public virtual DbSet<CommitteeMaster> CommitteeMasters { get; set; }
+        public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
+        public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<Daily_Attendance> Daily_Attendance { get; set; }
     
         public virtual ObjectResult<sp_area_Result> sp_area()
@@ -91,9 +93,13 @@ namespace SwachhBharatAPI.Dal.DataContexts
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetMobile_Result>("GetMobile", areaIdParameter);
         }
     
-        public virtual ObjectResult<SP_Dashboard_Details_Result> SP_Dashboard_Details()
+        public virtual ObjectResult<SP_Dashboard_Details_Result> SP_Dashboard_Details(Nullable<int> prabhagid)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Dashboard_Details_Result>("SP_Dashboard_Details");
+            var prabhagidParameter = prabhagid.HasValue ?
+                new ObjectParameter("prabhagid", prabhagid) :
+                new ObjectParameter("prabhagid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Dashboard_Details_Result>("SP_Dashboard_Details", prabhagidParameter);
         }
     
         public virtual ObjectResult<SP_GarbageCollection_Result> SP_GarbageCollection(Nullable<int> appId, Nullable<int> userid, Nullable<System.DateTime> fdate, Nullable<System.DateTime> tdate, Nullable<int> zoneId, Nullable<int> areaId, Nullable<int> wardNo, Nullable<int> segid, Nullable<int> segidSub)
@@ -305,13 +311,17 @@ namespace SwachhBharatAPI.Dal.DataContexts
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_HouseOnMapDetails_Result>("SP_HouseOnMapDetails", gcDateParameter, userIdParameter, zoneIdParameter, areaIdParameter, wardNoParameter, garbageTypeParameter, filterTypeParameter, segTypeParameter);
         }
     
-        public virtual ObjectResult<SP_TotalHouseCollection_Count_Result> SP_TotalHouseCollection_Count(Nullable<System.DateTime> gcdate)
+        public virtual ObjectResult<SP_TotalHouseCollection_Count_Result> SP_TotalHouseCollection_Count(Nullable<System.DateTime> gcdate, Nullable<int> prabhagid)
         {
             var gcdateParameter = gcdate.HasValue ?
                 new ObjectParameter("gcdate", gcdate) :
                 new ObjectParameter("gcdate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_TotalHouseCollection_Count_Result>("SP_TotalHouseCollection_Count", gcdateParameter);
+            var prabhagidParameter = prabhagid.HasValue ?
+                new ObjectParameter("prabhagid", prabhagid) :
+                new ObjectParameter("prabhagid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_TotalHouseCollection_Count_Result>("SP_TotalHouseCollection_Count", gcdateParameter, prabhagidParameter);
         }
     
         public virtual ObjectResult<GetGarbageCountDetailsTotal_Result> GetGarbageCountDetailsTotal(Nullable<int> userId, Nullable<int> year, Nullable<int> month)

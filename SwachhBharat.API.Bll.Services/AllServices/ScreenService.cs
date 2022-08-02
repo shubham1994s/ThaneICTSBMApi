@@ -523,10 +523,10 @@ namespace SwachBharat.API.Bll.Services
                     //    obj = JsonConvert.DeserializeObject<List<CMSBComplaintVM>>(json).Where(c => Convert.ToDateTime(c.createdDate2).ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy")).ToList();
                     //}
                     
-                    var data = db.SP_Dashboard_Details().First();
+                    var data = db.SP_Dashboard_Details(1).First();
 
                     var date = DateTime.Today;
-                    var houseCount = db.SP_TotalHouseCollection_Count(date).FirstOrDefault();
+                    var houseCount = db.SP_TotalHouseCollection_Count(date,1).FirstOrDefault();
                     if (data != null)
                     {
                         model.TodayAttandence = data.TodayAttandence;
