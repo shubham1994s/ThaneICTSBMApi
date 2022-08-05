@@ -3852,7 +3852,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                 {
 
                     DateTime Datee = Convert.ToDateTime(cdate);
-                    var IsSameRecordLocation = db.Locations.Where(c => c.userId == x.userId && c.datetime == Datee && c.type == null && c.EmployeeType == null).FirstOrDefault();
+                    var IsSameRecordLocation = db.Locations.Where(c => c.userId == x.userId && c.datetime == Datee && c.type == null && c.EmployeeType == "CT").FirstOrDefault();
                     try
                     {
                         bool _IsInSync = false, _IsOutSync = false;
