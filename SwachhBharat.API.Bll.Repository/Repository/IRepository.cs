@@ -192,7 +192,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
         List<SBVehicleType> VehicleTypeList(int appId);
 
-        List<Arealist> GetAreaList(int appId);
+        List<Arealist> GetAreaList(int appId ,int userId);
 
         List<VehicleList> GetVehicleList(int appId,int wardId,int VehicleTypeId);
 

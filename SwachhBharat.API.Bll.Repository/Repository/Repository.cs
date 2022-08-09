@@ -14697,7 +14697,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
         }
 
-        public List<Arealist> GetAreaList(int appId)
+        public List<Arealist> GetAreaList(int appId ,int userId)
         {
             List<Arealist> obj = new List<Arealist>();
             try
@@ -14705,15 +14705,32 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                 using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(appId))
                 {
                     {
-                        var data = db.WardNumbers.ToList();
-                        foreach (var x in data)
+                        var PId = db.UserMasters.Where(c => c.userId == userId).Select(m=>m.PrabhagId).FirstOrDefault();
+                        if(PId!=null || PId != 0)
                         {
-                            obj.Add(new Arealist()
+                            var data = db.WardNumbers.Where(c => c.PrabhagId == PId).ToList();
+                            foreach (var x in data)
                             {
-                                Name = (x.WardNo.ToString()),
-                                ID = (x.Id),
-                            });
+                                obj.Add(new Arealist()
+                                {
+                                    Name = (x.WardNo.ToString()),
+                                    ID = (x.Id),
+                                });
+                            }
                         }
+                        else
+                        {
+                            var data = db.WardNumbers.ToList();
+                            foreach (var x in data)
+                            {
+                                obj.Add(new Arealist()
+                                {
+                                    Name = (x.WardNo.ToString()),
+                                    ID = (x.Id),
+                                });
+                            }
+                        }
+                       
                     }
 
                     return obj.OrderBy(c => c.Name).ToList();

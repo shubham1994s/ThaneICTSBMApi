@@ -205,8 +205,13 @@ namespace SwachhBharatAPI.Controllers
             IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
             var id = headerValue1.FirstOrDefault();
             int AppId = int.Parse(id);
+
+            IEnumerable<string> headerValue2 = Request.Headers.GetValues("userId");
+            var uid = headerValue2.FirstOrDefault();
+            int UserId = int.Parse(uid);
+
             List<Arealist> objDetail = new List<Arealist>();
-            objDetail = objRep.GetAreaList(AppId).ToList();
+            objDetail = objRep.GetAreaList(AppId, UserId).ToList();
             return objDetail;
         }
 
