@@ -18,10 +18,9 @@ namespace SwachhBharatAPI.Dal.DataContexts
     public partial class DevSwachhBharatNagpurEntities : DbContext
     {
         public DevSwachhBharatNagpurEntities(int AppId)
-                 : base(SwachhBharatAppConnection.GetConnectionString(AppId))
+             : base(SwachhBharatAppConnection.GetConnectionString(AppId))
         {
         }
-
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -64,6 +63,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<WardNumber> WardNumbers { get; set; }
         public virtual DbSet<LiquidWasteDetail> LiquidWasteDetails { get; set; }
         public virtual DbSet<StreetSweepingDetail> StreetSweepingDetails { get; set; }
+        public virtual DbSet<Vw_GetCTPTNumber> Vw_GetCTPTNumber { get; set; }
     
         public virtual ObjectResult<sp_area_Result> sp_area()
         {
@@ -169,9 +169,13 @@ namespace SwachhBharatAPI.Dal.DataContexts
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_DistanceCount_Result>("SP_DistanceCount", sLatParameter, sLongParameter, dLatParameter, dLongParameter);
         }
     
-        public virtual ObjectResult<HouseDetails_Result> HouseDetails()
+        public virtual ObjectResult<HouseDetails_Result> HouseDetails(Nullable<int> prabhagid)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HouseDetails_Result>("HouseDetails");
+            var prabhagidParameter = prabhagid.HasValue ?
+                new ObjectParameter("prabhagid", prabhagid) :
+                new ObjectParameter("prabhagid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HouseDetails_Result>("HouseDetails", prabhagidParameter);
         }
     
         public virtual ObjectResult<PointDetails_Result> PointDetails()
@@ -188,7 +192,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CurrentAllUserLocationUserIDWise_Result>("CurrentAllUserLocationUserIDWise", userIdParameter);
         }
     
-        public virtual ObjectResult<SP_IdelTime_Result> SP_IdelTime(Nullable<int> userId, Nullable<System.DateTime> fdate, Nullable<System.DateTime> tdate)
+        public virtual ObjectResult<SP_IdelTime_Result> SP_IdelTime(Nullable<int> userId, Nullable<System.DateTime> fdate, Nullable<System.DateTime> tdate, Nullable<int> prabhagid)
         {
             var userIdParameter = userId.HasValue ?
                 new ObjectParameter("userId", userId) :
@@ -202,10 +206,14 @@ namespace SwachhBharatAPI.Dal.DataContexts
                 new ObjectParameter("tdate", tdate) :
                 new ObjectParameter("tdate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_IdelTime_Result>("SP_IdelTime", userIdParameter, fdateParameter, tdateParameter);
+            var prabhagidParameter = prabhagid.HasValue ?
+                new ObjectParameter("prabhagid", prabhagid) :
+                new ObjectParameter("prabhagid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_IdelTime_Result>("SP_IdelTime", userIdParameter, fdateParameter, tdateParameter, prabhagidParameter);
         }
     
-        public virtual ObjectResult<SP_EmployeeSummary_Result> SP_EmployeeSummary(Nullable<System.DateTime> from, Nullable<System.DateTime> to, Nullable<int> userid)
+        public virtual ObjectResult<SP_EmployeeSummary_Result> SP_EmployeeSummary(Nullable<System.DateTime> from, Nullable<System.DateTime> to, Nullable<int> userid, Nullable<int> prabhagid)
         {
             var fromParameter = from.HasValue ?
                 new ObjectParameter("from", from) :
@@ -219,7 +227,11 @@ namespace SwachhBharatAPI.Dal.DataContexts
                 new ObjectParameter("userid", userid) :
                 new ObjectParameter("userid", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_EmployeeSummary_Result>("SP_EmployeeSummary", fromParameter, toParameter, useridParameter);
+            var prabhagidParameter = prabhagid.HasValue ?
+                new ObjectParameter("prabhagid", prabhagid) :
+                new ObjectParameter("prabhagid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_EmployeeSummary_Result>("SP_EmployeeSummary", fromParameter, toParameter, useridParameter, prabhagidParameter);
         }
     
         public virtual ObjectResult<SP_EmployeeTarget_Result> SP_EmployeeTarget(Nullable<System.DateTime> fdate, Nullable<System.DateTime> tdate, Nullable<int> userid)
@@ -274,7 +286,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_UserLatLongDetail_Result>("SP_UserLatLongDetail", useridParameter, typeIdParameter);
         }
     
-        public virtual ObjectResult<SP_HouseOnMapDetails_Result> SP_HouseOnMapDetails(Nullable<System.DateTime> gcDate, Nullable<int> userId, Nullable<int> zoneId, Nullable<int> areaId, Nullable<int> wardNo, Nullable<int> garbageType, Nullable<int> filterType, Nullable<int> segType)
+        public virtual ObjectResult<SP_HouseOnMapDetails_Result> SP_HouseOnMapDetails(Nullable<System.DateTime> gcDate, Nullable<int> userId, Nullable<int> zoneId, Nullable<int> prabhagId, Nullable<int> areaId, Nullable<int> wardNo, Nullable<int> garbageType, Nullable<int> filterType, Nullable<int> segType, Nullable<int> pId)
         {
             var gcDateParameter = gcDate.HasValue ?
                 new ObjectParameter("gcDate", gcDate) :
@@ -287,6 +299,10 @@ namespace SwachhBharatAPI.Dal.DataContexts
             var zoneIdParameter = zoneId.HasValue ?
                 new ObjectParameter("ZoneId", zoneId) :
                 new ObjectParameter("ZoneId", typeof(int));
+    
+            var prabhagIdParameter = prabhagId.HasValue ?
+                new ObjectParameter("PrabhagId", prabhagId) :
+                new ObjectParameter("PrabhagId", typeof(int));
     
             var areaIdParameter = areaId.HasValue ?
                 new ObjectParameter("AreaId", areaId) :
@@ -308,7 +324,11 @@ namespace SwachhBharatAPI.Dal.DataContexts
                 new ObjectParameter("SegType", segType) :
                 new ObjectParameter("SegType", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_HouseOnMapDetails_Result>("SP_HouseOnMapDetails", gcDateParameter, userIdParameter, zoneIdParameter, areaIdParameter, wardNoParameter, garbageTypeParameter, filterTypeParameter, segTypeParameter);
+            var pIdParameter = pId.HasValue ?
+                new ObjectParameter("PId", pId) :
+                new ObjectParameter("PId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_HouseOnMapDetails_Result>("SP_HouseOnMapDetails", gcDateParameter, userIdParameter, zoneIdParameter, prabhagIdParameter, areaIdParameter, wardNoParameter, garbageTypeParameter, filterTypeParameter, segTypeParameter, pIdParameter);
         }
     
         public virtual ObjectResult<SP_TotalHouseCollection_Count_Result> SP_TotalHouseCollection_Count(Nullable<System.DateTime> gcdate, Nullable<int> prabhagid)
@@ -468,6 +488,32 @@ namespace SwachhBharatAPI.Dal.DataContexts
                 new ObjectParameter("month", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAttendenceDetailsTotal_Result>("GetAttendenceDetailsTotal", userIdParameter, yearParameter, monthParameter);
+        }
+    
+        public virtual ObjectResult<GetAttendenceDetailsTotalCTPT_Result> GetAttendenceDetailsTotalCTPT(Nullable<int> userId, Nullable<int> year, Nullable<int> month)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(int));
+    
+            var monthParameter = month.HasValue ?
+                new ObjectParameter("month", month) :
+                new ObjectParameter("month", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAttendenceDetailsTotalCTPT_Result>("GetAttendenceDetailsTotalCTPT", userIdParameter, yearParameter, monthParameter);
+        }
+    
+        public virtual ObjectResult<CollecctionAreaForCTPT_Result> CollecctionAreaForCTPT(Nullable<int> type)
+        {
+            var typeParameter = type.HasValue ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForCTPT_Result>("CollecctionAreaForCTPT", typeParameter);
         }
     }
 }

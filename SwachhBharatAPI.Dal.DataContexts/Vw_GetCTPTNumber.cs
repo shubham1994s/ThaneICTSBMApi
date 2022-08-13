@@ -12,12 +12,10 @@ namespace SwachhBharatAPI.Dal.DataContexts
     using System;
     using System.Collections.Generic;
     
-    public partial class TeritoryMaster
+    public partial class Vw_GetCTPTNumber
     {
         public int Id { get; set; }
-        public string Area { get; set; }
-        public string AreaMar { get; set; }
-        public Nullable<int> wardId { get; set; }
-        public Nullable<int> PrabhagId { get; set; }
+        public string ReferanceId { get; set; }
+        public Nullable<int> AreaId { get; set; }
     }
 }

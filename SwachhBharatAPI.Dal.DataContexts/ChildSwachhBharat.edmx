@@ -444,6 +444,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.StreetSweeping
           <Property Name="QRStatusDate" Type="datetime" />
           <Property Name="BinaryQrCodeImage" Type="varbinary(max)" />
           <Property Name="PrabhagId" Type="int" />
+          <Property Name="BeatId" Type="int" />
         </EntityType>
         <EntityType Name="SWMMaster">
           <Key>
@@ -477,8 +478,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.StreetSweeping
           <Property Name="BinaryQrCodeImage" Type="varbinary(max)" />
           <Property Name="PrabhagId" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.TeritoryMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TeritoryMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -487,6 +486,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.TeritoryMaster
           <Property Name="Area" Type="nvarchar" MaxLength="250" />
           <Property Name="AreaMar" Type="nvarchar" MaxLength="50" />
           <Property Name="wardId" Type="int" />
+          <Property Name="PrabhagId" Type="int" />
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
@@ -622,6 +622,16 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_BitCount' d
           <Property Name="BitCount" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_GetCTPTNumber' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Vw_GetCTPTNumber">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ReferanceId" Type="nvarchar" MaxLength="350" />
+          <Property Name="AreaId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_GetHouseNumber' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Vw_GetHouseNumber">
           <Key>
@@ -680,6 +690,9 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
         <Function Name="CollecctionArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="type" Type="int" Mode="In" />
         </Function>
+        <Function Name="CollecctionAreaForCTPT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="type" Type="int" Mode="In" />
+        </Function>
         <Function Name="CollecctionAreaForLiquid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="type" Type="int" Mode="In" />
         </Function>
@@ -691,6 +704,11 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Parameter Name="UserId" Type="int" Mode="In" />
         </Function>
         <Function Name="GetAttendenceDetailsTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+          <Parameter Name="year" Type="int" Mode="In" />
+          <Parameter Name="month" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAttendenceDetailsTotalCTPT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="int" Mode="In" />
           <Parameter Name="year" Type="int" Mode="In" />
           <Parameter Name="month" Type="int" Mode="In" />
@@ -724,7 +742,9 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Parameter Name="year" Type="int" Mode="In" />
           <Parameter Name="month" Type="int" Mode="In" />
         </Function>
-        <Function Name="HouseDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="HouseDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prabhagid" Type="int" Mode="In" />
+        </Function>
         <Function Name="HouseDetails_ReferanceId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ReferanceId" Type="nvarchar" Mode="In" />
         </Function>
@@ -744,6 +764,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Parameter Name="from" Type="date" Mode="In" />
           <Parameter Name="to" Type="date" Mode="In" />
           <Parameter Name="userid" Type="int" Mode="In" />
+          <Parameter Name="prabhagid" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_EmployeeTarget" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fdate" Type="date" Mode="In" />
@@ -765,11 +786,13 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Parameter Name="gcDate" Type="datetime" Mode="In" />
           <Parameter Name="UserId" Type="int" Mode="In" />
           <Parameter Name="ZoneId" Type="int" Mode="In" />
+          <Parameter Name="PrabhagId" Type="int" Mode="In" />
           <Parameter Name="AreaId" Type="int" Mode="In" />
           <Parameter Name="WardNo" Type="int" Mode="In" />
           <Parameter Name="GarbageType" Type="int" Mode="In" />
           <Parameter Name="FilterType" Type="int" Mode="In" />
           <Parameter Name="SegType" Type="int" Mode="In" />
+          <Parameter Name="PId" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_HousePointDumpDetails_Scanify" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ReferenceId" Type="nvarchar" Mode="In" />
@@ -779,6 +802,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Parameter Name="userId" Type="int" Mode="In" />
           <Parameter Name="fdate" Type="date" Mode="In" />
           <Parameter Name="tdate" Type="date" Mode="In" />
+          <Parameter Name="prabhagid" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Locationdata" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fdate" Type="date" Mode="In" />
@@ -805,6 +829,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySet Name="SauchalayAddress" EntityType="Self.SauchalayAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StreetSweepingBeat" EntityType="Self.StreetSweepingBeat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SWMMaster" EntityType="Self.SWMMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeritoryMaster" EntityType="Self.TeritoryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleRegistration" EntityType="Self.VehicleRegistration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WardNumber" EntityType="Self.WardNumber" Schema="dbo" store:Type="Tables" />
@@ -946,16 +971,9 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
     [StreetSweepingDetails].[QRStatus] AS [QRStatus], 
     [StreetSweepingDetails].[QRStatusDate] AS [QRStatusDate], 
     [StreetSweepingDetails].[BinaryQrCodeImage] AS [BinaryQrCodeImage], 
-    [StreetSweepingDetails].[PrabhagId] AS [PrabhagId]
+    [StreetSweepingDetails].[PrabhagId] AS [PrabhagId], 
+    [StreetSweepingDetails].[BeatId] AS [BeatId]
     FROM [dbo].[StreetSweepingDetails] AS [StreetSweepingDetails]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="TeritoryMaster" EntityType="Self.TeritoryMaster" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TeritoryMaster].[Id] AS [Id], 
-    [TeritoryMaster].[Area] AS [Area], 
-    [TeritoryMaster].[AreaMar] AS [AreaMar], 
-    [TeritoryMaster].[wardId] AS [wardId]
-    FROM [dbo].[TeritoryMaster] AS [TeritoryMaster]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VehicleType" EntityType="Self.VehicleType" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1021,6 +1039,13 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
     [Vw_BitCount].[BeatId] AS [BeatId], 
     [Vw_BitCount].[BitCount] AS [BitCount]
     FROM [dbo].[Vw_BitCount] AS [Vw_BitCount]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Vw_GetCTPTNumber" EntityType="Self.Vw_GetCTPTNumber" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vw_GetCTPTNumber].[Id] AS [Id], 
+    [Vw_GetCTPTNumber].[ReferanceId] AS [ReferanceId], 
+    [Vw_GetCTPTNumber].[AreaId] AS [AreaId]
+    FROM [dbo].[Vw_GetCTPTNumber] AS [Vw_GetCTPTNumber]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Vw_GetHouseNumber" EntityType="Self.Vw_GetHouseNumber" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1106,7 +1131,9 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
             <Parameter Name="dLat" Mode="In" Type="Double" />
             <Parameter Name="dLong" Mode="In" Type="Double" />
           </FunctionImport>
-          <FunctionImport Name="HouseDetails" ReturnType="Collection(DevSwachhBharatNagpurModel.HouseDetails_Result)" />
+          <FunctionImport Name="HouseDetails" ReturnType="Collection(DevSwachhBharatNagpurModel.HouseDetails_Result)" >
+          <Parameter Name="prabhagid" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="PointDetails" ReturnType="Collection(DevSwachhBharatNagpurModel.PointDetails_Result)" />
           <FunctionImport Name="CurrentAllUserLocationUserIDWise" ReturnType="Collection(DevSwachhBharatNagpurModel.CurrentAllUserLocationUserIDWise_Result)">
           <Parameter Name="UserId" Mode="In" Type="Int32" />
@@ -1116,11 +1143,13 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
             <Parameter Name="userId" Mode="In" Type="Int32" />
             <Parameter Name="fdate" Mode="In" Type="DateTime" />
             <Parameter Name="tdate" Mode="In" Type="DateTime" />
+            <Parameter Name="prabhagid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_EmployeeSummary" ReturnType="Collection(DevSwachhBharatNagpurModel.SP_EmployeeSummary_Result)">
             <Parameter Name="from" Mode="In" Type="DateTime" />
             <Parameter Name="to" Mode="In" Type="DateTime" />
             <Parameter Name="userid" Mode="In" Type="Int32" />
+            <Parameter Name="prabhagid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_EmployeeTarget" ReturnType="Collection(DevSwachhBharatNagpurModel.SP_EmployeeTarget_Result)">
             <Parameter Name="fdate" Mode="In" Type="DateTime" />
@@ -1144,11 +1173,13 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
             <Parameter Name="gcDate" Mode="In" Type="DateTime" />
             <Parameter Name="UserId" Mode="In" Type="Int32" />
             <Parameter Name="ZoneId" Mode="In" Type="Int32" />
+            <Parameter Name="PrabhagId" Mode="In" Type="Int32" />
             <Parameter Name="AreaId" Mode="In" Type="Int32" />
             <Parameter Name="WardNo" Mode="In" Type="Int32" />
             <Parameter Name="GarbageType" Mode="In" Type="Int32" />
             <Parameter Name="FilterType" Mode="In" Type="Int32" />
             <Parameter Name="SegType" Mode="In" Type="Int32" />
+            <Parameter Name="PId" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="GamePlayerDetails" EntityType="DevSwachhBharatNagpurModel.GamePlayerDetail" />
           <FunctionImport Name="SP_TotalHouseCollection_Count" ReturnType="Collection(DevSwachhBharatNagpurModel.SP_TotalHouseCollection_Count_Result)">
@@ -1226,6 +1257,15 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySet Name="WardNumbers" EntityType="DevSwachhBharatNagpurModel.WardNumber" />
           <EntitySet Name="LiquidWasteDetails" EntityType="DevSwachhBharatNagpurModel.LiquidWasteDetail" />
           <EntitySet Name="StreetSweepingDetails" EntityType="DevSwachhBharatNagpurModel.StreetSweepingDetail" />
+          <FunctionImport Name="GetAttendenceDetailsTotalCTPT" ReturnType="Collection(DevSwachhBharatNagpurModel.GetAttendenceDetailsTotalCTPT_Result)">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+            <Parameter Name="year" Mode="In" Type="Int32" />
+            <Parameter Name="month" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Vw_GetCTPTNumber" EntityType="DevSwachhBharatNagpurModel.Vw_GetCTPTNumber" />
+          <FunctionImport Name="CollecctionAreaForCTPT" ReturnType="Collection(DevSwachhBharatNagpurModel.CollecctionAreaForCTPT_Result)">
+            <Parameter Name="type" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_area_Result">
           <Property Type="String" Name="area" Nullable="true" MaxLength="500" />
@@ -1280,6 +1320,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="Area" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="AreaMar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="wardId" Type="Int32" />
+          <Property Name="PrabhagId" Type="Int32" />
         </EntityType>
         <EntityType Name="VehicleType">
           <Key>
@@ -2156,7 +2197,28 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="QRStatusDate" Type="DateTime" Precision="3" />
           <Property Name="BinaryQrCodeImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="PrabhagId" Type="Int32" />
+          <Property Name="BeatId" Type="Int32" />
         </EntityType>
+        <ComplexType Name="GetAttendenceDetailsTotalCTPT_Result">
+          <Property Type="DateTime" Name="day" Nullable="true" />
+          <Property Type="Int32" Name="userid" Nullable="true" />
+          <Property Type="Int32" Name="CTPTCollection" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Vw_GetCTPTNumber">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ReferanceId" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="AreaId" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="CollecctionAreaForCTPT_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Area" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="AreaMar" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="wardId" Nullable="true" />
+          <Property Type="Int32" Name="PrabhagId" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2224,6 +2286,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySetMapping Name="TeritoryMasters">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.TeritoryMaster">
               <MappingFragment StoreEntitySet="TeritoryMaster">
+                <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
                 <ScalarProperty Name="wardId" ColumnName="wardId" />
                 <ScalarProperty Name="AreaMar" ColumnName="AreaMar" />
                 <ScalarProperty Name="Area" ColumnName="Area" />
@@ -3203,6 +3266,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySetMapping Name="StreetSweepingDetails">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.StreetSweepingDetail">
               <MappingFragment StoreEntitySet="StreetSweepingDetails">
+                <ScalarProperty Name="BeatId" ColumnName="BeatId" />
                 <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
                 <ScalarProperty Name="BinaryQrCodeImage" ColumnName="BinaryQrCodeImage" />
                 <ScalarProperty Name="QRStatusDate" ColumnName="QRStatusDate" />
@@ -3224,6 +3288,35 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetAttendenceDetailsTotalCTPT" FunctionName="DevSwachhBharatNagpurModel.Store.GetAttendenceDetailsTotalCTPT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.GetAttendenceDetailsTotalCTPT_Result">
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="CTPTCollection" ColumnName="CTPTCollection" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Vw_GetCTPTNumber">
+            <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.Vw_GetCTPTNumber">
+              <MappingFragment StoreEntitySet="Vw_GetCTPTNumber">
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="ReferanceId" ColumnName="ReferanceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CollecctionAreaForCTPT" FunctionName="DevSwachhBharatNagpurModel.Store.CollecctionAreaForCTPT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.CollecctionAreaForCTPT_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="AreaMar" ColumnName="AreaMar" />
+                <ScalarProperty Name="wardId" ColumnName="wardId" />
+                <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

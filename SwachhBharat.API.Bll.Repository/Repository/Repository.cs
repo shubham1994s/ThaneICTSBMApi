@@ -9437,6 +9437,10 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             {
                 obj = GetUserWorkForStreet(userId, year, month, appId);
             }
+            if (EmpType == "CT")
+            {
+                obj = GetUserWorkForCTPT(userId, year, month, appId);
+            }
             return obj;
         }
 
@@ -9515,6 +9519,25 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             return obj;
         }
 
+        public List<SBWorkDetails> GetUserWorkForCTPT(int userId, int year, int month, int appId)
+        {
+            List<SBWorkDetails> obj = new List<SBWorkDetails>();
+            using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(appId))
+            {
+                var data = db.GetAttendenceDetailsTotalCTPT(userId, year, month).ToList();
+                foreach (var x in data)
+                {
+
+                    obj.Add(new SBWorkDetails()
+                    {
+                        date = Convert.ToDateTime(x.day).ToString("MM-dd-yyy"),
+                        CTPTCollection = checkIntNull(x.CTPTCollection.ToString()),
+                    });
+                }
+
+            }
+            return obj;
+        }
         public List<SBWorkDetailsHistory> GetUserWorkDetails(DateTime date, int appId, int userId, int languageId)
         {
 
@@ -10193,6 +10216,10 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             {
                 obj = GetCollectionAreaForStreet(AppId, type);
             }
+            if (EmpType == "CT")
+            {
+                obj = GetCollectionAreaForCTPT(AppId, type);
+            }
             return obj;
 
         }
@@ -10264,6 +10291,28 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             return obj;
         }
 
+        public List<SBArea> GetCollectionAreaForCTPT(int AppId, int type)
+        {
+            List<SBArea> obj = new List<SBArea>();
+            using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
+            {
+                var data = db.CollecctionAreaForCTPT(type).ToList();
+
+                foreach (var x in data)
+                {
+
+                    obj.Add(new SBArea()
+                    {
+                        id = x.Id,
+                        area = checkNull(x.Area).Trim(),
+                        areaMar = checkNull(x.AreaMar).Trim()
+                    });
+                }
+
+            }
+            return obj;
+        }
+
 
 
         public List<HouseDetailsVM> GetAreaHouse(int AppId, int areaId, string EmpType)
@@ -10282,7 +10331,10 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             {
                 obj = GetAreaHousForStreet(AppId, areaId);
             }
-
+            if (EmpType == "CT")
+            {
+                obj = GetAreaHousForCTPT(AppId, areaId);
+            }
             return obj;
 
         }
@@ -10377,6 +10429,48 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
             {
                 var data = db.Vw_GetStreetNumber.Where(c => c.AreaId == areaId).ToList();
+                if (AppId == 1003)
+                {
+                    foreach (var x in data)
+                    {
+
+                        obj.Add(new HouseDetailsVM()
+                        {
+                            houseid = x.ReferanceId,
+                            houseNumber = x.ReferanceId,
+                        });
+                    }
+                }
+                else
+                {
+
+                    foreach (var x in data)
+                    {
+                        string HouseN = "";
+                        //if (x.houseNumber == null || x.houseNumber == "")
+                        //{
+                        //    HouseN = x.ReferanceId;
+                        //}
+                        //else { HouseN = x.houseNumber; }
+                        obj.Add(new HouseDetailsVM()
+                        {
+                            houseid = x.ReferanceId,
+                            houseNumber = x.ReferanceId,
+
+                        });
+                    }
+                }
+
+            }
+            return obj;
+        }
+
+        public List<HouseDetailsVM> GetAreaHousForCTPT(int AppId, int areaId)
+        {
+            List<HouseDetailsVM> obj = new List<HouseDetailsVM>();
+            using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
+            {
+                var data = db.Vw_GetCTPTNumber.Where(c => c.AreaId == areaId).ToList();
                 if (AppId == 1003)
                 {
                     foreach (var x in data)
@@ -11570,7 +11664,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             string ThumbnaiUrlCMS = appDetails.baseImageUrlCMS + appDetails.basePath + appDetails.HouseQRCode + "/";
             using (var db = new DevSwachhBharatNagpurEntities(appId))
             {
-                var data = db.HouseDetails().Select(x => new CMSBHouseDetailsVM
+                var data = db.HouseDetails(null).Select(x => new CMSBHouseDetailsVM
                 {
                     houseId = x.houseId,
                     WardNo = x.Ward,
@@ -14140,7 +14234,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             using (var db = new DevSwachhBharatNagpurEntities(appId))
             {
 
-                var data = db.SP_IdelTime(UserId, fdate, tdate).Where(c => c.IdelTime != null & c.IdelTime > 15).ToList();
+                var data = db.SP_IdelTime(UserId, fdate, tdate,null).Where(c => c.IdelTime != null & c.IdelTime > 15).ToList();
 
                 if (!string.IsNullOrEmpty(SearchString))
                 {
@@ -14184,7 +14278,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             using (var db = new DevSwachhBharatNagpurEntities(appId))
             {
                 //var data = db.SP_EmployeeSummary(UserId, fdate,).ToList();
-                var data = db.SP_EmployeeSummary(fdate, tdate, UserId == 0 ? null : UserId).ToList();
+                var data = db.SP_EmployeeSummary(fdate, tdate, UserId == 0 ? null : UserId,null).ToList();
 
                 //var data2 = data1.GroupBy(o => o.userId).Select(o => o.First()).AsEnumerable().ToList();
 
@@ -14387,7 +14481,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             List<CMSBHouseLocationOnMap> houseLocation = new List<CMSBHouseLocationOnMap>();
             using (var db = new DevSwachhBharatNagpurEntities(AppId))
             {
-                var data = db.SP_HouseOnMapDetails(Convert.ToDateTime(gcdate), userid == -1 ? 0 : userid, areaid, WardNo, null, null, 0,null).ToList();
+                var data = db.SP_HouseOnMapDetails(Convert.ToDateTime(gcdate), userid == -1 ? 0 : userid,null,null, areaid, WardNo, null, null, 0,null).ToList();
                 foreach (var x in data)
                 {
 
@@ -14765,6 +14859,17 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                 WardId = m.tm.Id
                                                                                   
                             });
+
+                        //var Newdata = data.Join(db.Daily_Attendance, d => d.VehicleNo, da => da.vehicleNumber, (d, da) => new { d, da }).Where(c => c.d.VehicleNo != c.da.vehicleNumber)
+                        //    .Select(n => new
+                        //    {
+                        //        VehicleNo = n.d.VehicleNo,
+                        //        Type = n.d.TypeId,
+                        //        Ward = n.d.Ward,
+                        //        VehicleId = n.d.VehicleId,
+                        //        TypeId = n.d.TypeId,
+                        //        WardId = n.d.WardId
+                        //});
 
                         foreach (var x in data)
                         {

@@ -10,9 +10,8 @@
 namespace SwachhBharatAPI.Dal.DataContexts
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TeritoryMaster
+    public partial class CollecctionAreaForCTPT_Result
     {
         public int Id { get; set; }
         public string Area { get; set; }

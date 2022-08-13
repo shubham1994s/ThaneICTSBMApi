@@ -92,6 +92,9 @@
       <DependentUpon>ChildSwachhBharat.edmx</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="CollecctionAreaForCTPT_Result.cs">
+      <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
+    </Compile>
     <Compile Include="CollecctionAreaForLiquid_Result.cs">
       <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
     </Compile>
@@ -144,6 +147,9 @@
       <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
     </Compile>
     <Compile Include="GarbagePointDetail.cs">
+      <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetAttendenceDetailsTotalCTPT_Result.cs">
       <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
     </Compile>
     <Compile Include="GetAttendenceDetailsTotalLiquid_Result.cs">
@@ -299,6 +305,9 @@
       <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
     </Compile>
     <Compile Include="Vw_BitCount.cs">
+      <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_GetCTPTNumber.cs">
       <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
     </Compile>
     <Compile Include="Vw_GetHouseNumber.cs">
