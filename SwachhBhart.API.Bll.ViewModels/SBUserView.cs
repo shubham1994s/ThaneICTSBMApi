@@ -19,5 +19,7 @@ namespace SwachhBhart.API.Bll.ViewModels
         public string bloodGroup { get; set; }
 
         public string userDesignation { get; set; }
+
+        public string PrabhagName { get; set; }
     }
 }

@@ -1311,6 +1311,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                 if (typeId == 0 || typeId == 2)
                 {
                     var obj = db.UserMasters.Where(c => c.userId == userId).FirstOrDefault();
+                    var userPrabhag = db.CommitteeMasters.Where(c => c.Id == obj.PrabhagId).Select(s => s.CommitteeName).FirstOrDefault();
                     if (obj != null)
                     {
                         user.type = obj.EmployeeType;
@@ -1323,6 +1324,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         user.bloodGroup = checkNull(obj.bloodGroup);
                         user.userDesignation = checkNull(obj.userDesignation);
                         user.profileImage = ImagePathCMS(objmain.UserProfile, obj.userProfileImage, objmain);
+                        user.PrabhagName = userPrabhag == null ? "" : userPrabhag;
                     }
                 }
                 else if (typeId == 1)
