@@ -298,6 +298,9 @@
     <Compile Include="UserMaster.cs">
       <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
     </Compile>
+    <Compile Include="VehicleListWardWise_Result.cs">
+      <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
+    </Compile>
     <Compile Include="VehicleRegistration.cs">
       <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
     </Compile>

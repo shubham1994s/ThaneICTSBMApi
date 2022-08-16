@@ -816,6 +816,10 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Parameter Name="userid" Type="int" Mode="In" />
           <Parameter Name="typeId" Type="int" Mode="In" />
         </Function>
+        <Function Name="VehicleListWardWise" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Wardid" Type="int" Mode="In" />
+          <Parameter Name="VehicleType" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="DevSwachhBharatNagpurModelStoreContainer">
           <EntitySet Name="CommercialMaster" EntityType="Self.CommercialMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommitteeMaster" EntityType="Self.CommitteeMaster" Schema="dbo" store:Type="Tables" />
@@ -1264,7 +1268,11 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           </FunctionImport>
           <EntitySet Name="Vw_GetCTPTNumber" EntityType="DevSwachhBharatNagpurModel.Vw_GetCTPTNumber" />
           <FunctionImport Name="CollecctionAreaForCTPT" ReturnType="Collection(DevSwachhBharatNagpurModel.CollecctionAreaForCTPT_Result)">
-            <Parameter Name="type" Mode="In" Type="Int32" />
+          <Parameter Name="type" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VehicleListWardWise" ReturnType="Collection(DevSwachhBharatNagpurModel.VehicleListWardWise_Result)">
+            <Parameter Name="Wardid" Mode="In" Type="Int32" />
+            <Parameter Name="VehicleType" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_area_Result">
@@ -2218,6 +2226,14 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Type="String" Name="AreaMar" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="wardId" Nullable="true" />
           <Property Type="Int32" Name="PrabhagId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="VehicleListWardWise_Result">
+          <Property Type="String" Name="vehicleNo" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="WardNo" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="vehicleId" Nullable="false" />
+          <Property Type="Int32" Name="vtId" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3314,6 +3330,18 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
                 <ScalarProperty Name="AreaMar" ColumnName="AreaMar" />
                 <ScalarProperty Name="wardId" ColumnName="wardId" />
                 <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VehicleListWardWise" FunctionName="DevSwachhBharatNagpurModel.Store.VehicleListWardWise">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.VehicleListWardWise_Result">
+                <ScalarProperty Name="vehicleNo" ColumnName="vehicleNo" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="WardNo" ColumnName="WardNo" />
+                <ScalarProperty Name="vehicleId" ColumnName="vehicleId" />
+                <ScalarProperty Name="vtId" ColumnName="vtId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

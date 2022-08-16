@@ -18,7 +18,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
     public partial class DevSwachhBharatNagpurEntities : DbContext
     {
         public DevSwachhBharatNagpurEntities(int AppId)
-             : base(SwachhBharatAppConnection.GetConnectionString(AppId))
+               : base(SwachhBharatAppConnection.GetConnectionString(AppId))
         {
         }
 
@@ -514,6 +514,19 @@ namespace SwachhBharatAPI.Dal.DataContexts
                 new ObjectParameter("type", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForCTPT_Result>("CollecctionAreaForCTPT", typeParameter);
+        }
+    
+        public virtual ObjectResult<VehicleListWardWise_Result> VehicleListWardWise(Nullable<int> wardid, Nullable<int> vehicleType)
+        {
+            var wardidParameter = wardid.HasValue ?
+                new ObjectParameter("Wardid", wardid) :
+                new ObjectParameter("Wardid", typeof(int));
+    
+            var vehicleTypeParameter = vehicleType.HasValue ?
+                new ObjectParameter("VehicleType", vehicleType) :
+                new ObjectParameter("VehicleType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VehicleListWardWise_Result>("VehicleListWardWise", wardidParameter, vehicleTypeParameter);
         }
     }
 }
