@@ -20,6 +20,7 @@ namespace SwachhBhart.API.Bll.ViewModels
 
         public string userDesignation { get; set; }
 
+        public int PrabhagId { get; set; }
         public string PrabhagName { get; set; }
     }
 }

@@ -48,7 +48,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
         List<CMSBWardVM> GetWard(int AppId, string SearchString);
 
         List<SBAUserlocation> GetUserLocation(int appId);
-        List<SBArea> GetCollectionArea(int appId,int type,string EmpType);
+        List<SBArea> GetCollectionArea(int appId,int type,string EmpType,int PrabhagId);
         List<HouseDetailsVM> GetAreaHouse(int appId, int type,string EmpType);
         List<GarbagePointDetailsVM> GetAreaPoint(int appId, int type);
 

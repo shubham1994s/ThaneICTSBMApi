@@ -18,9 +18,10 @@ namespace SwachhBharatAPI.Dal.DataContexts
     public partial class DevSwachhBharatNagpurEntities : DbContext
     {
         public DevSwachhBharatNagpurEntities(int AppId)
-               : base(SwachhBharatAppConnection.GetConnectionString(AppId))
+              : base(SwachhBharatAppConnection.GetConnectionString(AppId))
         {
         }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -68,15 +69,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual ObjectResult<sp_area_Result> sp_area()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_area_Result>("sp_area");
-        }
-    
-        public virtual ObjectResult<CollecctionArea_Result> CollecctionArea(Nullable<int> type)
-        {
-            var typeParameter = type.HasValue ?
-                new ObjectParameter("type", type) :
-                new ObjectParameter("type", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionArea_Result>("CollecctionArea", typeParameter);
         }
     
         public virtual ObjectResult<CurrentAllUserLocation_Result> CurrentAllUserLocation()
@@ -438,24 +430,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAttendenceDetailsTotalStreet_Result>("GetAttendenceDetailsTotalStreet", userIdParameter, yearParameter, monthParameter);
         }
     
-        public virtual ObjectResult<CollecctionAreaForLiquid_Result> CollecctionAreaForLiquid(Nullable<int> type)
-        {
-            var typeParameter = type.HasValue ?
-                new ObjectParameter("type", type) :
-                new ObjectParameter("type", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForLiquid_Result>("CollecctionAreaForLiquid", typeParameter);
-        }
-    
-        public virtual ObjectResult<CollecctionAreaForStreet_Result> CollecctionAreaForStreet(Nullable<int> type)
-        {
-            var typeParameter = type.HasValue ?
-                new ObjectParameter("type", type) :
-                new ObjectParameter("type", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForStreet_Result>("CollecctionAreaForStreet", typeParameter);
-        }
-    
         public virtual ObjectResult<GetQrWorkHistory_Result> GetQrWorkHistory(Nullable<int> userId, Nullable<int> year, Nullable<int> month)
         {
             var userIdParameter = userId.HasValue ?
@@ -507,15 +481,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAttendenceDetailsTotalCTPT_Result>("GetAttendenceDetailsTotalCTPT", userIdParameter, yearParameter, monthParameter);
         }
     
-        public virtual ObjectResult<CollecctionAreaForCTPT_Result> CollecctionAreaForCTPT(Nullable<int> type)
-        {
-            var typeParameter = type.HasValue ?
-                new ObjectParameter("type", type) :
-                new ObjectParameter("type", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForCTPT_Result>("CollecctionAreaForCTPT", typeParameter);
-        }
-    
         public virtual ObjectResult<VehicleListWardWise_Result> VehicleListWardWise(Nullable<int> wardid, Nullable<int> vehicleType)
         {
             var wardidParameter = wardid.HasValue ?
@@ -527,6 +492,58 @@ namespace SwachhBharatAPI.Dal.DataContexts
                 new ObjectParameter("VehicleType", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VehicleListWardWise_Result>("VehicleListWardWise", wardidParameter, vehicleTypeParameter);
+        }
+    
+        public virtual ObjectResult<CollecctionArea_Result> CollecctionArea(Nullable<int> type, Nullable<int> prabhagId)
+        {
+            var typeParameter = type.HasValue ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(int));
+    
+            var prabhagIdParameter = prabhagId.HasValue ?
+                new ObjectParameter("PrabhagId", prabhagId) :
+                new ObjectParameter("PrabhagId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionArea_Result>("CollecctionArea", typeParameter, prabhagIdParameter);
+        }
+    
+        public virtual ObjectResult<CollecctionAreaForCTPT_Result> CollecctionAreaForCTPT(Nullable<int> type, Nullable<int> prabhagId)
+        {
+            var typeParameter = type.HasValue ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(int));
+    
+            var prabhagIdParameter = prabhagId.HasValue ?
+                new ObjectParameter("PrabhagId", prabhagId) :
+                new ObjectParameter("PrabhagId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForCTPT_Result>("CollecctionAreaForCTPT", typeParameter, prabhagIdParameter);
+        }
+    
+        public virtual ObjectResult<CollecctionAreaForLiquid_Result> CollecctionAreaForLiquid(Nullable<int> type, Nullable<int> prabhagId)
+        {
+            var typeParameter = type.HasValue ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(int));
+    
+            var prabhagIdParameter = prabhagId.HasValue ?
+                new ObjectParameter("PrabhagId", prabhagId) :
+                new ObjectParameter("PrabhagId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForLiquid_Result>("CollecctionAreaForLiquid", typeParameter, prabhagIdParameter);
+        }
+    
+        public virtual ObjectResult<CollecctionAreaForStreet_Result> CollecctionAreaForStreet(Nullable<int> type, Nullable<int> prabhagId)
+        {
+            var typeParameter = type.HasValue ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(int));
+    
+            var prabhagIdParameter = prabhagId.HasValue ?
+                new ObjectParameter("PrabhagId", prabhagId) :
+                new ObjectParameter("PrabhagId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForStreet_Result>("CollecctionAreaForStreet", typeParameter, prabhagIdParameter);
         }
     }
 }

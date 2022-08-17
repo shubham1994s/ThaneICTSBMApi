@@ -689,15 +689,19 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
         </EntityType>
         <Function Name="CollecctionArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="type" Type="int" Mode="In" />
+          <Parameter Name="PrabhagId" Type="int" Mode="In" />
         </Function>
         <Function Name="CollecctionAreaForCTPT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="type" Type="int" Mode="In" />
+          <Parameter Name="PrabhagId" Type="int" Mode="In" />
         </Function>
         <Function Name="CollecctionAreaForLiquid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="type" Type="int" Mode="In" />
+          <Parameter Name="PrabhagId" Type="int" Mode="In" />
         </Function>
         <Function Name="CollecctionAreaForStreet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="type" Type="int" Mode="In" />
+          <Parameter Name="PrabhagId" Type="int" Mode="In" />
         </Function>
         <Function Name="CurrentAllUserLocation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="CurrentAllUserLocationUserIDWise" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1102,9 +1106,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
       <Schema Namespace="DevSwachhBharatNagpurModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DevSwachhBharatNagpurEntities" annotation:LazyLoadingEnabled="true">
           <FunctionImport Name="sp_area" ReturnType="Collection(DevSwachhBharatNagpurModel.sp_area_Result)" />
-          <FunctionImport Name="CollecctionArea" ReturnType="Collection(DevSwachhBharatNagpurModel.CollecctionArea_Result)">
-          <Parameter Name="type" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="CurrentAllUserLocation" ReturnType="Collection(DevSwachhBharatNagpurModel.CurrentAllUserLocation_Result)" />
           <EntitySet Name="GramCleaningComplients" EntityType="DevSwachhBharatNagpurModel.GramCleaningComplient" />
           <EntitySet Name="TeritoryMasters" EntityType="DevSwachhBharatNagpurModel.TeritoryMaster" />
@@ -1227,12 +1228,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           </FunctionImport>
           <EntitySet Name="Vw_GetLiquidNumber" EntityType="DevSwachhBharatNagpurModel.Vw_GetLiquidNumber" />
           <EntitySet Name="Vw_GetStreetNumber" EntityType="DevSwachhBharatNagpurModel.Vw_GetStreetNumber" />
-          <FunctionImport Name="CollecctionAreaForLiquid" ReturnType="Collection(DevSwachhBharatNagpurModel.CollecctionAreaForLiquid_Result)">
-          <Parameter Name="type" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="CollecctionAreaForStreet" ReturnType="Collection(DevSwachhBharatNagpurModel.CollecctionAreaForStreet_Result)">
-          <Parameter Name="type" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="GetQrWorkHistory" ReturnType="Collection(DevSwachhBharatNagpurModel.GetQrWorkHistory_Result)">
             <Parameter Name="userId" Mode="In" Type="Int32" />
             <Parameter Name="year" Mode="In" Type="Int32" />
@@ -1267,21 +1262,29 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
             <Parameter Name="month" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="Vw_GetCTPTNumber" EntityType="DevSwachhBharatNagpurModel.Vw_GetCTPTNumber" />
-          <FunctionImport Name="CollecctionAreaForCTPT" ReturnType="Collection(DevSwachhBharatNagpurModel.CollecctionAreaForCTPT_Result)">
-          <Parameter Name="type" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="VehicleListWardWise" ReturnType="Collection(DevSwachhBharatNagpurModel.VehicleListWardWise_Result)">
             <Parameter Name="Wardid" Mode="In" Type="Int32" />
             <Parameter Name="VehicleType" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="CollecctionArea" ReturnType="Collection(DevSwachhBharatNagpurModel.CollecctionArea_Result)">
+            <Parameter Name="type" Mode="In" Type="Int32" />
+            <Parameter Name="PrabhagId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CollecctionAreaForCTPT" ReturnType="Collection(DevSwachhBharatNagpurModel.CollecctionAreaForCTPT_Result)">
+            <Parameter Name="type" Mode="In" Type="Int32" />
+            <Parameter Name="PrabhagId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CollecctionAreaForLiquid" ReturnType="Collection(DevSwachhBharatNagpurModel.CollecctionAreaForLiquid_Result)">
+            <Parameter Name="type" Mode="In" Type="Int32" />
+            <Parameter Name="PrabhagId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CollecctionAreaForStreet" ReturnType="Collection(DevSwachhBharatNagpurModel.CollecctionAreaForStreet_Result)">
+            <Parameter Name="type" Mode="In" Type="Int32" />
+            <Parameter Name="PrabhagId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_area_Result">
           <Property Type="String" Name="area" Nullable="true" MaxLength="500" />
-        </ComplexType>
-        <ComplexType Name="CollecctionArea_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Area" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="AreaMar" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="CurrentAllUserLocation_Result">
           <Property Type="Int32" Name="userid" Nullable="true" />
@@ -1761,18 +1764,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="ReferanceId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="AreaId" Type="Int32" />
         </EntityType>
-        <ComplexType Name="CollecctionAreaForLiquid_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Area" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="AreaMar" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="wardId" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="CollecctionAreaForStreet_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Area" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="AreaMar" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="wardId" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="GetQrWorkHistory_Result">
           <Property Type="String" Name="Day" Nullable="true" MaxLength="30" />
           <Property Type="Int32" Name="UserId" Nullable="true" />
@@ -2220,13 +2211,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="ReferanceId" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
           <Property Name="AreaId" Type="Int32" />
         </EntityType>
-        <ComplexType Name="CollecctionAreaForCTPT_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Area" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="AreaMar" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="wardId" Nullable="true" />
-          <Property Type="Int32" Name="PrabhagId" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="VehicleListWardWise_Result">
           <Property Type="String" Name="vehicleNo" Nullable="true" MaxLength="300" />
           <Property Type="String" Name="description" Nullable="true" MaxLength="300" />
@@ -2234,6 +2218,34 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Type="Int32" Name="vehicleId" Nullable="false" />
           <Property Type="Int32" Name="vtId" Nullable="false" />
           <Property Type="Int32" Name="Id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="CollecctionArea_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Area" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="AreaMar" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="wardId" Nullable="true" />
+          <Property Type="Int32" Name="PrabhagId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CollecctionAreaForCTPT_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Area" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="AreaMar" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="wardId" Nullable="true" />
+          <Property Type="Int32" Name="PrabhagId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CollecctionAreaForLiquid_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Area" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="AreaMar" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="wardId" Nullable="true" />
+          <Property Type="Int32" Name="PrabhagId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CollecctionAreaForStreet_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Area" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="AreaMar" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="wardId" Nullable="true" />
+          <Property Type="Int32" Name="PrabhagId" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2245,15 +2257,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
             <ResultMapping>
               <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.sp_area_Result">
                 <ScalarProperty Name="area" ColumnName="area" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CollecctionArea" FunctionName="DevSwachhBharatNagpurModel.Store.CollecctionArea">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.CollecctionArea_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Area" ColumnName="Area" />
-                <ScalarProperty Name="AreaMar" ColumnName="AreaMar" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2824,26 +2827,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="CollecctionAreaForLiquid" FunctionName="DevSwachhBharatNagpurModel.Store.CollecctionAreaForLiquid">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.CollecctionAreaForLiquid_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Area" ColumnName="Area" />
-                <ScalarProperty Name="AreaMar" ColumnName="AreaMar" />
-                <ScalarProperty Name="wardId" ColumnName="wardId" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CollecctionAreaForStreet" FunctionName="DevSwachhBharatNagpurModel.Store.CollecctionAreaForStreet">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.CollecctionAreaForStreet_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Area" ColumnName="Area" />
-                <ScalarProperty Name="AreaMar" ColumnName="AreaMar" />
-                <ScalarProperty Name="wardId" ColumnName="wardId" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetQrWorkHistory" FunctionName="DevSwachhBharatNagpurModel.Store.GetQrWorkHistory">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.GetQrWorkHistory_Result">
@@ -3322,6 +3305,29 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="VehicleListWardWise" FunctionName="DevSwachhBharatNagpurModel.Store.VehicleListWardWise">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.VehicleListWardWise_Result">
+                <ScalarProperty Name="vehicleNo" ColumnName="vehicleNo" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="WardNo" ColumnName="WardNo" />
+                <ScalarProperty Name="vehicleId" ColumnName="vehicleId" />
+                <ScalarProperty Name="vtId" ColumnName="vtId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CollecctionArea" FunctionName="DevSwachhBharatNagpurModel.Store.CollecctionArea">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.CollecctionArea_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="AreaMar" ColumnName="AreaMar" />
+                <ScalarProperty Name="wardId" ColumnName="wardId" />
+                <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="CollecctionAreaForCTPT" FunctionName="DevSwachhBharatNagpurModel.Store.CollecctionAreaForCTPT">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.CollecctionAreaForCTPT_Result">
@@ -3333,15 +3339,25 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="VehicleListWardWise" FunctionName="DevSwachhBharatNagpurModel.Store.VehicleListWardWise">
+          <FunctionImportMapping FunctionImportName="CollecctionAreaForLiquid" FunctionName="DevSwachhBharatNagpurModel.Store.CollecctionAreaForLiquid">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.VehicleListWardWise_Result">
-                <ScalarProperty Name="vehicleNo" ColumnName="vehicleNo" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="WardNo" ColumnName="WardNo" />
-                <ScalarProperty Name="vehicleId" ColumnName="vehicleId" />
-                <ScalarProperty Name="vtId" ColumnName="vtId" />
+              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.CollecctionAreaForLiquid_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="AreaMar" ColumnName="AreaMar" />
+                <ScalarProperty Name="wardId" ColumnName="wardId" />
+                <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CollecctionAreaForStreet" FunctionName="DevSwachhBharatNagpurModel.Store.CollecctionAreaForStreet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.CollecctionAreaForStreet_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="AreaMar" ColumnName="AreaMar" />
+                <ScalarProperty Name="wardId" ColumnName="wardId" />
+                <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

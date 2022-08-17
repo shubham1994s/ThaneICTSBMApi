@@ -398,12 +398,19 @@ namespace SwachhBharatAPI.Controllers
             IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
             IEnumerable<string> headerValue2 = Request.Headers.GetValues("type");
             IEnumerable<string> headerValue3 = Request.Headers.GetValues("EmpType");
+
+            IEnumerable<string> headerValue4 = Request.Headers.GetValues("PrabhagId");
+
             var id = headerValue1.FirstOrDefault();
             int AppId = int.Parse(id);
             var v = headerValue2.FirstOrDefault();
             int type = int.Parse(v);
             var EmpType = headerValue3.FirstOrDefault();
-            objDetail = objRep.GetCollectionArea(AppId,type, EmpType);
+
+            var p = headerValue4.FirstOrDefault();
+            int PrabhagId = int.Parse(p);
+
+            objDetail = objRep.GetCollectionArea(AppId,type, EmpType, PrabhagId);
             return objDetail;
 
         }

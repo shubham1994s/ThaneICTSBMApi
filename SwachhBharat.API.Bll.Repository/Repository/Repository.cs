@@ -1324,6 +1324,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         user.bloodGroup = checkNull(obj.bloodGroup);
                         user.userDesignation = checkNull(obj.userDesignation);
                         user.profileImage = ImagePathCMS(objmain.UserProfile, obj.userProfileImage, objmain);
+                        user.PrabhagId = Convert.ToInt32(obj.PrabhagId);
                         user.PrabhagName = userPrabhag == null ? "" : userPrabhag;
                     }
                 }
@@ -10341,37 +10342,37 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
         }
 
-        public List<SBArea> GetCollectionArea(int AppId, int type, string EmpType)
+        public List<SBArea> GetCollectionArea(int AppId, int type, string EmpType,int PrabhagId)
         {
             List<SBArea> obj = new List<SBArea>();
 
             if (EmpType == "N")
             {
-                obj = GetCollectionAreaForNormal(AppId, type);
+                obj = GetCollectionAreaForNormal(AppId, type,PrabhagId);
             }
             if (EmpType == "L")
             {
-                obj = GetCollectionAreaForLiquid(AppId, type);
+                obj = GetCollectionAreaForLiquid(AppId, type, PrabhagId);
             }
             if (EmpType == "S")
             {
-                obj = GetCollectionAreaForStreet(AppId, type);
+                obj = GetCollectionAreaForStreet(AppId, type, PrabhagId);
             }
             if (EmpType == "CT")
             {
-                obj = GetCollectionAreaForCTPT(AppId, type);
+                obj = GetCollectionAreaForCTPT(AppId, type, PrabhagId);
             }
             return obj;
 
         }
 
 
-        public List<SBArea> GetCollectionAreaForNormal(int AppId, int type)
+        public List<SBArea> GetCollectionAreaForNormal(int AppId, int type,int PrabhagId)
         {
             List<SBArea> obj = new List<SBArea>();
             using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
             {
-                var data = db.CollecctionArea(type).ToList();
+                var data = db.CollecctionArea(type, PrabhagId).ToList();
 
                 foreach (var x in data)
                 {
@@ -10388,12 +10389,12 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             return obj;
         }
 
-        public List<SBArea> GetCollectionAreaForLiquid(int AppId, int type)
+        public List<SBArea> GetCollectionAreaForLiquid(int AppId, int type, int PrabhagId)
         {
             List<SBArea> obj = new List<SBArea>();
             using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
             {
-                var data = db.CollecctionAreaForLiquid(type).ToList();
+                var data = db.CollecctionAreaForLiquid(type, PrabhagId).ToList();
 
                 foreach (var x in data)
                 {
@@ -10410,12 +10411,12 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             return obj;
         }
 
-        public List<SBArea> GetCollectionAreaForStreet(int AppId, int type)
+        public List<SBArea> GetCollectionAreaForStreet(int AppId, int type, int PrabhagId)
         {
             List<SBArea> obj = new List<SBArea>();
             using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
             {
-                var data = db.CollecctionAreaForStreet(type).ToList();
+                var data = db.CollecctionAreaForStreet(type, PrabhagId).ToList();
 
                 foreach (var x in data)
                 {
@@ -10432,12 +10433,12 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             return obj;
         }
 
-        public List<SBArea> GetCollectionAreaForCTPT(int AppId, int type)
+        public List<SBArea> GetCollectionAreaForCTPT(int AppId, int type, int PrabhagId)
         {
             List<SBArea> obj = new List<SBArea>();
             using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
             {
-                var data = db.CollecctionAreaForCTPT(type).ToList();
+                var data = db.CollecctionAreaForCTPT(type, PrabhagId).ToList();
 
                 foreach (var x in data)
                 {
