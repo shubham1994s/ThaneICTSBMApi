@@ -16,6 +16,8 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
         SBAdmin CheckAdminLogin(string userName, string password);
         SBUserView GetUser(int appId,int userId , int typeId);
+
+        SBAHousePrabhag GetPrabhagId(int appId, string ReferanceId);
         List<SBVehicleType> GetVehicle(int appId);
         //List<SyncResult> SaveUserLocation(List<SBUserLocation> obj, int AppId, string batteryStatus);
         List<SyncResult> SaveUserLocation(List<SBUserLocation> obj, int AppId, string batteryStatus,int typeId,string EmpType);

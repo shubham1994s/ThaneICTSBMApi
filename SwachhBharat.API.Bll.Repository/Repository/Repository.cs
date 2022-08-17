@@ -1349,6 +1349,27 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             return user;
         }
 
+        public SBAHousePrabhag GetPrabhagId(int AppId, string ReferanceId)
+        {
+            SBAHousePrabhag user = new SBAHousePrabhag();
+            using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
+            {
+                AppDetail objmain = dbMain.AppDetails.Where(x => x.AppId == AppId).FirstOrDefault();
+
+                if (objmain!=null)
+                {
+                    var obj = db.HouseMasters.Where(c => c.ReferanceId == ReferanceId).FirstOrDefault();
+                    if (obj != null)
+                    {
+                        user.ReferanceId = obj.ReferanceId;
+                        user.PrabhagId = Convert.ToInt32(obj.PrabhagId);
+                       
+                    }
+                }
+
+            }
+            return user;
+        }
         public List<SBVehicleType> GetVehicle(int appId)
         {
             List<SBVehicleType> obj = new List<SBVehicleType>();

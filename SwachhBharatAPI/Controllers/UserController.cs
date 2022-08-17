@@ -588,5 +588,24 @@ namespace SwachhBharatAPI.Controllers
             return objDetail;
         }
 
+
+        [HttpGet]
+        [Route("Get/PrabhagId")]
+        public SBAHousePrabhag GetPrabhagId()
+        {
+            objRep = new Repository();
+            IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
+            IEnumerable<string> headervalue2 = Request.Headers.GetValues("ReferanceId");
+            
+            var id = headerValue1.FirstOrDefault();
+            int AppId = int.Parse(id);
+            var ReferanceId = headervalue2.FirstOrDefault();
+            
+            
+            SBAHousePrabhag objDetail = new SBAHousePrabhag();
+            objDetail = objRep.GetPrabhagId(AppId, ReferanceId);
+            return objDetail;
+        }
+
     }
 }
