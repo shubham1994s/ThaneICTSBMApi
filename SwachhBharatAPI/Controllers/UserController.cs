@@ -595,15 +595,18 @@ namespace SwachhBharatAPI.Controllers
         {
             objRep = new Repository();
             IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
-            IEnumerable<string> headervalue2 = Request.Headers.GetValues("ReferanceId");
+            IEnumerable<string> headerValue2 = Request.Headers.GetValues("userId");
+            IEnumerable<string> headervalue3 = Request.Headers.GetValues("ReferanceId");
             
             var id = headerValue1.FirstOrDefault();
             int AppId = int.Parse(id);
-            var ReferanceId = headervalue2.FirstOrDefault();
-            
+            var u = headerValue2.FirstOrDefault();
+            int  userId = int.Parse(u);
+            var ReferanceId = headervalue3.FirstOrDefault();
             
             SBAHousePrabhag objDetail = new SBAHousePrabhag();
-            objDetail = objRep.GetPrabhagId(AppId, ReferanceId);
+            objDetail = objRep.GetPrabhagId(AppId, userId,ReferanceId);
+
             return objDetail;
         }
 

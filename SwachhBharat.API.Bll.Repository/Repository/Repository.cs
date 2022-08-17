@@ -1349,22 +1349,68 @@ namespace SwachhBharat.API.Bll.Repository.Repository
             return user;
         }
 
-        public SBAHousePrabhag GetPrabhagId(int AppId, string ReferanceId)
+        public SBAHousePrabhag GetPrabhagId(int AppId, int userId, string ReferanceId)
         {
             SBAHousePrabhag user = new SBAHousePrabhag();
             using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
             {
                 AppDetail objmain = dbMain.AppDetails.Where(x => x.AppId == AppId).FirstOrDefault();
-
-                if (objmain!=null)
+                try
                 {
-                    var obj = db.HouseMasters.Where(c => c.ReferanceId == ReferanceId).FirstOrDefault();
-                    if (obj != null)
+                    if (objmain != null)
                     {
-                        user.ReferanceId = obj.ReferanceId;
-                        user.PrabhagId = Convert.ToInt32(obj.PrabhagId);
-                       
+                        
+                        var ReferancePId = db.HouseMasters.Where(c => c.ReferanceId == ReferanceId).Select(s => s.PrabhagId).FirstOrDefault();
+                        if (ReferancePId == null)
+                        {
+                            ReferancePId = db.CommercialMasters.Where(c => c.ReferanceId == ReferanceId).Select(s => s.PrabhagId).FirstOrDefault();
+                        }
+                        if (ReferancePId == null)
+                        {
+                            ReferancePId = db.SWMMasters.Where(c => c.ReferanceId == ReferanceId).Select(s => s.PrabhagId).FirstOrDefault();
+                        }
+                        if (ReferancePId == null)
+                        {
+                            ReferancePId = db.LiquidWasteDetails.Where(c => c.ReferanceId == ReferanceId).Select(s => s.PrabhagId).FirstOrDefault();
+                        }
+                        if (ReferancePId == null)
+                        {
+                            ReferancePId = db.StreetSweepingDetails.Where(c => c.ReferanceId == ReferanceId).Select(s => s.PrabhagId).FirstOrDefault();
+                        }
+                        if (ReferancePId == null)
+                        {
+                            ReferancePId = db.SauchalayAddresses.Where(c => c.ReferanceId == ReferanceId).Select(s => s.PrabhagId).FirstOrDefault();
+                        }
+                        var UserPId = db.UserMasters.Where(c => c.userId == userId).Select(s => s.PrabhagId).FirstOrDefault();
+                        if (ReferancePId == UserPId)
+                        {
+                            user.Status = "Success";
+                            user.ReferanceId = ReferanceId;
+                            user.ReferancePrabhagId = Convert.ToInt32(ReferancePId);
+                            user.UserPrabhagId = Convert.ToInt32(UserPId);
+                            user.Msg = "This Qr Code In Your Prabhag";
+                            user.MsgMarathi = "हा क्यूआर कोड तुमच्या प्रभागात आहे";
+
+                        }
+                        else
+                        {
+                            user.Status = "Error";
+                            user.ReferanceId = ReferanceId;
+                            user.ReferancePrabhagId = Convert.ToInt32(ReferancePId);
+                            user.UserPrabhagId = Convert.ToInt32(UserPId);
+                            user.Msg = "This Qr Code Not In Your Prabhag";
+                            user.MsgMarathi = "हा क्यूआर कोड तुमच्या प्रभागात नाही";
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    user.Status = "Error";
+                    user.ReferanceId = ReferanceId;
+                    user.ReferancePrabhagId = 0;
+                    user.UserPrabhagId = 0;
+                    user.Msg = "Something Went Wrong";
+                    user.MsgMarathi = "काहीतरी चूक झाली";
                 }
 
             }
@@ -10363,13 +10409,13 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
         }
 
-        public List<SBArea> GetCollectionArea(int AppId, int type, string EmpType,int PrabhagId)
+        public List<SBArea> GetCollectionArea(int AppId, int type, string EmpType, int PrabhagId)
         {
             List<SBArea> obj = new List<SBArea>();
 
             if (EmpType == "N")
             {
-                obj = GetCollectionAreaForNormal(AppId, type,PrabhagId);
+                obj = GetCollectionAreaForNormal(AppId, type, PrabhagId);
             }
             if (EmpType == "L")
             {
@@ -10388,7 +10434,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
         }
 
 
-        public List<SBArea> GetCollectionAreaForNormal(int AppId, int type,int PrabhagId)
+        public List<SBArea> GetCollectionAreaForNormal(int AppId, int type, int PrabhagId)
         {
             List<SBArea> obj = new List<SBArea>();
             using (DevSwachhBharatNagpurEntities db = new DevSwachhBharatNagpurEntities(AppId))
