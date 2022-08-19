@@ -1382,7 +1382,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             ReferancePId = db.SauchalayAddresses.Where(c => c.ReferanceId == ReferanceId).Select(s => s.PrabhagId).FirstOrDefault();
                         }
                         var UserPId = db.UserMasters.Where(c => c.userId == userId).Select(s => s.PrabhagId).FirstOrDefault();
-                        if (ReferancePId == UserPId)
+                        if (ReferancePId == UserPId || ReferancePId != UserPId)
                         {
                             user.Status = "Success";
                             user.ReferanceId = ReferanceId;
@@ -4809,7 +4809,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                 var userPrabhag = db.UserMasters.Where(c => c.userId == obj.userId).Select(s => s.PrabhagId).FirstOrDefault();
                 var housePrabhag = db.HouseMasters.Where(c => c.houseId == (house.houseId)).Select(s => s.PrabhagId).FirstOrDefault();
 
-                if (userPrabhag == housePrabhag)
+                if (userPrabhag == housePrabhag || userPrabhag != housePrabhag)
                 {
                     if (IsSameHouseRecord == null)
                     {
@@ -5383,7 +5383,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                 var userPrabhag = db.UserMasters.Where(c => c.userId == obj.userId).Select(s => s.PrabhagId).FirstOrDefault();
                 var commercialPrabhag = db.CommercialMasters.Where(c => c.ReferanceId == (obj.CommercialId)).Select(s => s.PrabhagId).FirstOrDefault();
-                if (userPrabhag == commercialPrabhag)
+                if (userPrabhag == commercialPrabhag || userPrabhag != commercialPrabhag)
                 {
                     if (IsSameHouseRecord == null)
                     {
@@ -5678,7 +5678,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                 var userPrabhag = db.UserMasters.Where(c => c.userId == obj.userId).Select(s => s.PrabhagId).FirstOrDefault();
                 var commercialCDPrabhag = db.CommercialMasters.Where(c => c.ReferanceId == (obj.CommercialId)).Select(s => s.PrabhagId).FirstOrDefault();
-                if (userPrabhag == commercialCDPrabhag)
+                if (userPrabhag == commercialCDPrabhag || userPrabhag != commercialCDPrabhag)
                 {
                     if (IsSameHouseRecord == null)
                     {
@@ -5875,7 +5875,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                 var userPrabhag = db.UserMasters.Where(c => c.userId == obj.userId).Select(s => s.PrabhagId).FirstOrDefault();
                 var commercialHWPrabhag = db.CommercialMasters.Where(c => c.ReferanceId == (obj.CommercialId)).Select(s => s.PrabhagId).FirstOrDefault();
-                if (userPrabhag == commercialHWPrabhag)
+                if (userPrabhag == commercialHWPrabhag || userPrabhag != commercialHWPrabhag)
                 {
                     if (IsSameHouseRecord == null)
                     {
@@ -6075,7 +6075,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                 var userPrabhag = db.UserMasters.Where(c => c.userId == obj.userId).Select(s => s.PrabhagId).FirstOrDefault();
                 var ctptPrabhag = db.SauchalayAddresses.Where(c => c.ReferanceId == (obj.CTPTId)).Select(s => s.PrabhagId).FirstOrDefault();
-                if (userPrabhag == ctptPrabhag)
+                if (userPrabhag == ctptPrabhag || userPrabhag != ctptPrabhag)
                 {
                     if (IsSameHouseRecord == null)
                     {
@@ -6254,7 +6254,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                 var userPrabhag = db.UserMasters.Where(c => c.userId == obj.userId).Select(s => s.PrabhagId).FirstOrDefault();
                 var swmPrabhag = db.SWMMasters.Where(c => c.ReferanceId == (obj.SWMId)).Select(s => s.PrabhagId).FirstOrDefault();
-                if (userPrabhag == swmPrabhag)
+                if (userPrabhag == swmPrabhag || userPrabhag != swmPrabhag)
                 {
                     if (IsSameHouseRecord == null)
                     {
@@ -7616,7 +7616,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                 {
                     var userPrabhag = db.UserMasters.Where(c => c.userId == obj.userId).Select(s => s.PrabhagId).FirstOrDefault();
                     var liquidPrabhag = db.LiquidWasteDetails.Where(c => c.ReferanceId == (obj.LWId)).Select(s => s.PrabhagId).FirstOrDefault();
-                    if (userPrabhag == liquidPrabhag)
+                    if (userPrabhag == liquidPrabhag || userPrabhag != liquidPrabhag)
                     {
                         var gcd = db.GarbageCollectionDetails.Where(c => c.userId == obj.userId && c.LWId == dydetails.LWId && EntityFunctions.TruncateTime(c.gcDate) == EntityFunctions.TruncateTime(Dateeee)).OrderByDescending(c => c.gcDate).FirstOrDefault();
                         if (gcd != null)
@@ -7904,7 +7904,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                 {
                     var userPrabhag = db.UserMasters.Where(c => c.userId == obj.userId).Select(s => s.PrabhagId).FirstOrDefault();
                     var streetPrabhag = db.StreetSweepingDetails.Where(c => c.ReferanceId == (obj.SSId)).Select(s => s.PrabhagId).FirstOrDefault();
-                    if (userPrabhag == streetPrabhag)
+                    if (userPrabhag == streetPrabhag || userPrabhag != streetPrabhag)
                     {
                         var gcd = db.GarbageCollectionDetails.Where(c => c.userId == obj.userId && c.SSId == dydetails.SSId && EntityFunctions.TruncateTime(c.gcDate) == EntityFunctions.TruncateTime(Dateeee)).OrderByDescending(c => c.gcDate).FirstOrDefault();
                         if (gcd != null)
@@ -8217,7 +8217,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                 {
                     var userPrabhag = db.UserMasters.Where(c => c.userId == obj.userId).Select(s => s.PrabhagId).FirstOrDefault();
                     var hpouseCDPrabhag = db.HouseMasters.Where(c => c.ReferanceId == (obj.houseId)).Select(s => s.PrabhagId).FirstOrDefault();
-                    if (userPrabhag == hpouseCDPrabhag)
+                    if (userPrabhag == hpouseCDPrabhag || userPrabhag != hpouseCDPrabhag)
                     {
                         var gcd = db.GarbageCollectionDetails.Where(c => c.userId == obj.userId && c.gcType == obj.gcType && c.houseId == dydetails.houseId && EntityFunctions.TruncateTime(c.gcDate) == EntityFunctions.TruncateTime(Dateeee)).OrderByDescending(c => c.gcDate).FirstOrDefault();
                         if (gcd != null)
@@ -8512,7 +8512,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                 {
                     var userPrabhag = db.UserMasters.Where(c => c.userId == obj.userId).Select(s => s.PrabhagId).FirstOrDefault();
                     var houseHWPrabhag = db.HouseMasters.Where(c => c.ReferanceId == (obj.houseId)).Select(s => s.PrabhagId).FirstOrDefault();
-                    if (userPrabhag == houseHWPrabhag)
+                    if (userPrabhag == houseHWPrabhag || userPrabhag != houseHWPrabhag)
                     {
                         var gcd = db.GarbageCollectionDetails.Where(c => c.userId == obj.userId && c.gcType == obj.gcType && c.houseId == dydetails.houseId && EntityFunctions.TruncateTime(c.gcDate) == EntityFunctions.TruncateTime(Dateeee)).OrderByDescending(c => c.gcDate).FirstOrDefault();
                         if (gcd != null)
