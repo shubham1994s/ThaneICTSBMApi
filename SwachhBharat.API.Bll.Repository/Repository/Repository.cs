@@ -8160,14 +8160,14 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                         if (beatcount.BitCount == i)
                         {
                             result.ID = obj.OfflineID;
-                            result.status = "success";
+                            result.status = "successC";
                             result.message = "Street Sweeping Completed Successfully";
                             result.messageMar = "सबमिट यशस्वी";
                         }
                         else
                         {
                             result.ID = obj.OfflineID;
-                            result.status = "success";
+                            result.status = "successP";
                             result.message = "Street Sweeping Partially Completed";
                             result.messageMar = "सबमिट यशस्वी";
                         }
