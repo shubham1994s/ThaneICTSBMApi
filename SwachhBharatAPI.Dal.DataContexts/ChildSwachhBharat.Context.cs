@@ -22,7 +22,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
         {
         }
 
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -33,7 +32,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<VehicleType> VehicleTypes { get; set; }
         public virtual DbSet<ZoneMaster> ZoneMasters { get; set; }
         public virtual DbSet<GarbagePointDetail> GarbagePointDetails { get; set; }
-        public virtual DbSet<QrEmployeeMaster> QrEmployeeMasters { get; set; }
         public virtual DbSet<BinLatLong> BinLatLongs { get; set; }
         public virtual DbSet<DeviceDetail> DeviceDetails { get; set; }
         public virtual DbSet<GamePlayerDetail> GamePlayerDetails { get; set; }
@@ -56,7 +54,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
         public virtual DbSet<HouseMaster> HouseMasters { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<Qr_Employee_Daily_Attendance> Qr_Employee_Daily_Attendance { get; set; }
         public virtual DbSet<Qr_Location> Qr_Location { get; set; }
         public virtual DbSet<SauchalayAddress> SauchalayAddresses { get; set; }
         public virtual DbSet<SWMMaster> SWMMasters { get; set; }
@@ -65,6 +62,8 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<LiquidWasteDetail> LiquidWasteDetails { get; set; }
         public virtual DbSet<StreetSweepingDetail> StreetSweepingDetails { get; set; }
         public virtual DbSet<Vw_GetCTPTNumber> Vw_GetCTPTNumber { get; set; }
+        public virtual DbSet<Qr_Employee_Daily_Attendance> Qr_Employee_Daily_Attendance { get; set; }
+        public virtual DbSet<QrEmployeeMaster> QrEmployeeMasters { get; set; }
     
         public virtual ObjectResult<sp_area_Result> sp_area()
         {
