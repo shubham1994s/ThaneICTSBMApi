@@ -6160,8 +6160,10 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                             objdata.locAddresss = addre;
                             objdata.CreatedDate = DateTime.Now;
                             objdata.WasteType = obj.wastetype;
+                           
                             var Pn = db.UserMasters.Where(x => x.userId == obj.userId).FirstOrDefault();
                             objdata.PrabhagId = Pn.PrabhagId;
+                            objdata.EmployeeType =Pn.EmployeeType;
                             db.GarbageCollectionDetails.Add(objdata);
 
                             loc.datetime = Dateeee;
