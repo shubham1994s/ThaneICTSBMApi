@@ -5331,7 +5331,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
                                 housemob = house.commercialOwnerMobile;
 
 
-                                IsExist = (from p in db.GarbageCollectionDetails where p.commercialId == objdata.commercialId && p.gcDate >= startDateTime && p.gcDate <= endDateTime select p).Count() > 0;
+                             //   IsExist = (from p in db.GarbageCollectionDetails where p.commercialId == objdata.commercialId && p.gcDate >= startDateTime && p.gcDate <= endDateTime select p).Count() > 0;
                                 //if (obj.wastetype == "DW")
                                 //{
                                 //   
@@ -5354,7 +5354,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                         }
 
-
+                        IsExist = false;
                         if (IsExist == true)
                         {
 
