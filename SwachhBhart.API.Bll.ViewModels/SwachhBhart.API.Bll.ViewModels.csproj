@@ -95,6 +95,7 @@
     <Compile Include="Result.cs" />
     <Compile Include="SBAAttendenceSettingsGridRow.cs" />
     <Compile Include="SBAdmin.cs" />
+    <Compile Include="SBAHousePrabhag.cs" />
     <Compile Include="SBArea.cs" />
     <Compile Include="SBAUserlocation.cs" />
     <Compile Include="SBDashboardVM.cs" />

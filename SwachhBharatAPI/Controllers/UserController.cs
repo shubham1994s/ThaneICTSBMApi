@@ -398,12 +398,19 @@ namespace SwachhBharatAPI.Controllers
             IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
             IEnumerable<string> headerValue2 = Request.Headers.GetValues("type");
             IEnumerable<string> headerValue3 = Request.Headers.GetValues("EmpType");
+
+            IEnumerable<string> headerValue4 = Request.Headers.GetValues("PrabhagId");
+
             var id = headerValue1.FirstOrDefault();
             int AppId = int.Parse(id);
             var v = headerValue2.FirstOrDefault();
             int type = int.Parse(v);
             var EmpType = headerValue3.FirstOrDefault();
-            objDetail = objRep.GetCollectionArea(AppId,type, EmpType);
+
+            var p = headerValue4.FirstOrDefault();
+            int PrabhagId = int.Parse(p);
+
+            objDetail = objRep.GetCollectionArea(AppId,type, EmpType, PrabhagId);
             return objDetail;
 
         }
@@ -578,6 +585,28 @@ namespace SwachhBharatAPI.Controllers
             List<CMSBWardZoneVM> objDetail = new List<CMSBWardZoneVM>();
             objRep = new Repository();
             objDetail = objRep.GetWardZoneList(AppId);
+            return objDetail;
+        }
+
+
+        [HttpGet]
+        [Route("Get/PrabhagId")]
+        public SBAHousePrabhag GetPrabhagId()
+        {
+            objRep = new Repository();
+            IEnumerable<string> headerValue1 = Request.Headers.GetValues("appId");
+            IEnumerable<string> headerValue2 = Request.Headers.GetValues("userId");
+            IEnumerable<string> headervalue3 = Request.Headers.GetValues("ReferanceId");
+            
+            var id = headerValue1.FirstOrDefault();
+            int AppId = int.Parse(id);
+            var u = headerValue2.FirstOrDefault();
+            int  userId = int.Parse(u);
+            var ReferanceId = headervalue3.FirstOrDefault();
+            
+            SBAHousePrabhag objDetail = new SBAHousePrabhag();
+            objDetail = objRep.GetPrabhagId(AppId, userId,ReferanceId);
+
             return objDetail;
         }
 

@@ -18,7 +18,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
     public partial class DevSwachhBharatNagpurEntities : DbContext
     {
         public DevSwachhBharatNagpurEntities(int AppId)
-             : base(SwachhBharatAppConnection.GetConnectionString(AppId))
+              : base(SwachhBharatAppConnection.GetConnectionString(AppId))
         {
         }
 
@@ -32,7 +32,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<VehicleType> VehicleTypes { get; set; }
         public virtual DbSet<ZoneMaster> ZoneMasters { get; set; }
         public virtual DbSet<GarbagePointDetail> GarbagePointDetails { get; set; }
-        public virtual DbSet<QrEmployeeMaster> QrEmployeeMasters { get; set; }
         public virtual DbSet<BinLatLong> BinLatLongs { get; set; }
         public virtual DbSet<DeviceDetail> DeviceDetails { get; set; }
         public virtual DbSet<GamePlayerDetail> GamePlayerDetails { get; set; }
@@ -55,7 +54,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
         public virtual DbSet<HouseMaster> HouseMasters { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<Qr_Employee_Daily_Attendance> Qr_Employee_Daily_Attendance { get; set; }
         public virtual DbSet<Qr_Location> Qr_Location { get; set; }
         public virtual DbSet<SauchalayAddress> SauchalayAddresses { get; set; }
         public virtual DbSet<SWMMaster> SWMMasters { get; set; }
@@ -64,19 +62,12 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<LiquidWasteDetail> LiquidWasteDetails { get; set; }
         public virtual DbSet<StreetSweepingDetail> StreetSweepingDetails { get; set; }
         public virtual DbSet<Vw_GetCTPTNumber> Vw_GetCTPTNumber { get; set; }
+        public virtual DbSet<Qr_Employee_Daily_Attendance> Qr_Employee_Daily_Attendance { get; set; }
+        public virtual DbSet<QrEmployeeMaster> QrEmployeeMasters { get; set; }
     
         public virtual ObjectResult<sp_area_Result> sp_area()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_area_Result>("sp_area");
-        }
-    
-        public virtual ObjectResult<CollecctionArea_Result> CollecctionArea(Nullable<int> type)
-        {
-            var typeParameter = type.HasValue ?
-                new ObjectParameter("type", type) :
-                new ObjectParameter("type", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionArea_Result>("CollecctionArea", typeParameter);
         }
     
         public virtual ObjectResult<CurrentAllUserLocation_Result> CurrentAllUserLocation()
@@ -438,24 +429,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAttendenceDetailsTotalStreet_Result>("GetAttendenceDetailsTotalStreet", userIdParameter, yearParameter, monthParameter);
         }
     
-        public virtual ObjectResult<CollecctionAreaForLiquid_Result> CollecctionAreaForLiquid(Nullable<int> type)
-        {
-            var typeParameter = type.HasValue ?
-                new ObjectParameter("type", type) :
-                new ObjectParameter("type", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForLiquid_Result>("CollecctionAreaForLiquid", typeParameter);
-        }
-    
-        public virtual ObjectResult<CollecctionAreaForStreet_Result> CollecctionAreaForStreet(Nullable<int> type)
-        {
-            var typeParameter = type.HasValue ?
-                new ObjectParameter("type", type) :
-                new ObjectParameter("type", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForStreet_Result>("CollecctionAreaForStreet", typeParameter);
-        }
-    
         public virtual ObjectResult<GetQrWorkHistory_Result> GetQrWorkHistory(Nullable<int> userId, Nullable<int> year, Nullable<int> month)
         {
             var userIdParameter = userId.HasValue ?
@@ -507,13 +480,69 @@ namespace SwachhBharatAPI.Dal.DataContexts
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAttendenceDetailsTotalCTPT_Result>("GetAttendenceDetailsTotalCTPT", userIdParameter, yearParameter, monthParameter);
         }
     
-        public virtual ObjectResult<CollecctionAreaForCTPT_Result> CollecctionAreaForCTPT(Nullable<int> type)
+        public virtual ObjectResult<VehicleListWardWise_Result> VehicleListWardWise(Nullable<int> wardid, Nullable<int> vehicleType)
+        {
+            var wardidParameter = wardid.HasValue ?
+                new ObjectParameter("Wardid", wardid) :
+                new ObjectParameter("Wardid", typeof(int));
+    
+            var vehicleTypeParameter = vehicleType.HasValue ?
+                new ObjectParameter("VehicleType", vehicleType) :
+                new ObjectParameter("VehicleType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VehicleListWardWise_Result>("VehicleListWardWise", wardidParameter, vehicleTypeParameter);
+        }
+    
+        public virtual ObjectResult<CollecctionArea_Result> CollecctionArea(Nullable<int> type, Nullable<int> prabhagId)
         {
             var typeParameter = type.HasValue ?
                 new ObjectParameter("type", type) :
                 new ObjectParameter("type", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForCTPT_Result>("CollecctionAreaForCTPT", typeParameter);
+            var prabhagIdParameter = prabhagId.HasValue ?
+                new ObjectParameter("PrabhagId", prabhagId) :
+                new ObjectParameter("PrabhagId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionArea_Result>("CollecctionArea", typeParameter, prabhagIdParameter);
+        }
+    
+        public virtual ObjectResult<CollecctionAreaForCTPT_Result> CollecctionAreaForCTPT(Nullable<int> type, Nullable<int> prabhagId)
+        {
+            var typeParameter = type.HasValue ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(int));
+    
+            var prabhagIdParameter = prabhagId.HasValue ?
+                new ObjectParameter("PrabhagId", prabhagId) :
+                new ObjectParameter("PrabhagId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForCTPT_Result>("CollecctionAreaForCTPT", typeParameter, prabhagIdParameter);
+        }
+    
+        public virtual ObjectResult<CollecctionAreaForLiquid_Result> CollecctionAreaForLiquid(Nullable<int> type, Nullable<int> prabhagId)
+        {
+            var typeParameter = type.HasValue ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(int));
+    
+            var prabhagIdParameter = prabhagId.HasValue ?
+                new ObjectParameter("PrabhagId", prabhagId) :
+                new ObjectParameter("PrabhagId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForLiquid_Result>("CollecctionAreaForLiquid", typeParameter, prabhagIdParameter);
+        }
+    
+        public virtual ObjectResult<CollecctionAreaForStreet_Result> CollecctionAreaForStreet(Nullable<int> type, Nullable<int> prabhagId)
+        {
+            var typeParameter = type.HasValue ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(int));
+    
+            var prabhagIdParameter = prabhagId.HasValue ?
+                new ObjectParameter("PrabhagId", prabhagId) :
+                new ObjectParameter("PrabhagId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForStreet_Result>("CollecctionAreaForStreet", typeParameter, prabhagIdParameter);
         }
     }
 }

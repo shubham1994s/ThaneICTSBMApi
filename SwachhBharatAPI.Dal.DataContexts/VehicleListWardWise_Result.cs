@@ -11,12 +11,13 @@ namespace SwachhBharatAPI.Dal.DataContexts
 {
     using System;
     
-    public partial class CollecctionAreaForStreet_Result
+    public partial class VehicleListWardWise_Result
     {
+        public string vehicleNo { get; set; }
+        public string description { get; set; }
+        public string WardNo { get; set; }
+        public int vehicleId { get; set; }
+        public int vtId { get; set; }
         public int Id { get; set; }
-        public string Area { get; set; }
-        public string AreaMar { get; set; }
-        public Nullable<int> wardId { get; set; }
-        public Nullable<int> PrabhagId { get; set; }
     }
 }
