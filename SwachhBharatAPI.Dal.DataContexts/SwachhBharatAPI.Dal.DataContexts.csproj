@@ -149,6 +149,9 @@
     <Compile Include="GarbagePointDetail.cs">
       <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetAttendenceDetailsDSI_Result.cs">
+      <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetAttendenceDetailsTotalCTPT_Result.cs">
       <DependentUpon>ChildSwachhBharat.tt</DependentUpon>
     </Compile>

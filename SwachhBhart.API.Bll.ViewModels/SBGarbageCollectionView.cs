@@ -15,6 +15,9 @@ namespace SwachhBhart.API.Bll.ViewModels
 
         public string CommercialId { get; set; }
 
+
+        public string dsiScanId { get; set; }
+
         public string CTPTId { get; set; }
 
         public string SWMId { get; set; }

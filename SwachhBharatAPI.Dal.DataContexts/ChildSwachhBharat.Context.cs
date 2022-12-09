@@ -22,6 +22,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
         {
         }
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -51,7 +52,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<CommercialMaster> CommercialMasters { get; set; }
         public virtual DbSet<Daily_Attendance> Daily_Attendance { get; set; }
         public virtual DbSet<DumpYardDetail> DumpYardDetails { get; set; }
-        public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
         public virtual DbSet<HouseMaster> HouseMasters { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Qr_Location> Qr_Location { get; set; }
@@ -64,6 +64,7 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public virtual DbSet<Vw_GetCTPTNumber> Vw_GetCTPTNumber { get; set; }
         public virtual DbSet<Qr_Employee_Daily_Attendance> Qr_Employee_Daily_Attendance { get; set; }
         public virtual DbSet<QrEmployeeMaster> QrEmployeeMasters { get; set; }
+        public virtual DbSet<GarbageCollectionDetail> GarbageCollectionDetails { get; set; }
     
         public virtual ObjectResult<sp_area_Result> sp_area()
         {
@@ -543,6 +544,23 @@ namespace SwachhBharatAPI.Dal.DataContexts
                 new ObjectParameter("PrabhagId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CollecctionAreaForStreet_Result>("CollecctionAreaForStreet", typeParameter, prabhagIdParameter);
+        }
+    
+        public virtual ObjectResult<GetAttendenceDetailsDSI_Result> GetAttendenceDetailsDSI(Nullable<int> userId, Nullable<int> year, Nullable<int> month)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(int));
+    
+            var monthParameter = month.HasValue ?
+                new ObjectParameter("month", month) :
+                new ObjectParameter("month", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAttendenceDetailsDSI_Result>("GetAttendenceDetailsDSI", userIdParameter, yearParameter, monthParameter);
         }
     }
 }

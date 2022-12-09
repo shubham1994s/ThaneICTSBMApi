@@ -58,6 +58,8 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.BinLatLong' do
           <Property Name="CommitteeName" Type="nvarchar" MaxLength="50" />
           <Property Name="zoneId" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Daily_Attendance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Daily_Attendance">
           <Key>
             <PropertyRef Name="daID" />
@@ -97,6 +99,8 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.DeviceDetails'
           <Property Name="ReferenceID" Type="nvarchar" MaxLength="50" />
           <Property Name="InstallDate" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.DumpYardDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DumpYardDetails">
           <Key>
             <PropertyRef Name="dyId" />
@@ -120,6 +124,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.DeviceDetails'
           <Property Name="QRStatusDate" Type="datetime" />
           <Property Name="BinaryQrCodeImage" Type="varbinary(max)" />
           <Property Name="PrabhagId" Type="int" />
+          <Property Name="DataEntryDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.GamePlayerDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -187,6 +192,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.GamePlayerDeta
           <Property Name="gpBeforImageTime" Type="datetime" />
           <Property Name="gpAfterImageTime" Type="datetime" />
           <Property Name="PrabhagId" Type="int" />
+          <Property Name="dsiScanId" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.GarbagePointDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -290,6 +296,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.GramCleaningCo
           <Property Name="QRStatusDate" Type="datetime" />
           <Property Name="BinaryQrCodeImage" Type="varbinary(max)" />
           <Property Name="PrabhagId" Type="int" />
+          <Property Name="DataEntryDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -438,8 +445,9 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.GramCleaningCo
           <Property Name="QRStatus" Type="bit" />
           <Property Name="QRStatusDate" Type="datetime" />
           <Property Name="BinaryQrCodeImage" Type="varbinary(max)" />
-          <Property Name="PrabhagId" Type="int" />
           <Property Name="BeatId" Type="int" />
+          <Property Name="PrabhagId" Type="int" />
+          <Property Name="DataEntryDate" Type="datetime" />
         </EntityType>
         <EntityType Name="SWMMaster">
           <Key>
@@ -472,6 +480,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.GramCleaningCo
           <Property Name="QRStatusDate" Type="datetime" />
           <Property Name="BinaryQrCodeImage" Type="varbinary(max)" />
           <Property Name="PrabhagId" Type="int" />
+          <Property Name="DataEntryDate" Type="datetime" />
         </EntityType>
         <EntityType Name="TeritoryMaster">
           <Key>
@@ -505,8 +514,8 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.GramCleaningCo
           <Property Name="EmployeeType" Type="varchar" MaxLength="10" />
           <Property Name="imoNo2" Type="nvarchar(max)" />
           <Property Name="ComgcTarget" Type="varchar" MaxLength="250" />
-          <Property Name="ZoneId" Type="int" />
           <Property Name="PrabhagId" Type="int" />
+          <Property Name="ZoneId" Type="int" />
         </EntityType>
         <EntityType Name="VehicleRegistration">
           <Key>
@@ -517,9 +526,8 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.GramCleaningCo
           <Property Name="vehicleNo" Type="nvarchar" MaxLength="300" />
           <Property Name="areaId" Type="int" />
           <Property Name="isActive" Type="bit" />
+          <Property Name="PrabhagId" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.VehicleType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VehicleType">
           <Key>
             <PropertyRef Name="vtId" />
@@ -530,7 +538,10 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.VehicleType' d
           <Property Name="isActive" Type="bit" />
           <Property Name="RegNo" Type="nvarchar" MaxLength="300" />
           <Property Name="VechileNo" Type="nvarchar" MaxLength="300" />
+          <Property Name="PrabhagId" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.WardNumber' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="WardNumber">
           <Key>
             <PropertyRef Name="Id" />
@@ -598,14 +609,13 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.WM_GarbageSubC
           <Property Name="SubCategory" Type="nvarchar" MaxLength="50" />
           <Property Name="CategoryID" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.ZoneMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ZoneMaster">
           <Key>
             <PropertyRef Name="zoneId" />
           </Key>
           <Property Name="zoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="500" />
+          <Property Name="PrabhagId" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_BitCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -701,6 +711,11 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
         <Function Name="CurrentAllUserLocation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="CurrentAllUserLocationUserIDWise" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAttendenceDetailsDSI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+          <Parameter Name="year" Type="int" Mode="In" />
+          <Parameter Name="month" Type="int" Mode="In" />
         </Function>
         <Function Name="GetAttendenceDetailsTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userId" Type="int" Mode="In" />
@@ -822,8 +837,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
         <EntityContainer Name="DevSwachhBharatNagpurModelStoreContainer">
           <EntitySet Name="CommercialMaster" EntityType="Self.CommercialMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommitteeMaster" EntityType="Self.CommitteeMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Daily_Attendance" EntityType="Self.Daily_Attendance" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DumpYardDetails" EntityType="Self.DumpYardDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GarbageCollectionDetails" EntityType="Self.GarbageCollectionDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HouseMaster" EntityType="Self.HouseMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LiquidWasteDetails" EntityType="Self.LiquidWasteDetails" Schema="dbo" store:Type="Tables" />
@@ -838,7 +851,8 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySet Name="TeritoryMaster" EntityType="Self.TeritoryMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleRegistration" EntityType="Self.VehicleRegistration" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WardNumber" EntityType="Self.WardNumber" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleType" EntityType="Self.VehicleType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZoneMaster" EntityType="Self.ZoneMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BinLatLong" EntityType="Self.BinLatLong" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [BinLatLong].[Id] AS [Id], 
@@ -851,6 +865,31 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
     [BinLatLong].[CreatedDate] AS [CreatedDate]
     FROM [dbo].[BinLatLong] AS [BinLatLong]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="Daily_Attendance" EntityType="Self.Daily_Attendance" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Daily_Attendance].[daID] AS [daID], 
+    [Daily_Attendance].[userId] AS [userId], 
+    [Daily_Attendance].[startLat] AS [startLat], 
+    [Daily_Attendance].[startLong] AS [startLong], 
+    [Daily_Attendance].[endLat] AS [endLat], 
+    [Daily_Attendance].[endLong] AS [endLong], 
+    [Daily_Attendance].[startTime] AS [startTime], 
+    [Daily_Attendance].[endTime] AS [endTime], 
+    [Daily_Attendance].[daDate] AS [daDate], 
+    [Daily_Attendance].[daEndDate] AS [daEndDate], 
+    [Daily_Attendance].[vtId] AS [vtId], 
+    [Daily_Attendance].[daStartNote] AS [daStartNote], 
+    [Daily_Attendance].[daEndNote] AS [daEndNote], 
+    [Daily_Attendance].[vehicleNumber] AS [vehicleNumber], 
+    [Daily_Attendance].[batteryStatus] AS [batteryStatus], 
+    [Daily_Attendance].[totalKm] AS [totalKm], 
+    [Daily_Attendance].[OutbatteryStatus] AS [OutbatteryStatus], 
+    [Daily_Attendance].[EmployeeType] AS [EmployeeType], 
+    [Daily_Attendance].[CType] AS [CType], 
+    [Daily_Attendance].[WardId] AS [WardId], 
+    [Daily_Attendance].[PrabhagId] AS [PrabhagId]
+    FROM [dbo].[Daily_Attendance] AS [Daily_Attendance]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="DeviceDetails" EntityType="Self.DeviceDetails" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DeviceDetails].[DeviceDetailId] AS [DeviceDetailId], 
@@ -860,6 +899,30 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
     [DeviceDetails].[ReferenceID] AS [ReferenceID], 
     [DeviceDetails].[InstallDate] AS [InstallDate]
     FROM [dbo].[DeviceDetails] AS [DeviceDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DumpYardDetails" EntityType="Self.DumpYardDetails" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DumpYardDetails].[dyId] AS [dyId], 
+    [DumpYardDetails].[dyName] AS [dyName], 
+    [DumpYardDetails].[dyNameMar] AS [dyNameMar], 
+    [DumpYardDetails].[dyLat] AS [dyLat], 
+    [DumpYardDetails].[dyLong] AS [dyLong], 
+    [DumpYardDetails].[dyQRCode] AS [dyQRCode], 
+    [DumpYardDetails].[zoneId] AS [zoneId], 
+    [DumpYardDetails].[wardId] AS [wardId], 
+    [DumpYardDetails].[areaId] AS [areaId], 
+    [DumpYardDetails].[ReferanceId] AS [ReferanceId], 
+    [DumpYardDetails].[dyAddress] AS [dyAddress], 
+    [DumpYardDetails].[lastModifiedDate] AS [lastModifiedDate], 
+    [DumpYardDetails].[userId] AS [userId], 
+    [DumpYardDetails].[EmployeeType] AS [EmployeeType], 
+    [DumpYardDetails].[QRCodeImage] AS [QRCodeImage], 
+    [DumpYardDetails].[QRStatus] AS [QRStatus], 
+    [DumpYardDetails].[QRStatusDate] AS [QRStatusDate], 
+    [DumpYardDetails].[BinaryQrCodeImage] AS [BinaryQrCodeImage], 
+    [DumpYardDetails].[PrabhagId] AS [PrabhagId], 
+    [DumpYardDetails].[DataEntryDate] AS [DataEntryDate]
+    FROM [dbo].[DumpYardDetails] AS [DumpYardDetails]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="GamePlayerDetails" EntityType="Self.GamePlayerDetails" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -916,15 +979,13 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
     [GramCleaningComplient].[Type] AS [Type]
     FROM [dbo].[GramCleaningComplient] AS [GramCleaningComplient]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="VehicleType" EntityType="Self.VehicleType" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="WardNumber" EntityType="Self.WardNumber" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [VehicleType].[vtId] AS [vtId], 
-    [VehicleType].[description] AS [description], 
-    [VehicleType].[descriptionMar] AS [descriptionMar], 
-    [VehicleType].[isActive] AS [isActive], 
-    [VehicleType].[RegNo] AS [RegNo], 
-    [VehicleType].[VechileNo] AS [VechileNo]
-    FROM [dbo].[VehicleType] AS [VehicleType]</DefiningQuery>
+    [WardNumber].[Id] AS [Id], 
+    [WardNumber].[WardNo] AS [WardNo], 
+    [WardNumber].[zoneId] AS [zoneId], 
+    [WardNumber].[PrabhagId] AS [PrabhagId]
+    FROM [dbo].[WardNumber] AS [WardNumber]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="WM_Garbage_Details" EntityType="Self.WM_Garbage_Details" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -968,12 +1029,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
     [WM_GarbageSubCategory].[SubCategory] AS [SubCategory], 
     [WM_GarbageSubCategory].[CategoryID] AS [CategoryID]
     FROM [dbo].[WM_GarbageSubCategory] AS [WM_GarbageSubCategory]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="ZoneMaster" EntityType="Self.ZoneMaster" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ZoneMaster].[zoneId] AS [zoneId], 
-    [ZoneMaster].[name] AS [name]
-    FROM [dbo].[ZoneMaster] AS [ZoneMaster]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Vw_BitCount" EntityType="Self.Vw_BitCount" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1177,7 +1232,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySet Name="CommercialMasters" EntityType="DevSwachhBharatNagpurModel.CommercialMaster" />
           <EntitySet Name="Daily_Attendance" EntityType="DevSwachhBharatNagpurModel.Daily_Attendance" />
           <EntitySet Name="DumpYardDetails" EntityType="DevSwachhBharatNagpurModel.DumpYardDetail" />
-          <EntitySet Name="GarbageCollectionDetails" EntityType="DevSwachhBharatNagpurModel.GarbageCollectionDetail" />
           <EntitySet Name="HouseMasters" EntityType="DevSwachhBharatNagpurModel.HouseMaster" />
           <EntitySet Name="Locations" EntityType="DevSwachhBharatNagpurModel.Location" />
           <EntitySet Name="Qr_Location" EntityType="DevSwachhBharatNagpurModel.Qr_Location" />
@@ -1215,6 +1269,12 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           </FunctionImport>
           <EntitySet Name="Qr_Employee_Daily_Attendance" EntityType="DevSwachhBharatNagpurModel.Qr_Employee_Daily_Attendance" />
           <EntitySet Name="QrEmployeeMasters" EntityType="DevSwachhBharatNagpurModel.QrEmployeeMaster" />
+          <EntitySet Name="GarbageCollectionDetails" EntityType="DevSwachhBharatNagpurModel.GarbageCollectionDetail" />
+          <FunctionImport Name="GetAttendenceDetailsDSI" ReturnType="Collection(DevSwachhBharatNagpurModel.GetAttendenceDetailsDSI_Result)">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+            <Parameter Name="year" Mode="In" Type="Int32" />
+            <Parameter Name="month" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_area_Result">
           <Property Type="String" Name="area" Nullable="true" MaxLength="500" />
@@ -1276,6 +1336,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="isActive" Type="Boolean" />
           <Property Name="RegNo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="VechileNo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PrabhagId" Type="Int32" />
         </EntityType>
         <EntityType Name="ZoneMaster">
           <Key>
@@ -1283,6 +1344,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           </Key>
           <Property Name="zoneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PrabhagId" Type="Int32" />
         </EntityType>
         <EntityType Name="GarbagePointDetail">
           <Key>
@@ -1735,6 +1797,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="vehicleNo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="areaId" Type="Int32" />
           <Property Name="isActive" Type="Boolean" />
+          <Property Name="PrabhagId" Type="Int32" />
         </EntityType>
         <EntityType Name="CommitteeMaster">
           <Key>
@@ -1823,58 +1886,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="QRStatusDate" Type="DateTime" Precision="3" />
           <Property Name="BinaryQrCodeImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="PrabhagId" Type="Int32" />
-        </EntityType>
-        <EntityType Name="GarbageCollectionDetail">
-          <Key>
-            <PropertyRef Name="gcId" />
-          </Key>
-          <Property Name="gcId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userId" Type="Int32" />
-          <Property Name="houseId" Type="Int32" />
-          <Property Name="gpId" Type="Int32" />
-          <Property Name="gcDate" Type="DateTime" Precision="3" />
-          <Property Name="Lat" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Long" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="gcImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="gcQRcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="gpBeforImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="gpAfterImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="gcType" Type="Int32" />
-          <Property Name="vehicleNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="locAddresss" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="garbageType" Type="Int32" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="dyId" Type="Int32" />
-          <Property Name="totalGcWeight" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="totalDryWeight" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="totalWetWeight" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="batteryStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Distance" Type="Double" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="RFIDTagId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="RFIDReaderId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="SourceId" Type="Int32" />
-          <Property Name="OutbatteryStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="WasteType" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="EmployeeType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="LWId" Type="Int32" />
-          <Property Name="SSId" Type="Int32" />
-          <Property Name="LOS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="commercialId" Type="Int32" />
-          <Property Name="CTPTId" Type="Int32" />
-          <Property Name="SWMId" Type="Int32" />
-          <Property Name="TNS" Type="Int32" />
-          <Property Name="TOT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="CGarbageType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="AreaId" Type="Int32" />
-          <Property Name="Wet" Type="Int32" />
-          <Property Name="Dry" Type="Int32" />
-          <Property Name="Domestic" Type="Int32" />
-          <Property Name="Sanitary" Type="Int32" />
-          <Property Name="gpBeforImageTime" Type="DateTime" Precision="3" />
-          <Property Name="gpAfterImageTime" Type="DateTime" Precision="3" />
-          <Property Name="PrabhagId" Type="Int32" />
+          <Property Name="DataEntryDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="HouseMaster">
           <Key>
@@ -2011,6 +2023,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="QRStatusDate" Type="DateTime" Precision="3" />
           <Property Name="BinaryQrCodeImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="PrabhagId" Type="Int32" />
+          <Property Name="DataEntryDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
@@ -2068,6 +2081,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="QRStatusDate" Type="DateTime" Precision="3" />
           <Property Name="BinaryQrCodeImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="PrabhagId" Type="Int32" />
+          <Property Name="DataEntryDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="StreetSweepingDetail">
           <Key>
@@ -2092,6 +2106,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="BinaryQrCodeImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="PrabhagId" Type="Int32" />
           <Property Name="BeatId" Type="Int32" />
+          <Property Name="DataEntryDate" Type="DateTime" Precision="3" />
         </EntityType>
         <ComplexType Name="GetAttendenceDetailsTotalCTPT_Result">
           <Property Type="DateTime" Name="day" Nullable="true" />
@@ -2181,6 +2196,64 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <Property Name="target" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="lastModifyDate" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="GarbageCollectionDetail">
+          <Key>
+            <PropertyRef Name="gcId" />
+          </Key>
+          <Property Name="gcId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="houseId" Type="Int32" />
+          <Property Name="gpId" Type="Int32" />
+          <Property Name="gcDate" Type="DateTime" Precision="3" />
+          <Property Name="Lat" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Long" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="gcImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="gcQRcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="gpBeforImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="gpAfterImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="gcType" Type="Int32" />
+          <Property Name="vehicleNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="locAddresss" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="garbageType" Type="Int32" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="dyId" Type="Int32" />
+          <Property Name="totalGcWeight" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="totalDryWeight" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="totalWetWeight" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="batteryStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Distance" Type="Double" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="RFIDTagId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RFIDReaderId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SourceId" Type="Int32" />
+          <Property Name="OutbatteryStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="WasteType" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LWId" Type="Int32" />
+          <Property Name="SSId" Type="Int32" />
+          <Property Name="LOS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="commercialId" Type="Int32" />
+          <Property Name="CTPTId" Type="Int32" />
+          <Property Name="SWMId" Type="Int32" />
+          <Property Name="TNS" Type="Int32" />
+          <Property Name="TOT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CGarbageType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="AreaId" Type="Int32" />
+          <Property Name="Wet" Type="Int32" />
+          <Property Name="Dry" Type="Int32" />
+          <Property Name="Domestic" Type="Int32" />
+          <Property Name="Sanitary" Type="Int32" />
+          <Property Name="gpBeforImageTime" Type="DateTime" Precision="3" />
+          <Property Name="gpAfterImageTime" Type="DateTime" Precision="3" />
+          <Property Name="PrabhagId" Type="Int32" />
+          <Property Name="dsiScanId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="GetAttendenceDetailsDSI_Result">
+          <Property Type="DateTime" Name="day" Nullable="true" />
+          <Property Type="Int32" Name="userid" Nullable="true" />
+          <Property Type="Int32" Name="DSICollection" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2250,6 +2323,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySetMapping Name="VehicleTypes">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.VehicleType">
               <MappingFragment StoreEntitySet="VehicleType">
+                <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
                 <ScalarProperty Name="VechileNo" ColumnName="VechileNo" />
                 <ScalarProperty Name="RegNo" ColumnName="RegNo" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
@@ -2262,6 +2336,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySetMapping Name="ZoneMasters">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.ZoneMaster">
               <MappingFragment StoreEntitySet="ZoneMaster">
+                <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="zoneId" ColumnName="zoneId" />
               </MappingFragment>
@@ -2802,6 +2877,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySetMapping Name="VehicleRegistrations">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.VehicleRegistration">
               <MappingFragment StoreEntitySet="VehicleRegistration">
+                <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="areaId" ColumnName="areaId" />
                 <ScalarProperty Name="vehicleNo" ColumnName="vehicleNo" />
@@ -2880,6 +2956,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySetMapping Name="DumpYardDetails">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.DumpYardDetail">
               <MappingFragment StoreEntitySet="DumpYardDetails">
+                <ScalarProperty Name="DataEntryDate" ColumnName="DataEntryDate" />
                 <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
                 <ScalarProperty Name="BinaryQrCodeImage" ColumnName="BinaryQrCodeImage" />
                 <ScalarProperty Name="QRStatusDate" ColumnName="QRStatusDate" />
@@ -2899,59 +2976,6 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
                 <ScalarProperty Name="dyNameMar" ColumnName="dyNameMar" />
                 <ScalarProperty Name="dyName" ColumnName="dyName" />
                 <ScalarProperty Name="dyId" ColumnName="dyId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GarbageCollectionDetails">
-            <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.GarbageCollectionDetail">
-              <MappingFragment StoreEntitySet="GarbageCollectionDetails">
-                <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
-                <ScalarProperty Name="gpAfterImageTime" ColumnName="gpAfterImageTime" />
-                <ScalarProperty Name="gpBeforImageTime" ColumnName="gpBeforImageTime" />
-                <ScalarProperty Name="Sanitary" ColumnName="Sanitary" />
-                <ScalarProperty Name="Domestic" ColumnName="Domestic" />
-                <ScalarProperty Name="Dry" ColumnName="Dry" />
-                <ScalarProperty Name="Wet" ColumnName="Wet" />
-                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
-                <ScalarProperty Name="CGarbageType" ColumnName="CGarbageType" />
-                <ScalarProperty Name="TOT" ColumnName="TOT" />
-                <ScalarProperty Name="TNS" ColumnName="TNS" />
-                <ScalarProperty Name="SWMId" ColumnName="SWMId" />
-                <ScalarProperty Name="CTPTId" ColumnName="CTPTId" />
-                <ScalarProperty Name="commercialId" ColumnName="commercialId" />
-                <ScalarProperty Name="LOS" ColumnName="LOS" />
-                <ScalarProperty Name="SSId" ColumnName="SSId" />
-                <ScalarProperty Name="LWId" ColumnName="LWId" />
-                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
-                <ScalarProperty Name="WasteType" ColumnName="WasteType" />
-                <ScalarProperty Name="OutbatteryStatus" ColumnName="OutbatteryStatus" />
-                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
-                <ScalarProperty Name="RFIDReaderId" ColumnName="RFIDReaderId" />
-                <ScalarProperty Name="RFIDTagId" ColumnName="RFIDTagId" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="Distance" ColumnName="Distance" />
-                <ScalarProperty Name="batteryStatus" ColumnName="batteryStatus" />
-                <ScalarProperty Name="totalWetWeight" ColumnName="totalWetWeight" />
-                <ScalarProperty Name="totalDryWeight" ColumnName="totalDryWeight" />
-                <ScalarProperty Name="totalGcWeight" ColumnName="totalGcWeight" />
-                <ScalarProperty Name="dyId" ColumnName="dyId" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="garbageType" ColumnName="garbageType" />
-                <ScalarProperty Name="locAddresss" ColumnName="locAddresss" />
-                <ScalarProperty Name="note" ColumnName="note" />
-                <ScalarProperty Name="vehicleNumber" ColumnName="vehicleNumber" />
-                <ScalarProperty Name="gcType" ColumnName="gcType" />
-                <ScalarProperty Name="gpAfterImage" ColumnName="gpAfterImage" />
-                <ScalarProperty Name="gpBeforImage" ColumnName="gpBeforImage" />
-                <ScalarProperty Name="gcQRcode" ColumnName="gcQRcode" />
-                <ScalarProperty Name="gcImage" ColumnName="gcImage" />
-                <ScalarProperty Name="Long" ColumnName="Long" />
-                <ScalarProperty Name="Lat" ColumnName="Lat" />
-                <ScalarProperty Name="gcDate" ColumnName="gcDate" />
-                <ScalarProperty Name="gpId" ColumnName="gpId" />
-                <ScalarProperty Name="houseId" ColumnName="houseId" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="gcId" ColumnName="gcId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3066,6 +3090,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySetMapping Name="SWMMasters">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.SWMMaster">
               <MappingFragment StoreEntitySet="SWMMaster">
+                <ScalarProperty Name="DataEntryDate" ColumnName="DataEntryDate" />
                 <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
                 <ScalarProperty Name="BinaryQrCodeImage" ColumnName="BinaryQrCodeImage" />
                 <ScalarProperty Name="QRStatusDate" ColumnName="QRStatusDate" />
@@ -3135,6 +3160,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySetMapping Name="LiquidWasteDetails">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.LiquidWasteDetail">
               <MappingFragment StoreEntitySet="LiquidWasteDetails">
+                <ScalarProperty Name="DataEntryDate" ColumnName="DataEntryDate" />
                 <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
                 <ScalarProperty Name="BinaryQrCodeImage" ColumnName="BinaryQrCodeImage" />
                 <ScalarProperty Name="QRStatusDate" ColumnName="QRStatusDate" />
@@ -3159,6 +3185,7 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
           <EntitySetMapping Name="StreetSweepingDetails">
             <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.StreetSweepingDetail">
               <MappingFragment StoreEntitySet="StreetSweepingDetails">
+                <ScalarProperty Name="DataEntryDate" ColumnName="DataEntryDate" />
                 <ScalarProperty Name="BeatId" ColumnName="BeatId" />
                 <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
                 <ScalarProperty Name="BinaryQrCodeImage" ColumnName="BinaryQrCodeImage" />
@@ -3296,6 +3323,69 @@ warning 6002: The table/view 'LIVEAdvanceDevSwachhBharatThane.dbo.Vw_MsgNotifica
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="GarbageCollectionDetails">
+            <EntityTypeMapping TypeName="DevSwachhBharatNagpurModel.GarbageCollectionDetail">
+              <MappingFragment StoreEntitySet="GarbageCollectionDetails">
+                <ScalarProperty Name="dsiScanId" ColumnName="dsiScanId" />
+                <ScalarProperty Name="PrabhagId" ColumnName="PrabhagId" />
+                <ScalarProperty Name="gpAfterImageTime" ColumnName="gpAfterImageTime" />
+                <ScalarProperty Name="gpBeforImageTime" ColumnName="gpBeforImageTime" />
+                <ScalarProperty Name="Sanitary" ColumnName="Sanitary" />
+                <ScalarProperty Name="Domestic" ColumnName="Domestic" />
+                <ScalarProperty Name="Dry" ColumnName="Dry" />
+                <ScalarProperty Name="Wet" ColumnName="Wet" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="CGarbageType" ColumnName="CGarbageType" />
+                <ScalarProperty Name="TOT" ColumnName="TOT" />
+                <ScalarProperty Name="TNS" ColumnName="TNS" />
+                <ScalarProperty Name="SWMId" ColumnName="SWMId" />
+                <ScalarProperty Name="CTPTId" ColumnName="CTPTId" />
+                <ScalarProperty Name="commercialId" ColumnName="commercialId" />
+                <ScalarProperty Name="LOS" ColumnName="LOS" />
+                <ScalarProperty Name="SSId" ColumnName="SSId" />
+                <ScalarProperty Name="LWId" ColumnName="LWId" />
+                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
+                <ScalarProperty Name="WasteType" ColumnName="WasteType" />
+                <ScalarProperty Name="OutbatteryStatus" ColumnName="OutbatteryStatus" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="RFIDReaderId" ColumnName="RFIDReaderId" />
+                <ScalarProperty Name="RFIDTagId" ColumnName="RFIDTagId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="batteryStatus" ColumnName="batteryStatus" />
+                <ScalarProperty Name="totalWetWeight" ColumnName="totalWetWeight" />
+                <ScalarProperty Name="totalDryWeight" ColumnName="totalDryWeight" />
+                <ScalarProperty Name="totalGcWeight" ColumnName="totalGcWeight" />
+                <ScalarProperty Name="dyId" ColumnName="dyId" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="garbageType" ColumnName="garbageType" />
+                <ScalarProperty Name="locAddresss" ColumnName="locAddresss" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="vehicleNumber" ColumnName="vehicleNumber" />
+                <ScalarProperty Name="gcType" ColumnName="gcType" />
+                <ScalarProperty Name="gpAfterImage" ColumnName="gpAfterImage" />
+                <ScalarProperty Name="gpBeforImage" ColumnName="gpBeforImage" />
+                <ScalarProperty Name="gcQRcode" ColumnName="gcQRcode" />
+                <ScalarProperty Name="gcImage" ColumnName="gcImage" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="gcDate" ColumnName="gcDate" />
+                <ScalarProperty Name="gpId" ColumnName="gpId" />
+                <ScalarProperty Name="houseId" ColumnName="houseId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="gcId" ColumnName="gcId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetAttendenceDetailsDSI" FunctionName="DevSwachhBharatNagpurModel.Store.GetAttendenceDetailsDSI">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSwachhBharatNagpurModel.GetAttendenceDetailsDSI_Result">
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="DSICollection" ColumnName="DSICollection" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

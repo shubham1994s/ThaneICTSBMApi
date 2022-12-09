@@ -61,5 +61,6 @@ namespace SwachhBharatAPI.Dal.DataContexts
         public Nullable<System.DateTime> gpBeforImageTime { get; set; }
         public Nullable<System.DateTime> gpAfterImageTime { get; set; }
         public Nullable<int> PrabhagId { get; set; }
+        public string dsiScanId { get; set; }
     }
 }

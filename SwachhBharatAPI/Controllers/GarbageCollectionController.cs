@@ -417,6 +417,11 @@ namespace SwachhBharatAPI.Controllers
                             gcDetail.Dry = item.Dry;
                             gcDetail.Wet = item.Wet;
                             break;
+                        case 14:
+                            gcDetail.dsiScanId = item.ReferenceID;
+                            gcDetail.gcType = item.gcType;
+                            gcDetail.EmpType = item.EmpType;
+                            break;
                         default:
                             gcDetail.houseId = "";
                             gcDetail.gpId = "";

@@ -24,6 +24,9 @@ namespace SwachhBhart.API.Bll.ViewModels
 
         public int SLWMCollection { get; set; }
         public int CTPTCollection { get; set; }
+
+        public int DSICollection { get; set; }
+        
         public int CADCollection { get; set; }
         public int HorticultureCollection { get; set; }
 

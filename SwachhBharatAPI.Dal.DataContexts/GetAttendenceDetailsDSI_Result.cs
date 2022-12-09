@@ -10,12 +10,11 @@
 namespace SwachhBharatAPI.Dal.DataContexts
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ZoneMaster
+    public partial class GetAttendenceDetailsDSI_Result
     {
-        public int zoneId { get; set; }
-        public string name { get; set; }
-        public Nullable<int> PrabhagId { get; set; }
+        public Nullable<System.DateTime> day { get; set; }
+        public Nullable<int> userid { get; set; }
+        public Nullable<int> DSICollection { get; set; }
     }
 }
