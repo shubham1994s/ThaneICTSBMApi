@@ -5354,7 +5354,7 @@ namespace SwachhBharat.API.Bll.Repository.Repository
 
                             }
 
-
+                            IsExist = false;
                             if (IsExist == true)
                             {
 
